@@ -95,6 +95,25 @@ export default function CampusMap({ incidents, onSelectIncident, selectedInciden
     return { mappedIncidents: mapped, untrackedIncidents: untracked };
   }, [filteredIncidents]);
 
+  // Group mapped incidents by coordinates so they don't overlap directly on top of each other
+  const groupedMappedIncidents = useMemo(() => {
+    const groups = new Map<string, { lat: number; lng: number; locationName: string; incidents: Incident[] }>();
+    mappedIncidents.forEach(inc => {
+      const coords = getCoordinates(inc.rawLocation || inc.locationName);
+      const key = `${coords.lat.toFixed(6)},${coords.lng.toFixed(6)}`;
+      if (!groups.has(key)) {
+        groups.set(key, {
+          lat: coords.lat,
+          lng: coords.lng,
+          locationName: inc.locationName || inc.rawLocation || "Campus Location",
+          incidents: []
+        });
+      }
+      groups.get(key)!.incidents.push(inc);
+    });
+    return Array.from(groups.values());
+  }, [mappedIncidents]);
+
   // 1. Initialize Map Instance
   useEffect(() => {
     if (!mapContainerRef.current || mapInstanceRef.current) return;
@@ -161,69 +180,123 @@ export default function CampusMap({ incidents, onSelectIncident, selectedInciden
     markersRef.current = [];
     markerMapRef.current.clear();
 
-    // Plot each filtered mapped incident
-    mappedIncidents.forEach(inc => {
-      const coords = getCoordinates(inc.rawLocation || inc.locationName);
-      const color = getCategoryColorHex(inc.category);
+    // Plot each grouped mapped incident
+    groupedMappedIncidents.forEach(group => {
+      const isMulti = group.incidents.length > 1;
+      let pinHtml = "";
+      let popupContent = "";
 
-      // Create beautiful custom vector PIN icon styled with tailwind styles
-      const pinHtml = `
-        <div class="flex items-center justify-center" style="width: 32px; height: 32px;">
-          <div class="relative flex items-center justify-center w-8 h-8 rounded-full border-2 border-white shadow-md transition-all hover:scale-110 cursor-pointer" style="background-color: ${color}; color: white;">
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-            </svg>
+      if (!isMulti) {
+        const inc = group.incidents[0];
+        const color = getCategoryColorHex(inc.category);
+        
+        // Custom Single Incident Pin
+        pinHtml = `
+          <div class="flex items-center justify-center" style="width: 32px; height: 32px;">
+            <div class="relative flex items-center justify-center w-8 h-8 rounded-full border-2 border-white shadow-md transition-all hover:scale-110 cursor-pointer" style="background-color: ${color}; color: white;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+            </div>
           </div>
-        </div>
-      `;
+        `;
+
+        popupContent = `
+          <div style="font-family: system-ui, sans-serif; width: 230px; padding: 4px;">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; gap: 4px;">
+              <span style="font-size: 9px; font-weight: bold; text-transform: uppercase; padding: 2px 6px; border-radius: 9999px; background-color: ${color}15; color: ${color}; border: 1px solid ${color}30;">
+                ${inc.category}
+              </span>
+              <span style="font-size: 10px; color: #9ca3af; font-weight: 500; font-family: monospace; margin-left: auto;">${inc.time || "Daily Log"}</span>
+            </div>
+            <div style="font-size: 9px; font-weight: bold; color: #4b5563; margin-bottom: 4px; font-family: monospace; display: flex; align-items: center; gap: 4px;">
+              📅 ${inc.rawDateStr}
+            </div>
+            <h4 style="font-size: 13px; font-weight: 700; color: #111827; margin: 0 0 4px 0; line-height: 1.25;">${inc.type || "Safety Log"}</h4>
+            <p style="font-size: 11px; color: #374151; font-weight: 600; margin: 0 0 6px 0; display: flex; align-items: center; gap: 4px;">
+              📍 ${inc.locationName || inc.rawLocation}
+            </p>
+            <p style="font-size: 11px; color: #6b7280; margin: 0 0 8px 0; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">
+              ${inc.description}
+            </p>
+            <button id="map-pop-btn-${inc.id}" style="width: 100%; text-align: center; padding: 5px 0; background-color: #081e3f; color: white; font-size: 10px; font-weight: bold; border-radius: 6px; cursor: pointer; border: none; transition: background-color 0.15s;">
+              Inspect Record
+            </button>
+          </div>
+        `;
+      } else {
+        // Multi-incident badge at exact same spot
+        // Color: Navy blue background with gold borders for Augustana pride!
+        pinHtml = `
+          <div class="flex items-center justify-center" style="width: 36px; height: 36px;">
+            <div class="relative flex items-center justify-center w-9 h-9 rounded-full border-2 border-[#fed101] shadow-lg text-[#fed101] font-extrabold text-xs hover:scale-110 cursor-pointer" style="background-color: #081e3f;">
+              ${group.incidents.length}
+            </div>
+          </div>
+        `;
+
+        popupContent = `
+          <div style="font-family: system-ui, sans-serif; width: 260px; max-height: 280px; display: flex; flex-direction: column; padding: 4px;">
+            <h4 style="font-size: 12px; font-weight: bold; color: #111827; margin: 0 0 6px 0; border-b: 1px solid #e5e7eb; padding-bottom: 6px; display: flex; align-items: center; gap: 4px;">
+              📍 ${group.locationName} <span style="font-size: 10px; color: #6b7280; font-weight: normal; margin-left: auto;">(${group.incidents.length} logs)</span>
+            </h4>
+            <div style="overflow-y: auto; max-height: 220px; display: flex; flex-direction: column; gap: 8px; padding-right: 4px;">
+              ${group.incidents.map(inc => {
+                const catColor = getCategoryColorHex(inc.category);
+                return `
+                  <div style="border-bottom: 1px dashed #e5e7eb; padding-bottom: 8px; margin-bottom: 2px;">
+                    <div style="display: flex; align-items: center; justify-content: space-between; gap: 4px; margin-bottom: 2px;">
+                      <span style="font-size: 8px; font-weight: bold; text-transform: uppercase; padding: 1px 4px; border-radius: 9999px; background-color: ${catColor}15; color: ${catColor}; border: 1px solid ${catColor}25;">
+                        ${inc.category}
+                      </span>
+                      <span style="font-size: 9px; color: #9ca3af; font-weight: 500;">${inc.time || "Daily Log"}</span>
+                    </div>
+                    <div style="font-size: 11px; font-weight: 700; color: #111827; line-height: 1.2;">${inc.type || "Safety Log"}</div>
+                    <div style="font-size: 9px; color: #4b5563; margin-top: 3px; display: flex; justify-content: space-between; align-items: center;">
+                      <span>📅 ${inc.rawDateStr}</span>
+                      <button id="map-pop-btn-${inc.id}" style="padding: 2.5px 7px; background-color: #081e3f; color: white; font-size: 8px; font-weight: bold; border-radius: 4px; cursor: pointer; border: none; transition: background-color 0.15s;">
+                        Inspect
+                      </button>
+                    </div>
+                  </div>
+                `;
+              }).join("")}
+            </div>
+          </div>
+        `;
+      }
 
       const customIcon = L.divIcon({
         html: pinHtml,
         className: "custom-map-pin",
-        iconSize: [32, 32],
-        iconAnchor: [16, 32],
-        popupAnchor: [0, -32],
+        iconSize: isMulti ? [36, 36] : [32, 32],
+        iconAnchor: isMulti ? [18, 18] : [16, 32],
+        popupAnchor: isMulti ? [0, -18] : [0, -32],
       });
 
-      // Build popup description
-      const popupContent = `
-        <div style="font-family: system-ui, sans-serif; width: 220px; padding: 4px;">
-          <div style="display: flex; align-items: center; justify-between: space-between; margin-bottom: 6px;">
-            <span style="font-size: 9px; font-weight: bold; text-transform: uppercase; padding: 2px 6px; border-radius: 9999px; background-color: ${color}15; color: ${color}; border: 1px solid ${color}30;">
-              ${inc.category}
-            </span>
-            <span style="font-size: 10px; color: #9ca3af; font-weight: 500; font-family: monospace; margin-left: auto;">${inc.time || "Daily Log"}</span>
-          </div>
-          <h4 style="font-size: 13px; font-weight: 700; color: #111827; margin: 0 0 4px 0; line-height: 1.25;">${inc.type || "Safety Log"}</h4>
-          <p style="font-size: 11px; color: #4b5563; font-weight: 600; margin: 0 0 6px 0; display: flex; align-items: center; gap: 4px;">
-            📍 ${inc.locationName || inc.rawLocation}
-          </p>
-          <p style="font-size: 11px; color: #6b7280; margin: 0 0 8px 0; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
-            ${inc.description}
-          </p>
-          <button id="map-pop-btn-${inc.id}" style="width: 100%; text-align: center; padding: 5px 0; background-color: #081e3f; color: white; font-size: 10px; font-weight: bold; border-radius: 6px; cursor: pointer; border: none; transition: background-color 0.15s;">
-            Inspect Record
-          </button>
-        </div>
-      `;
-
-      const marker = L.marker([coords.lat, coords.lng], { icon: customIcon })
+      const marker = L.marker([group.lat, group.lng], { icon: customIcon })
         .addTo(map)
         .bindPopup(popupContent, { closeButton: false });
 
       marker.on("popupopen", () => {
-        const button = document.getElementById(`map-pop-btn-${inc.id}`);
-        if (button) {
-          button.addEventListener("click", () => {
-            onSelectIncident(inc);
-          });
-        }
+        group.incidents.forEach(inc => {
+          const button = document.getElementById(`map-pop-btn-${inc.id}`);
+          if (button) {
+            button.addEventListener("click", () => {
+              onSelectIncident(inc);
+            });
+          }
+        });
       });
 
       markersRef.current.push(marker);
-      markerMapRef.current.set(inc.id, marker);
+      
+      // Map all incident IDs in this group to the same marker object
+      group.incidents.forEach(inc => {
+        markerMapRef.current.set(inc.id, marker);
+      });
     });
-  }, [mappedIncidents]);
+  }, [groupedMappedIncidents]);
 
   // 4. Center map or fly to selected incident when prop changes
   useEffect(() => {

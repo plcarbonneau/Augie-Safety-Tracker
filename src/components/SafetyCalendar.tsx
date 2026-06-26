@@ -15,7 +15,6 @@ export default function SafetyCalendar({ incidents, onSelectIncident }: SafetyCa
   // Calendar filter state
   const [categoryFilter, setCategoryFilter] = useState<string>("all");
   const [statusFilter, setStatusFilter] = useState<string>("all"); // "all", "incidents", "safe"
-  const [locationSearch, setLocationSearch] = useState<string>("");
 
   // Get active month metrics
   const year = currentDate.getFullYear();
@@ -54,14 +53,6 @@ export default function SafetyCalendar({ incidents, onSelectIncident }: SafetyCa
       if (statusFilter === "safe" && !inc.isNothingToReport) {
         return;
       }
-      // 3. Apply location search filter
-      if (locationSearch.trim() !== "") {
-        const query = locationSearch.toLowerCase();
-        const matchesLoc = (inc.locationName || inc.rawLocation || "").toLowerCase().includes(query);
-        if (!matchesLoc) {
-          return;
-        }
-      }
 
       const list = map.get(inc.date) || [];
       list.push(inc);
@@ -69,7 +60,7 @@ export default function SafetyCalendar({ incidents, onSelectIncident }: SafetyCa
     });
     
     return map;
-  }, [incidents, categoryFilter, statusFilter, locationSearch]);
+  }, [incidents, categoryFilter, statusFilter]);
 
   // Generate calendar grid
   const daysInMonth = useMemo(() => {
@@ -120,15 +111,8 @@ export default function SafetyCalendar({ incidents, onSelectIncident }: SafetyCa
       dayIncidents = dayIncidents.filter(inc => inc.category === categoryFilter || inc.isNothingToReport);
     }
     
-    if (locationSearch.trim() !== "") {
-      const query = locationSearch.toLowerCase();
-      dayIncidents = dayIncidents.filter(inc => 
-        (inc.locationName || inc.rawLocation || "").toLowerCase().includes(query) || inc.isNothingToReport
-      );
-    }
-    
     return dayIncidents;
-  }, [rawIncidentsByDate, selectedDayStr, categoryFilter, locationSearch]);
+  }, [rawIncidentsByDate, selectedDayStr, categoryFilter]);
 
   // Format header date string
   const formattedSelectedDate = useMemo(() => {
@@ -194,7 +178,7 @@ export default function SafetyCalendar({ incidents, onSelectIncident }: SafetyCa
               <span>Filters:</span>
             </div>
             
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 w-full">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full">
               {/* Category Filter Dropdown */}
               <select
                 value={categoryFilter}
@@ -220,15 +204,6 @@ export default function SafetyCalendar({ incidents, onSelectIncident }: SafetyCa
                 <option value="incidents">Reported Incidents Only</option>
                 <option value="safe">Safe Days Only</option>
               </select>
-
-              {/* Location Search Input */}
-              <input
-                type="text"
-                placeholder="Search building / location..."
-                value={locationSearch}
-                onChange={(e) => setLocationSearch(e.target.value)}
-                className="bg-white border border-gray-200 rounded-lg px-3 py-1.5 text-xs text-gray-700 font-medium focus:outline-none focus:ring-1 focus:ring-[#081e3f] focus:border-transparent"
-              />
             </div>
           </div>
 

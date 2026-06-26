@@ -6,9 +6,10 @@ import { X, Clock, MapPin, Calendar, Shield, Share2, Clipboard, Landmark, Map, T
 interface IncidentModalProps {
   incident: Incident | null;
   onClose: () => void;
+  onViewOnMap?: (incident: Incident) => void;
 }
 
-export default function IncidentModal({ incident, onClose }: IncidentModalProps) {
+export default function IncidentModal({ incident, onClose, onViewOnMap }: IncidentModalProps) {
   if (!incident) return null;
 
   // Find associated campus building for additional context
@@ -22,6 +23,11 @@ export default function IncidentModal({ incident, onClose }: IncidentModalProps)
   const getCategoryBadgeClass = (category: string) => {
     return "bg-[#081e3f]/5 text-[#081e3f] border-[#081e3f]/10";
   };
+
+  const showViewOnMap = onViewOnMap && !incident.isNothingToReport && 
+    incident.rawLocation && 
+    incident.rawLocation.toLowerCase() !== "campus-wide" && 
+    incident.rawLocation.toLowerCase() !== "campus wide";
 
   return (
     <div className="fixed inset-0 bg-black/40 backdrop-blur-xs flex items-center justify-center z-50 p-4 transition-all animate-fade-in">
@@ -109,9 +115,23 @@ export default function IncidentModal({ incident, onClose }: IncidentModalProps)
 
         {/* Footer Actions */}
         <div className="px-6 py-4 bg-gray-50 border-t border-gray-100 flex items-center justify-between text-xs">
-          <div className="flex items-center gap-1.5 text-gray-400 font-medium">
-            <Clipboard className="w-4 h-4" />
-            <span>Campus Safety Log Archive</span>
+          <div className="flex items-center gap-2">
+            {showViewOnMap && (
+              <button
+                onClick={() => {
+                  if (onViewOnMap) onViewOnMap(incident);
+                  onClose();
+                }}
+                className="flex items-center gap-1.5 px-3 py-2 bg-[#fed101] hover:bg-[#fed101]/95 text-[#081e3f] font-bold rounded-lg shadow-xs transition-all cursor-pointer"
+              >
+                <Map className="w-3.5 h-3.5" />
+                <span>View on Map</span>
+              </button>
+            )}
+            <div className="hidden sm:flex items-center gap-1.5 text-gray-400 font-medium">
+              <Clipboard className="w-4 h-4" />
+              <span>Safety Archive</span>
+            </div>
           </div>
           <button
             onClick={onClose}

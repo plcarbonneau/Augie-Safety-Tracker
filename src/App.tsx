@@ -3,6 +3,7 @@ import { Incident, IncidentCategory } from "./types";
 import { PROCESSED_FALLBACK_INCIDENTS } from "./data/fallbackData";
 import CampusMap from "./components/CampusMap";
 import SafetyCalendar from "./components/SafetyCalendar";
+import SafetyArchive from "./components/SafetyArchive";
 import IncidentModal from "./components/IncidentModal";
 import { motion, AnimatePresence } from "motion/react";
 import {
@@ -28,6 +29,7 @@ import {
 } from "lucide-react";
 
 export default function App() {
+  const [activeTab, setActiveTab] = useState<"archive" | "map" | "calendar">("archive");
   const [incidents, setIncidents] = useState<Incident[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [scraping, setScraping] = useState<boolean>(false);
@@ -188,7 +190,7 @@ export default function App() {
 
             <div className="pt-3 border-t border-blue-800/60">
               <h1 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight leading-tight">
-                Augustana University Campus Safety Log Scraper and Archive
+                Campus Safety Log Scraper and Archive
               </h1>
               <p className="text-base sm:text-lg text-blue-200 font-semibold mt-1.5">
                 By: Parker Carbonneau
@@ -223,8 +225,47 @@ export default function App() {
         </div>
       )}
 
+      {/* Segmented Control Navigation Bar */}
+      <div className="max-w-7xl mx-auto px-6 mt-6">
+        <div className="grid grid-cols-3 gap-1.5 bg-gray-100/80 p-1.5 rounded-2xl border border-gray-200 shadow-xs">
+          <button
+            onClick={() => setActiveTab("archive")}
+            className={`py-3 rounded-xl font-bold text-sm transition-all flex items-center justify-center gap-2 cursor-pointer ${
+              activeTab === "archive"
+                ? "bg-[#081e3f] text-white shadow-md shadow-[#081e3f]/10"
+                : "text-gray-600 hover:bg-white/60 hover:text-gray-900"
+            }`}
+          >
+            <FileText className="w-4 h-4" />
+            <span>Archive Feed</span>
+          </button>
+          <button
+            onClick={() => setActiveTab("map")}
+            className={`py-3 rounded-xl font-bold text-sm transition-all flex items-center justify-center gap-2 cursor-pointer ${
+              activeTab === "map"
+                ? "bg-[#081e3f] text-white shadow-md shadow-[#081e3f]/10"
+                : "text-gray-600 hover:bg-white/60 hover:text-gray-900"
+            }`}
+          >
+            <MapIcon className="w-4 h-4" />
+            <span>Interactive Map</span>
+          </button>
+          <button
+            onClick={() => setActiveTab("calendar")}
+            className={`py-3 rounded-xl font-bold text-sm transition-all flex items-center justify-center gap-2 cursor-pointer ${
+              activeTab === "calendar"
+                ? "bg-[#081e3f] text-white shadow-md shadow-[#081e3f]/10"
+                : "text-gray-600 hover:bg-white/60 hover:text-gray-900"
+            }`}
+          >
+            <CalendarIcon className="w-4 h-4" />
+            <span>Safety Calendar</span>
+          </button>
+        </div>
+      </div>
+
       {/* Main Container */}
-      <main className="max-w-7xl mx-auto px-6 mt-8 space-y-8">
+      <main className="max-w-7xl mx-auto px-6 mt-6 space-y-6">
         
         {/* Clery Act Mandated Crime Log About Section */}
         <section className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex flex-col md:flex-row items-start gap-4" id="about-section">
@@ -249,46 +290,54 @@ export default function App() {
           </div>
         </section>
 
-        {/* Section 1: Detailed Interactive Campus Map */}
-        <section className="space-y-4">
-          <div className="flex items-center justify-between">
-            <div>
-              <h2 className="text-lg font-bold text-gray-900 flex items-center gap-2">
-                <MapIcon className="w-5 h-5 text-[#081e3f]" />
-                Campus Safety Log Map
-              </h2>
-            </div>
+        {/* Tab-driven Conditional Views */}
+        {loading ? (
+          <div className="bg-white rounded-2xl border border-gray-100 p-20 text-center flex flex-col items-center justify-center gap-4">
+            <RefreshCw className="w-8 h-8 text-[#081e3f] animate-spin" />
+            <p className="text-sm font-semibold text-gray-500">Loading historical campus safety archives...</p>
           </div>
-          <CampusMap incidents={incidents} onSelectIncident={setSelectedIncident} selectedIncident={selectedIncident} />
-        </section>
+        ) : (
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeTab}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.15 }}
+            >
+              {activeTab === "archive" && (
+                <SafetyArchive incidents={incidents} onSelectIncident={setSelectedIncident} />
+              )}
+              {activeTab === "map" && (
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <h2 className="text-lg font-bold text-gray-900 flex items-center gap-2">
+                      <MapIcon className="w-5 h-5 text-[#081e3f]" />
+                      Campus Safety Log Map
+                    </h2>
+                  </div>
+                  <CampusMap incidents={incidents} onSelectIncident={setSelectedIncident} selectedIncident={selectedIncident} />
+                </div>
+              )}
+              {activeTab === "calendar" && (
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h2 className="text-lg font-bold text-gray-900 flex items-center gap-2">
+                        <CalendarIcon className="w-5 h-5 text-[#081e3f]" />
+                        Interactive Safety Calendar
+                      </h2>
+                      <p className="text-xs text-gray-500">Navigate month-by-month to inspect occurrences. Safe days display a green safety shield, while days with warnings indicate incidents.</p>
+                    </div>
+                  </div>
+                  <SafetyCalendar incidents={incidents} onSelectIncident={setSelectedIncident} />
+                </div>
+              )}
+            </motion.div>
+          </AnimatePresence>
+        )}
 
-        {/* Section 2: Interactive Monthly Calendar Grid */}
-        <section className="space-y-4">
-          <div className="flex items-center justify-between">
-            <div>
-              <h2 className="text-lg font-bold text-gray-900 flex items-center gap-2">
-                <CalendarIcon className="w-5 h-5 text-[#081e3f]" />
-                Interactive Safety Calendar
-              </h2>
-              <p className="text-xs text-gray-500">Navigate month-by-month to inspect occurrences. Safe days display a green safety shield, while days with warnings indicate incidents.</p>
-            </div>
-          </div>
-          <SafetyCalendar incidents={incidents} onSelectIncident={setSelectedIncident} />
-        </section>
 
-        {/* Statistics Dashboard Banner - Moved to Very Bottom */}
-        <section className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-6" id="stats-dashboard">
-          <div className="flex items-center gap-4">
-            <div className="p-3 bg-[#081e3f]/5 text-[#081e3f] rounded-xl border border-gray-100">
-              <Database className="w-6 h-6" />
-            </div>
-            <div>
-              <span className="block text-xs font-bold text-gray-400 uppercase tracking-wider">Historical Archives</span>
-              <h2 className="text-xl font-bold text-gray-900">{stats.totalLogs} logs archived</h2>
-              <p className="text-xs text-gray-500 mt-0.5">Secure permanent database recording all dispatcher incidents beyond the 60-day university removal window.</p>
-            </div>
-          </div>
-        </section>
 
       </main>
 
@@ -298,6 +347,10 @@ export default function App() {
           <IncidentModal
             incident={selectedIncident}
             onClose={() => setSelectedIncident(null)}
+            onViewOnMap={(inc) => {
+              setSelectedIncident(inc);
+              setActiveTab("map");
+            }}
           />
         )}
       </AnimatePresence>

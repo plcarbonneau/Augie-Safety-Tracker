@@ -280,76 +280,82 @@ app.post("/api/reset", (req, res) => {
   }
 });
 
+// Core Scraping & Merging Function
+async function performScrape() {
+  console.log("Auto-scraping safety log from Augustana University website...");
+  const url = "https://www.augie.edu/student-affairs/campus-safety/campus-safety-log";
+  
+  // Fetch live page with a timeout
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 10000);
+  
+  let html = "";
+  try {
+    const response = await fetch(url, {
+      headers: {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+      },
+      signal: controller.signal
+    });
+    clearTimeout(timeoutId);
+    
+    if (response.ok) {
+      html = await response.text();
+    } else {
+      throw new Error(`Response status error: ${response.status}`);
+    }
+  } catch (fetchErr: any) {
+    clearTimeout(timeoutId);
+    console.warn("Live fetch failed or timed out. Scraping static local fallback HTML to simulate crawl.", fetchErr.message);
+  }
+
+  let parsedIncidents: Incident[] = [];
+  
+  if (html) {
+    parsedIncidents = parseCampusSafetyHTML(html);
+    console.log(`Successfully scraped and parsed ${parsedIncidents.length} incidents from live website.`);
+  }
+  
+  // If live parse yielded nothing, let's treat the fallback parsed data as simulated scrape result
+  if (parsedIncidents.length === 0) {
+    parsedIncidents = PROCESSED_FALLBACK_INCIDENTS;
+    console.log("Simulating scrape using archived data fallback.");
+  }
+  
+  // Merge scraped data with current archived data (preserving any user-inserted or cached edits, match by ID)
+  const currentArchive = loadArchivedIncidents();
+  const archiveMap = new Map<string, Incident>();
+  
+  // Seed with existing archived items
+  currentArchive.forEach(inc => archiveMap.set(inc.id, inc));
+  
+  // Overwrite or append with scraped items
+  let newItemsCount = 0;
+  parsedIncidents.forEach(inc => {
+    if (!archiveMap.has(inc.id)) {
+      newItemsCount++;
+    }
+    archiveMap.set(inc.id, inc);
+  });
+  
+  const mergedList = Array.from(archiveMap.values()).sort((a, b) => b.date.localeCompare(a.date));
+  saveArchivedIncidents(mergedList);
+  
+  return {
+    success: true,
+    scrapedCount: parsedIncidents.length,
+    newItemsCount,
+    totalCount: mergedList.length,
+    incidents: mergedList,
+    timestamp: new Date().toLocaleTimeString()
+  };
+}
+
 // Scraping endpoint
 app.post("/api/scrape", async (req, res) => {
   try {
-    console.log("Initiating safety log scraping...");
-    const url = "https://www.augie.edu/student-affairs/campus-safety/campus-safety-log";
-    
-    // Fetch live page with a timeout
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 10000);
-    
-    let html = "";
-    try {
-      const response = await fetch(url, {
-        headers: {
-          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
-        },
-        signal: controller.signal
-      });
-      clearTimeout(timeoutId);
-      
-      if (response.ok) {
-        html = await response.text();
-      } else {
-        throw new Error(`Response status error: ${response.status}`);
-      }
-    } catch (fetchErr: any) {
-      clearTimeout(timeoutId);
-      console.warn("Live fetch failed or timed out. Scraping static local fallback HTML to simulate crawl.", fetchErr.message);
-    }
-
-    let parsedIncidents: Incident[] = [];
-    
-    if (html) {
-      parsedIncidents = parseCampusSafetyHTML(html);
-      console.log(`Successfully scraped and parsed ${parsedIncidents.length} incidents from live website.`);
-    }
-    
-    // If live parse yielded nothing, let's treat the fallback parsed data as simulated scrape result
-    if (parsedIncidents.length === 0) {
-      parsedIncidents = PROCESSED_FALLBACK_INCIDENTS;
-      console.log("Simulating scrape using archived data fallback.");
-    }
-    
-    // Merge scraped data with current archived data (preserving any user-inserted or cached edits, match by ID)
-    const currentArchive = loadArchivedIncidents();
-    const archiveMap = new Map<string, Incident>();
-    
-    // Seed with existing archived items
-    currentArchive.forEach(inc => archiveMap.set(inc.id, inc));
-    
-    // Overwrite or append with scraped items
-    let newItemsCount = 0;
-    parsedIncidents.forEach(inc => {
-      if (!archiveMap.has(inc.id)) {
-        newItemsCount++;
-      }
-      archiveMap.set(inc.id, inc);
-    });
-    
-    const mergedList = Array.from(archiveMap.values()).sort((a, b) => b.date.localeCompare(a.date));
-    saveArchivedIncidents(mergedList);
-    
-    res.json({
-      success: true,
-      scrapedCount: parsedIncidents.length,
-      newItemsCount,
-      totalCount: mergedList.length,
-      incidents: mergedList,
-      timestamp: new Date().toLocaleTimeString()
-    });
+    const result = await performScrape();
+    res.json(result);
   } catch (err: any) {
     console.error("Scraping operation failed:", err);
     res.status(500).json({ success: false, error: err.message || "An unexpected error occurred during scraping" });
@@ -429,6 +435,23 @@ async function startServer() {
 
   app.listen(PORT, "0.0.0.0", () => {
     console.log(`Augustana Safety Server listening on port ${PORT}`);
+    
+    // Perform an initial scrape on startup
+    performScrape().then(result => {
+      console.log(`Initial automatic startup scrape completed. Total logs: ${result.totalCount}, New logs: ${result.newItemsCount}`);
+    }).catch(err => {
+      console.error("Initial startup scrape failed:", err);
+    });
+
+    // Schedule automatic scraping every 24 hours
+    const TWENTY_FOUR_HOURS = 24 * 60 * 60 * 1000;
+    setInterval(() => {
+      performScrape().then(result => {
+        console.log(`Periodic automatic 24-hour scrape completed. Total logs: ${result.totalCount}, New logs: ${result.newItemsCount}`);
+      }).catch(err => {
+        console.error("Periodic automatic 24-hour scrape failed:", err);
+      });
+    }, TWENTY_FOUR_HOURS);
   });
 }
 
