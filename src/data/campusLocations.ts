@@ -281,11 +281,21 @@ export const CAMPUS_BUILDINGS: CampusBuilding[] = [
   },
   {
     name: "Our Saviours Lutheran Church",
-    lat: 43.521614,
-    lng: -96.737225,
+    lat: 43.52171592110215,
+    lng: -96.73725393035173,
     address: "909 W 33rd St",
-    description: "Our Saviors Lutheran Church.",
-    aliases: ["Our Saviours Lutheran Church", "Our Saviors Lutheran Church", "OSL lot", "909 W 33rd St"]
+    description: "Our Savior's Lutheran Church.",
+    aliases: [
+      "Our Savior's Lutheran",
+      "Our Saviors Lutheran",
+      "Our Saviors Lutheran Church",
+      "Our Savior's Lutheran Church (909 W St)",
+      "Our Savior's Lutheran Church",
+      "Our Saviours Lutheran Church",
+      "Our Saviors Lutheran Church (909 W St)",
+      "OSL lot",
+      "909 W 33rd St"
+    ]
   },
   {
     name: "Outdoor Classroom",
@@ -493,6 +503,10 @@ export function getCoordinates(locationStr: string): { lat: number; lng: number;
   }
   if (norm.includes("terning")) {
     const b = CAMPUS_BUILDINGS.find(x => x.name.toLowerCase().includes("terning"));
+    if (b) return { lat: b.lat, lng: b.lng, exact: true };
+  }
+  if (norm.includes("savior") || norm.includes("saviour")) {
+    const b = CAMPUS_BUILDINGS.find(x => x.name.toLowerCase().includes("saviour") || x.name.toLowerCase().includes("savior"));
     if (b) return { lat: b.lat, lng: b.lng, exact: true };
   }
 

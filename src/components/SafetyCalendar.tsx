@@ -8,9 +8,58 @@ interface SafetyCalendarProps {
 }
 
 export default function SafetyCalendar({ incidents, onSelectIncident }: SafetyCalendarProps) {
-  // We will base the calendar on the 2026 year logs (Feb to Jun 2026)
-  const [currentDate, setCurrentDate] = useState<Date>(new Date(2026, 5, 1)); // Default to June 2026 (month 5 in 0-indexed JS)
-  const [selectedDayStr, setSelectedDayStr] = useState<string>("2026-06-22"); // Default selected day
+  // Find range of months from incidents
+  const incidentDateRange = useMemo(() => {
+    if (incidents.length === 0) {
+      const now = new Date();
+      return { min: new Date(now.getFullYear(), now.getMonth() - 5, 1), max: now };
+    }
+    let minDate = new Date();
+    let maxDate = new Date();
+    let hasIncidents = false;
+    
+    // Find boundaries based on actual incident date strings
+    incidents.forEach(inc => {
+      const d = new Date(inc.date + "T12:00:00");
+      if (isNaN(d.getTime())) return;
+      if (!hasIncidents) {
+        minDate = d;
+        maxDate = d;
+        hasIncidents = true;
+      } else {
+        if (d < minDate) minDate = d;
+        if (d > maxDate) maxDate = d;
+      }
+    });
+    
+    // Include current real date in maxDate as well so we can always navigate to the current month
+    const today = new Date();
+    if (today > maxDate) {
+      maxDate = today;
+    }
+    
+    // Ensure minDate is at least Feb 2026 for completeness
+    const feb2026 = new Date(2026, 1, 1);
+    if (minDate > feb2026) {
+      minDate = feb2026;
+    }
+
+    return {
+      min: new Date(minDate.getFullYear(), minDate.getMonth(), 1),
+      max: new Date(maxDate.getFullYear(), maxDate.getMonth(), 1)
+    };
+  }, [incidents]);
+
+  // Dynamically initialize current date based on today
+  const [currentDate, setCurrentDate] = useState<Date>(() => new Date());
+  
+  // Dynamically initialize selected day string based on today formatted as YYYY-MM-DD
+  const [selectedDayStr, setSelectedDayStr] = useState<string>(() => {
+    const today = new Date();
+    const padMonth = String(today.getMonth() + 1).padStart(2, "0");
+    const padDay = String(today.getDate()).padStart(2, "0");
+    return `${today.getFullYear()}-${padMonth}-${padDay}`;
+  });
 
   // Calendar filter state
   const [categoryFilter, setCategoryFilter] = useState<string>("all");
@@ -88,17 +137,23 @@ export default function SafetyCalendar({ incidents, onSelectIncident }: SafetyCa
   // Navigation handlers
   const handlePrevMonth = () => {
     setCurrentDate(prev => {
-      const m = prev.getMonth();
-      if (m === 1) return prev; // Limit to Feb 2026 minimum for dataset
-      return new Date(prev.getFullYear(), m - 1, 1);
+      const minMonth = incidentDateRange.min.getMonth();
+      const minYear = incidentDateRange.min.getFullYear();
+      if (prev.getFullYear() < minYear || (prev.getFullYear() === minYear && prev.getMonth() <= minMonth)) {
+        return prev;
+      }
+      return new Date(prev.getFullYear(), prev.getMonth() - 1, 1);
     });
   };
 
   const handleNextMonth = () => {
     setCurrentDate(prev => {
-      const m = prev.getMonth();
-      if (m === 5) return prev; // Limit to Jun 2026 maximum for dataset
-      return new Date(prev.getFullYear(), m + 1, 1);
+      const maxMonth = incidentDateRange.max.getMonth();
+      const maxYear = incidentDateRange.max.getFullYear();
+      if (prev.getFullYear() > maxYear || (prev.getFullYear() === maxYear && prev.getMonth() >= maxMonth)) {
+        return prev;
+      }
+      return new Date(prev.getFullYear(), prev.getMonth() + 1, 1);
     });
   };
 
@@ -134,8 +189,14 @@ export default function SafetyCalendar({ incidents, onSelectIncident }: SafetyCa
     }
   };
 
-  // Current local time metadata represents today as 2026-06-25
-  const todayStr = "2026-06-25";
+  // Get current local date string dynamically
+  const todayStr = useMemo(() => {
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth() + 1).padStart(2, "0");
+    const dd = String(today.getDate()).padStart(2, "0");
+    return `${yyyy}-${mm}-${dd}`;
+  }, []);
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-8" id="calendar-section">
@@ -153,7 +214,7 @@ export default function SafetyCalendar({ incidents, onSelectIncident }: SafetyCa
             <div className="flex items-center gap-2 bg-gray-50 p-1.5 rounded-xl border border-gray-100 self-end sm:self-auto">
               <button
                 onClick={handlePrevMonth}
-                disabled={month === 1}
+                disabled={year < incidentDateRange.min.getFullYear() || (year === incidentDateRange.min.getFullYear() && month <= incidentDateRange.min.getMonth())}
                 className="p-1 rounded-lg text-gray-500 hover:bg-white hover:text-gray-900 disabled:opacity-30 disabled:pointer-events-none transition-all cursor-pointer"
               >
                 <ChevronLeft className="w-4 h-4" />
@@ -163,7 +224,7 @@ export default function SafetyCalendar({ incidents, onSelectIncident }: SafetyCa
               </span>
               <button
                 onClick={handleNextMonth}
-                disabled={month === 5}
+                disabled={year > incidentDateRange.max.getFullYear() || (year === incidentDateRange.max.getFullYear() && month >= incidentDateRange.max.getMonth())}
                 className="p-1 rounded-lg text-gray-500 hover:bg-white hover:text-gray-900 disabled:opacity-30 disabled:pointer-events-none transition-all cursor-pointer"
               >
                 <ChevronRight className="w-4 h-4" />
@@ -287,7 +348,9 @@ export default function SafetyCalendar({ incidents, onSelectIncident }: SafetyCa
               <span>Safe / Clear Day</span>
             </div>
           </div>
-          <span className="font-medium text-gray-400">Month bounds: Feb - Jun 2026</span>
+          <span className="font-medium text-gray-400">
+            Month bounds: {monthNames[incidentDateRange.min.getMonth()]} {incidentDateRange.min.getFullYear()} - {monthNames[incidentDateRange.max.getMonth()]} {incidentDateRange.max.getFullYear()}
+          </span>
         </div>
       </div>
 
