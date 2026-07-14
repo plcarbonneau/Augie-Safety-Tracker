@@ -5,7 +5,7 @@ import {defineConfig} from 'vite';
 
 export default defineConfig(() => {
   return {
-    base: process.env.NODE_ENV === "production" ? "/Augie-Safety-Tracker/" : "/",
+    base: process.env.GITHUB_ACTIONS === "true" ? "/Augie-Safety-Tracker/" : "/",
     plugins: [react(), tailwindcss()],
     resolve: {
       alias: {
