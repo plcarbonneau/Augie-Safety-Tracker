@@ -38,7 +38,3 @@ To prepare the application for static deployment:
 Bash
 npm run build
 This command compiles the TypeScript source into optimized static assets within the dist/ directory.
-
-
-👨‍💻 Developed By
-Parker Carbonneau (07/2026)
