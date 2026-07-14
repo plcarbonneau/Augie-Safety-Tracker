@@ -280,10 +280,125 @@ app.post("/api/reset", (req, res) => {
   }
 });
 
+// Simple, robust, and ethical robots.txt parser to ensure compliance before any crawl
+async function checkRobotsTxt(targetUrl: string, botUserAgent: string): Promise<boolean> {
+  try {
+    const urlObj = new URL(targetUrl);
+    const robotsUrl = `${urlObj.protocol}//${urlObj.host}/robots.txt`;
+    
+    console.log(`Checking robots.txt compliance at ${robotsUrl}...`);
+    
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 5000);
+    
+    let robotsText = "";
+    try {
+      const res = await fetch(robotsUrl, {
+        headers: { "User-Agent": botUserAgent },
+        signal: controller.signal
+      });
+      clearTimeout(timeoutId);
+      if (res.ok) {
+        robotsText = await res.text();
+      }
+    } catch (e: any) {
+      clearTimeout(timeoutId);
+      console.warn("Could not fetch robots.txt, defaulting to cautious allow for public pages.", e.message);
+      return true;
+    }
+
+    if (!robotsText) {
+      return true;
+    }
+
+    const lines = robotsText.split(/\r?\n/);
+    let appliesToUs = false;
+    const disallows: string[] = [];
+    const allows: string[] = [];
+
+    // Simple parsing of robots.txt directives
+    for (const line of lines) {
+      const cleanLine = line.trim().replace(/#.*/, ""); // Remove comments
+      if (!cleanLine) continue;
+
+      const userAgentMatch = cleanLine.match(/^User-agent:\s*(.+)$/i);
+      if (userAgentMatch) {
+        const agent = userAgentMatch[1].trim();
+        // Check if this block applies to all bots (*) or specifically to us
+        appliesToUs = (agent === "*" || botUserAgent.toLowerCase().includes(agent.toLowerCase()));
+        continue;
+      }
+
+      if (appliesToUs) {
+        const disallowMatch = cleanLine.match(/^Disallow:\s*(.+)$/i);
+        if (disallowMatch) {
+          const path = disallowMatch[1].trim();
+          if (path) disallows.push(path);
+          continue;
+        }
+
+        const allowMatch = cleanLine.match(/^Allow:\s*(.+)$/i);
+        if (allowMatch) {
+          const path = allowMatch[1].trim();
+          if (path) allows.push(path);
+          continue;
+        }
+      }
+    }
+
+    const targetPath = urlObj.pathname;
+
+    // Check Allow rules first (Allow rules override Disallow if more specific)
+    for (const allowPath of allows) {
+      const regexPattern = allowPath.replace(/[-\/\\^$*+?.()|[\]{}]/g, "\\$&").replace(/\\\*/g, ".*");
+      const regex = new RegExp(`^${regexPattern}`, "i");
+      if (regex.test(targetPath)) {
+        console.log(`Ethical Crawl check: URL path "${targetPath}" is explicitly ALLOWED by rule: Allow: ${allowPath}`);
+        return true;
+      }
+    }
+
+    // Check Disallow rules
+    for (const disallowPath of disallows) {
+      const regexPattern = disallowPath.replace(/[-\/\\^$*+?.()|[\]{}]/g, "\\$&").replace(/\\\*/g, ".*");
+      const regex = new RegExp(`^${regexPattern}`, "i");
+      if (regex.test(targetPath)) {
+        console.warn(`Ethical Crawl check block: URL path "${targetPath}" is DISALLOWED by rule: Disallow: ${disallowPath}`);
+        return false;
+      }
+    }
+
+    console.log(`Ethical Crawl check: URL path "${targetPath}" has no disallow blocks. Safe to crawl.`);
+    return true;
+  } catch (err: any) {
+    console.error("Error checking robots.txt rules, default to safe public path check.", err);
+    const path = new URL(targetUrl).pathname;
+    const isUnsafe = path.includes("/admin/") || path.includes("/user/") || path.includes("/search/") || path.includes("/login");
+    return !isUnsafe;
+  }
+}
+
 // Core Scraping & Merging Function
 async function performScrape() {
   console.log("Auto-scraping safety log from Augustana University website...");
   const url = "https://www.augie.edu/student-affairs/campus-safety/campus-safety-log";
+  const botUserAgent = "AugustanaSafetyLogBot/1.0 (Educational Project; Student Crawler; contact: parker.carbonneau@gmail.com)";
+
+  // Check robots.txt first to ensure ethical crawling
+  const isAllowed = await checkRobotsTxt(url, botUserAgent);
+  if (!isAllowed) {
+    console.warn("Ethical Crawling Block: Refusing to fetch path due to robots.txt restrictions.");
+    const currentArchive = loadArchivedIncidents();
+    return {
+      success: false,
+      error: "Scraping blocked by robots.txt compliance rules",
+      scrapedCount: 0,
+      newItemsCount: 0,
+      totalCount: currentArchive.length,
+      incidents: currentArchive,
+      timestamp: new Date().toLocaleTimeString()
+    };
+  }
   
   // Fetch live page with a timeout
   const controller = new AbortController();
@@ -293,7 +408,7 @@ async function performScrape() {
   try {
     const response = await fetch(url, {
       headers: {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+        "User-Agent": botUserAgent
       },
       signal: controller.signal
     });
@@ -351,10 +466,38 @@ async function performScrape() {
   };
 }
 
+let lastScrapeTime = 0;
+const SCRAPE_COOLDOWN = 10 * 60 * 1000; // 10 minutes
+
 // Scraping endpoint
 app.post("/api/scrape", async (req, res) => {
   try {
+    const now = Date.now();
+    const timeSinceLast = now - lastScrapeTime;
+    
+    // Check if cooldown has passed
+    if (timeSinceLast < SCRAPE_COOLDOWN && lastScrapeTime > 0) {
+      const currentArchive = loadArchivedIncidents();
+      const secondsLeft = Math.ceil((SCRAPE_COOLDOWN - timeSinceLast) / 1000);
+      const minutesLeft = Math.ceil(secondsLeft / 60);
+      
+      console.log(`Rate-limit active: serving cached logs. Next allowed crawl in ${secondsLeft}s.`);
+      return res.json({
+        success: true,
+        scrapedCount: 0,
+        newItemsCount: 0,
+        totalCount: currentArchive.length,
+        incidents: currentArchive,
+        timestamp: new Date(lastScrapeTime).toLocaleTimeString(),
+        rateLimited: true,
+        message: `Scraping is rate-limited to once every 10 minutes to respect the university website. Please wait ${minutesLeft} minute(s) before attempting a live crawl again.`
+      });
+    }
+
     const result = await performScrape();
+    if (result.success !== false) {
+      lastScrapeTime = Date.now();
+    }
     res.json(result);
   } catch (err: any) {
     console.error("Scraping operation failed:", err);

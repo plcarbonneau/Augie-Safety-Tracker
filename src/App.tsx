@@ -78,9 +78,13 @@ export default function App() {
       if (data.success) {
         setIncidents(data.incidents);
         setScrapeTime(data.timestamp || new Date().toLocaleTimeString());
-        setStatusMessage(
-          `Success! Scraped ${data.scrapedCount} items. ${data.newItemsCount} new items archived.`
-        );
+        if (data.rateLimited) {
+          setStatusMessage(`Rate Limit Active: ${data.message}`);
+        } else {
+          setStatusMessage(
+            `Success! Scraped ${data.scrapedCount} items. ${data.newItemsCount} new items archived.`
+          );
+        }
       } else {
         setStatusMessage(`Error: ${data.error || "Scraping failed."}`);
       }
