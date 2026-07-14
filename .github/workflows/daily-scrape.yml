@@ -18,9 +18,7 @@ jobs:
           node-version: '22'
 
       - name: Install dependencies
-        run: |
-          rm -rf node_modules package-lock.json bun.lock
-          npm install
+        run: npm ci
 
       - name: Run Scraper
         run: node scripts/run-scrape.js
