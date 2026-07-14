@@ -5,8 +5,8 @@ import { defineConfig } from 'vite';
 
 export default defineConfig(() => {
   return {
-    // Add this line below. Ensure it starts and ends with a forward slash.
-    base: '/your-repo-name/', 
+    
+    base: '/Augie-Safety-Tracker/'
     
     plugins: [react(), tailwindcss()],
     resolve: {
