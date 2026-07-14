@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { IncidentCategory } from "../types";
+import { IncidentCategory, Incident } from "../types";
 import { ShieldAlert, Plus, Calendar, Clock, MapPin, AlignLeft, Check, AlertCircle } from "lucide-react";
 
 interface LogManualIncidentProps {
@@ -31,39 +31,68 @@ export default function LogManualIncident({ onIncidentAdded }: LogManualIncident
     setSuccess(false);
 
     try {
-      const response = await fetch("/api/incidents", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          date,
-          time,
-          rawLocation: location || "Campus-wide",
-          description,
-          category,
-          isNothingToReport
-        })
-      });
+      const isStaticOnly = window.location.hostname.includes("github.io");
+      
+      const newIncident: Incident = {
+        id: `custom-${Date.now()}`,
+        date,
+        rawDateStr: date,
+        time: time || "",
+        rawLocation: location || "Campus-wide",
+        locationName: location || "Campus-wide",
+        address: "",
+        category: category as IncidentCategory,
+        description,
+        isNothingToReport
+      };
 
-      const data = await response.json();
-      if (data.success) {
-        setSuccess(true);
-        // Reset form
-        setDate("");
-        setTime("");
-        setLocation("");
-        setDescription("");
-        setIsNothingToReport(false);
-        onIncidentAdded(data.count);
-        // Automatically close after a short delay
-        setTimeout(() => {
-          setIsOpen(false);
-          setSuccess(false);
-        }, 2000);
-      } else {
-        setError(data.error || "Failed to log the custom incident.");
+      // Save locally to localStorage
+      const customIncidents = JSON.parse(localStorage.getItem("custom_incidents") || "[]");
+      customIncidents.unshift(newIncident); // Put new items at the top
+      localStorage.setItem("custom_incidents", JSON.stringify(customIncidents));
+
+      let totalCount = customIncidents.length;
+
+      // Optional backend synchronization if running locally/non-static
+      if (!isStaticOnly) {
+        try {
+          const response = await fetch("/api/incidents", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              date,
+              time,
+              rawLocation: location || "Campus-wide",
+              description,
+              category,
+              isNothingToReport
+            })
+          });
+          const data = await response.json();
+          if (data.success) {
+            totalCount = data.count;
+          }
+        } catch (apiErr) {
+          console.warn("Backend sync failed, falling back to local storage only", apiErr);
+        }
       }
+
+      setSuccess(true);
+      // Reset form
+      setDate("");
+      setTime("");
+      setLocation("");
+      setDescription("");
+      setIsNothingToReport(false);
+      onIncidentAdded(totalCount);
+      
+      // Automatically close after a short delay
+      setTimeout(() => {
+        setIsOpen(false);
+        setSuccess(false);
+      }, 2000);
     } catch (err: any) {
-      setError(err.message || "Network error. Please try again.");
+      setError(err.message || "Failed to log the custom incident.");
     } finally {
       setLoading(false);
     }

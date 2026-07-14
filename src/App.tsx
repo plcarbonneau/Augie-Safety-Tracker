@@ -54,17 +54,23 @@ export default function App() {
       const res = await fetch(`${baseUrl}archivedData.json`);
       const data = await res.json();
       
+      let fetchedList: Incident[] = [];
       if (Array.isArray(data)) {
-        setIncidents(data);
+        fetchedList = data;
       } else if (data && data.success && Array.isArray(data.incidents)) {
-        setIncidents(data.incidents);
+        fetchedList = data.incidents;
       } else {
         console.warn("Invalid data format received, using local fallback");
-        setIncidents(PROCESSED_FALLBACK_INCIDENTS);
+        fetchedList = PROCESSED_FALLBACK_INCIDENTS;
       }
+
+      // Merge with custom local incidents logged locally
+      const customLocal = JSON.parse(localStorage.getItem("custom_incidents") || "[]");
+      setIncidents([...customLocal, ...fetchedList]);
     } catch (err) {
       console.warn("Static JSON load failed, falling back to client-side fallback data:", err);
-      setIncidents(PROCESSED_FALLBACK_INCIDENTS);
+      const customLocal = JSON.parse(localStorage.getItem("custom_incidents") || "[]");
+      setIncidents([...customLocal, ...PROCESSED_FALLBACK_INCIDENTS]);
     } finally {
       setLoading(false);
     }

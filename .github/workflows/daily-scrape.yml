@@ -29,6 +29,6 @@ jobs:
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git add src/data/archivedData.json
+          git add src/data/archivedData.json public/archivedData.json
           git commit -m "Auto-update safety logs: $(date +'%Y-%m-%d')"
           git push
