@@ -19,7 +19,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          rm -f package-lock.json bun.lock
+          rm -rf node_modules package-lock.json bun.lock
           npm install
 
       - name: Run Scraper
