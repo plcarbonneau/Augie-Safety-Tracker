@@ -225,17 +225,6 @@ export default function App() {
             </div>
           </div>
 
-          {/* Action Toolbar */}
-          <div className="flex items-center gap-2 w-full md:w-auto self-start md:self-end shrink-0">
-            <button
-              onClick={handleScrape}
-              disabled={scraping}
-              className="w-full md:w-auto flex items-center justify-center gap-2 px-5 py-3 bg-[#fed101] hover:bg-[#fed101]/95 text-[#081e3f] text-sm font-bold rounded-xl shadow-md transition-all duration-150 disabled:opacity-50 cursor-pointer"
-            >
-              <RefreshCw className={`w-4 h-4 ${scraping ? "animate-spin" : ""}`} />
-              {scraping ? "Scraping augie.edu..." : "Crawl Live Logs"}
-            </button>
-          </div>
         </div>
       </header>
 
