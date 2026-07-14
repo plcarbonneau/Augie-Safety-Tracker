@@ -45,19 +45,23 @@ export default function App() {
   const [currentMonth, setCurrentMonth] = useState<number>(5); 
   const [selectedDate, setSelectedDate] = useState<string>("2026-06-22");
 
-  // Load Initial Incidents from backend
+  // Load Initial Incidents from the public JSON archive
   const fetchIncidents = async () => {
     setLoading(true);
     try {
-      const res = await fetch("/api/incidents");
+      // 1. Fetch the file directly from the public/ folder
+      // import.meta.env.BASE_URL ensures the path is correct (/Augie-Safety-Tracker/archivedData.json)
+      const res = await fetch(import.meta.env.BASE_URL + 'archivedData.json');
+      
+      if (!res.ok) throw new Error("Could not find live archive");
+      
       const data = await res.json();
-      if (data.success) {
-        setIncidents(data.incidents);
-      } else {
-        setIncidents(PROCESSED_FALLBACK_INCIDENTS);
-      }
+      
+      // 2. Set the data directly
+      setIncidents(data);
     } catch (err) {
-      console.warn("API load failed, fallback to client-side static logs:", err);
+      console.warn("Live archive load failed, using fallback data:", err);
+      // 3. Fallback to your hardcoded TS file if the JSON isn't found
       setIncidents(PROCESSED_FALLBACK_INCIDENTS);
     } finally {
       setLoading(false);
