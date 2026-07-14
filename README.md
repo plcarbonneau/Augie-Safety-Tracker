@@ -1,22 +1,20 @@
-# Augustana Cmpus Safety Log and Archive
-The Augustana Mirror is an interactive, static web application designed to preserve, archive, and visualize campus safety data. While universities are mandated by the Clery Act to maintain a daily crime log, these reports are often transient and difficult to analyze. The Mirror bridges this gap by scraping, archiving, and indexing these logs to provide a searchable, long-term historical record for the campus community.
+<div align="center">
+<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
+</div>
 
-🚀 Key Features
-*Bypasses the standard 60-day web visibility limit by storing logs in a robust JSON database.
+# Run and deploy your AI Studio app
 
-*Features a powerful search and filter interface to query incidents by location, type, or date.
+This contains everything you need to run your app locally.
 
-*Integrated interactive mapping for analyzing incident clusters across campus.
+View your app in AI Studio: https://ai.studio/apps/72b58740-5ec6-4e26-979a-1ed7c9b4706b
 
-*A dedicated "Safety Calendar" to visualize activity patterns month-by-month.
+## Run Locally
 
-*Enables journalists and researchers to export the full historical dataset as JSON for external analysis.
+**Prerequisites:**  Node.js
 
-⚙️ Technical Architecture
-This application utilizes a "Static-First" architecture, eliminating the need for a live, always-on backend server.
 
-The Scraper: A daily GitHub Action crawls the official Augustana Campus Safety Log.
-
-The Database: New findings are automatically processed and committed to public/archivedData.json.
-
-The Frontend: A React/Vite dashboard fetches the static JSON file on client-side load, ensuring high performance and zero hosting costs.
+1. Install dependencies:
+   `npm install`
+2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
+3. Run the app:
+   `npm run dev`

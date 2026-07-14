@@ -129,12 +129,33 @@ export default function CampusMap({ incidents, onSelectIncident, selectedInciden
 
     mapInstanceRef.current = map;
 
-    // Refresh layout after initialization to prevent gray tiles issue
-    setTimeout(() => {
-      map.invalidateSize();
-    }, 100);
+    const refreshSizes = () => {
+      if (mapInstanceRef.current) {
+        mapInstanceRef.current.invalidateSize();
+      }
+    };
+
+    // Staggered size invalidations to ensure the map renders correctly once
+    // animations (e.g. Framer Motion tab switches) settle and container layout is fully calculated
+    refreshSizes();
+    const t1 = setTimeout(refreshSizes, 100);
+    const t2 = setTimeout(refreshSizes, 300);
+    const t3 = setTimeout(refreshSizes, 600);
+    const t4 = setTimeout(refreshSizes, 1200);
+
+    // Watch for size changes of the map container (essential for mobile devices and responsive views)
+    const resizeObserver = new ResizeObserver(() => {
+      refreshSizes();
+    });
+    
+    resizeObserver.observe(mapContainerRef.current);
 
     return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+      clearTimeout(t3);
+      clearTimeout(t4);
+      resizeObserver.disconnect();
       if (mapInstanceRef.current) {
         mapInstanceRef.current.remove();
         mapInstanceRef.current = null;
@@ -318,10 +339,10 @@ export default function CampusMap({ incidents, onSelectIncident, selectedInciden
   return (
     <div className="space-y-6">
       {/* Map Card */}
-      <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden flex flex-col md:flex-row h-[600px]" id="campus-map-section">
+      <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden flex flex-col md:flex-row h-auto md:h-[600px]" id="campus-map-section">
         
         {/* Sidebar Controls */}
-        <div className="w-full md:w-80 bg-gray-50 border-r border-gray-100 p-6 flex flex-col justify-between overflow-y-auto shrink-0">
+        <div className="w-full md:w-80 bg-gray-50 border-b md:border-b-0 md:border-r border-gray-100 p-6 flex flex-col justify-between overflow-y-auto shrink-0">
           <div>
             <div className="flex items-center gap-2 mb-6">
               <Shield className="w-5 h-5 text-[#081e3f]" />
@@ -450,10 +471,10 @@ export default function CampusMap({ incidents, onSelectIncident, selectedInciden
         </div>
 
         {/* Interactive Map Visualizer */}
-        <div className="flex-1 bg-[#f4f4f0] relative select-none flex flex-col justify-between overflow-hidden">
+        <div className="flex-1 bg-[#f4f4f0] relative select-none overflow-hidden h-[450px] md:h-full min-h-[400px] md:min-h-0">
           
           {/* Map Container Ref */}
-          <div ref={mapContainerRef} className="w-full h-full z-0" id="leaflet-map-element" />
+          <div ref={mapContainerRef} className="absolute inset-0 w-full h-full z-0" id="leaflet-map-element" />
 
           {/* Empty State Overlay if filtered out */}
           {mappedIncidents.length === 0 && (
