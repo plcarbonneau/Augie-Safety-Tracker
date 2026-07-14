@@ -20,21 +20,3 @@ The Scraper: A daily GitHub Action crawls the official Augustana Campus Safety L
 The Database: New findings are automatically processed and committed to public/archivedData.json.
 
 The Frontend: A React/Vite dashboard fetches the static JSON file on client-side load, ensuring high performance and zero hosting costs.
-
-🛠️ Development & Deployment
-Local Setup
-Bash
-# Clone the repository
-git clone https://github.com/plcarbonneau/Augie-Safety-Tracker.git
-
-# Install dependencies
-npm install
-
-# Start the development environment
-npm run dev
-Production Build
-To prepare the application for static deployment:
-
-Bash
-npm run build
-This command compiles the TypeScript source into optimized static assets within the dist/ directory.
