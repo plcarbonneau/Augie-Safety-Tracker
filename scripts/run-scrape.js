@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 
-const ARCHIVE_FILE = path.join(process.cwd(), "src", "data", "archivedData.json");
+const ARCHIVE_FILE = path.join(process.cwd(), "public", "archivedData.json");
 
 const IncidentCategory = {
   WELFARE: "Welfare & Well-being",
