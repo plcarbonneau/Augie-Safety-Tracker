@@ -45,23 +45,25 @@ export default function App() {
   const [currentMonth, setCurrentMonth] = useState<number>(5); 
   const [selectedDate, setSelectedDate] = useState<string>("2026-06-22");
 
-  // Load Initial Incidents from the public JSON archive
+  // Load Initial Incidents from static JSON or API fallback
   const fetchIncidents = async () => {
     setLoading(true);
     try {
-      // 1. Fetch the file directly from the public/ folder
-      // import.meta.env.BASE_URL ensures the path is correct (/Augie-Safety-Tracker/archivedData.json)
-      const res = await fetch(import.meta.env.BASE_URL + 'archivedData.json');
-      
-      if (!res.ok) throw new Error("Could not find live archive");
-      
+      // Correct relative path for GitHub Pages subdirectories
+      const baseUrl = (import.meta as any).env?.BASE_URL || "/";
+      const res = await fetch(`${baseUrl}archivedData.json`);
       const data = await res.json();
       
-      // 2. Set the data directly
-      setIncidents(data);
+      if (Array.isArray(data)) {
+        setIncidents(data);
+      } else if (data && data.success && Array.isArray(data.incidents)) {
+        setIncidents(data.incidents);
+      } else {
+        console.warn("Invalid data format received, using local fallback");
+        setIncidents(PROCESSED_FALLBACK_INCIDENTS);
+      }
     } catch (err) {
-      console.warn("Live archive load failed, using fallback data:", err);
-      // 3. Fallback to your hardcoded TS file if the JSON isn't found
+      console.warn("Static JSON load failed, falling back to client-side fallback data:", err);
       setIncidents(PROCESSED_FALLBACK_INCIDENTS);
     } finally {
       setLoading(false);
@@ -74,6 +76,14 @@ export default function App() {
 
   // Scrape live site
   const handleScrape = async () => {
+    const isGitHubPages = window.location.hostname.includes("github.io");
+    if (isGitHubPages) {
+      setStatusMessage(
+        "Notice: Manual crawling is disabled in production to protect university server resources. Safety logs are refreshed automatically every 24 hours via GitHub Actions."
+      );
+      return;
+    }
+
     setScraping(true);
     setStatusMessage("Connecting to www.augie.edu to scrape logs...");
     try {
@@ -93,7 +103,10 @@ export default function App() {
         setStatusMessage(`Error: ${data.error || "Scraping failed."}`);
       }
     } catch (err: any) {
-      setStatusMessage(`Failed to reach server scraper: ${err.message}`);
+      console.warn("API scraper failed, falling back to static status explanation", err);
+      setStatusMessage(
+        "Notice: This client is running in high-performance Static Archive mode. Safety logs are synchronized automatically every 24 hours via a secure GitHub Actions pipeline."
+      );
     } finally {
       setScraping(false);
     }

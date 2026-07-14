@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 
-const ARCHIVE_FILE = path.join(process.cwd(), "public", "archivedData.json");
+const ARCHIVE_FILE = path.join(process.cwd(), "src", "data", "archivedData.json");
 
 const IncidentCategory = {
   WELFARE: "Welfare & Well-being",
@@ -318,6 +318,16 @@ function saveArchivedIncidents(incidents) {
       fs.mkdirSync(dir, { recursive: true });
     }
     fs.writeFileSync(ARCHIVE_FILE, JSON.stringify(incidents, null, 2), "utf-8");
+
+    // Also write to public folder for static hosting build pipeline
+    const publicArchiveFile = path.join(process.cwd(), "public", "archivedData.json");
+    const publicDir = path.dirname(publicArchiveFile);
+    if (!fs.existsSync(publicDir)) {
+      fs.mkdirSync(publicDir, { recursive: true });
+    }
+    fs.writeFileSync(publicArchiveFile, JSON.stringify(incidents, null, 2), "utf-8");
+    console.log(`Saved synchronized archive files in both src/data/ and public/ directories.`);
+
     return true;
   } catch (err) {
     console.error("Failed to save archive file:", err);
