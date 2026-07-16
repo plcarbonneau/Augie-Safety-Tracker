@@ -1,17 +1,5 @@
 [
   {
-    "id": "e5d5630e5a384eff2b2b031d4a94c3017",
-    "date": "2026-07-04",
-    "rawDateStr": "Saturday, July 4th",
-    "time": "",
-    "rawLocation": "Campus-wide",
-    "locationName": "Campus-wide",
-    "address": "",
-    "category": "Nothing to Report",
-    "description": "Nothing to report.",
-    "isNothingToReport": true
-  },
-  {
     "id": "e673670b8770a2dfb6b2ad2adeb43bf6d",
     "date": "2026-07-09",
     "rawDateStr": "Thursday, July 9",
@@ -63,6 +51,18 @@
     "id": "e1e59471500101ed591e853ad0a7a7e73",
     "date": "2026-07-05",
     "rawDateStr": "Sunday, July 5",
+    "time": "",
+    "rawLocation": "Campus-wide",
+    "locationName": "Campus-wide",
+    "address": "",
+    "category": "Nothing to Report",
+    "description": "Nothing to report.",
+    "isNothingToReport": true
+  },
+  {
+    "id": "e5d5630e5a384eff2b2b031d4a94c3017",
+    "date": "2026-07-04",
+    "rawDateStr": "Saturday, July 4th",
     "time": "",
     "rawLocation": "Campus-wide",
     "locationName": "Campus-wide",
