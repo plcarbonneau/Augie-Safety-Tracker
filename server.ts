@@ -87,8 +87,10 @@ function saveArchivedIncidents(incidents: Incident[]): boolean {
 function parseDateToISO(dateStr: string): string {
   try {
     // Current year is 2026 based on metadata
-    const cleanStr = dateStr.replace(/^(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)[,\s]*/i, "").trim();
-    // E.g., "June 22" -> "June 22 2026"
+    let cleanStr = dateStr.replace(/^(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)[,\s]*/i, "").trim();
+    // Strip ordinal suffixes like 1st, 2nd, 3rd, 4th, etc.
+    cleanStr = cleanStr.replace(/(\d+)(st|nd|rd|th)\b/i, "$1");
+    // E.g., "June 22" or "July 4" -> "July 4 2026"
     const parsed = Date.parse(`${cleanStr} 2026`);
     if (!isNaN(parsed)) {
       const d = new Date(parsed);

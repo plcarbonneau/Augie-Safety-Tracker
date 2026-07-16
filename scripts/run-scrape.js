@@ -18,7 +18,9 @@ const IncidentCategory = {
 // Convert "Monday, June 22" or similar to ISO YYYY-MM-DD
 function parseDateToISO(dateStr) {
   try {
-    const cleanStr = dateStr.replace(/^(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)[,\s]*/i, "").trim();
+    let cleanStr = dateStr.replace(/^(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)[,\s]*/i, "").trim();
+    // Strip ordinal suffixes like 1st, 2nd, 3rd, 4th, etc.
+    cleanStr = cleanStr.replace(/(\d+)(st|nd|rd|th)\b/i, "$1");
     const parsed = Date.parse(`${cleanStr} 2026`);
     if (!isNaN(parsed)) {
       const d = new Date(parsed);

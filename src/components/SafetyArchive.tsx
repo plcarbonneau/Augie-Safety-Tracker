@@ -65,20 +65,22 @@ export default function SafetyArchive({ incidents, onSelectIncident }: SafetyArc
 
   // Group filtered incidents by Date
   const groupedIncidents = useMemo(() => {
-    const groups: { dateStr: string; items: Incident[] }[] = [];
-    const map = new Map<string, Incident[]>();
+    const groups: { dateStr: string; date: string; items: Incident[] }[] = [];
+    const map = new Map<string, { dateStr: string; date: string; items: Incident[] }>();
 
     filteredIncidents.forEach(inc => {
       const dateKey = inc.rawDateStr || inc.date;
-      const list = map.get(dateKey) || [];
-      list.push(inc);
-      map.set(dateKey, list);
+      const group = map.get(dateKey) || { dateStr: dateKey, date: inc.date, items: [] };
+      group.items.push(inc);
+      map.set(dateKey, group);
     });
 
-    // Since incidents are already sorted by date, we can maintain chronological grouping
-    map.forEach((items, dateStr) => {
-      groups.push({ dateStr, items });
+    map.forEach((group) => {
+      groups.push(group);
     });
+
+    // Explicitly sort groups by actual date descending (most recent first)
+    groups.sort((a, b) => b.date.localeCompare(a.date));
 
     return groups;
   }, [filteredIncidents]);
