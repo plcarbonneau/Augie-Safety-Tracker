@@ -1,4 +1,4 @@
-# Augustana Cmpus Safety Log and Archive
+# Augustana Campus Safety Log and Archive
 The Augustana Mirror is an interactive, static web application designed to preserve, archive, and visualize campus safety data. While universities are mandated by the Clery Act to maintain a daily crime log, these reports are often transient and difficult to analyze. The Mirror bridges this gap by scraping, archiving, and indexing these logs to provide a searchable, long-term historical record for the campus community.
 
 🚀 Key Features
