@@ -412,6 +412,46 @@ export function getCoordinates(locationStr: string): { lat: number; lng: number;
     return { lat: 43.524086, lng: -96.738514, exact: false };
   }
 
+  // Intercept generic street names immediately so they map to street-level/off-campus (exact: false)
+  const cleanNorm = norm.replace(/\.$/, "").trim();
+  const genericStreets = [
+    "summit", "summit ave", "summit avenue", "s summit ave", "s summit avenue",
+    "grange", "grange ave", "grange avenue", "s grange ave", "s grange avenue",
+    "prairie", "prairie ave", "prairie avenue", "s prairie ave", "s prairie avenue",
+    "menlo", "menlo ave", "menlo avenue", "s menlo ave", "s menlo avenue",
+    "walts", "walts ave", "walts avenue", "s walts ave", "s walts avenue",
+    "lake", "lake ave", "lake avenue", "s lake ave", "s lake avenue",
+    "33rd", "33rd st", "33rd street", "w 33rd st", "w 33rd street",
+    "26th", "26th st", "26th street", "w 26th st", "w 26th street",
+    "28th", "28th st", "28th street", "w 28th st", "w 28th street",
+    "31st", "31st st", "31st street", "w 31st st", "w 31st street"
+  ];
+
+  if (genericStreets.includes(cleanNorm)) {
+    if (cleanNorm.includes("grange")) {
+      return { lat: 43.523317, lng: -96.740050, exact: false };
+    }
+    if (cleanNorm.includes("summit")) {
+      return { lat: 43.525144, lng: -96.736944, exact: false };
+    }
+    if (cleanNorm.includes("33rd")) {
+      return { lat: 43.522844, lng: -96.739247, exact: false };
+    }
+    if (cleanNorm.includes("menlo")) {
+      return { lat: 43.526311, lng: -96.740247, exact: false };
+    }
+    if (cleanNorm.includes("prairie")) {
+      return { lat: 43.526819, lng: -96.738042, exact: false };
+    }
+    if (cleanNorm.includes("walts")) {
+      return { lat: 43.526833, lng: -96.738694, exact: false };
+    }
+    if (cleanNorm.includes("lake")) {
+      return { lat: 43.519411, lng: -96.742944, exact: false };
+    }
+    return { lat: 43.524086, lng: -96.738514, exact: false };
+  }
+
   // 1. Extra smart check for exact common variations / abbreviations first to avoid false generic matches
   if (norm.includes("bergsaker")) {
     const b = CAMPUS_BUILDINGS.find(x => x.name.toLowerCase().includes("bergsaker"));
