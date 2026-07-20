@@ -306,7 +306,7 @@ export default function SafetyArchive({ incidents, onSelectIncident }: SafetyArc
                           {/* Incident Type Description */}
                           <div className="flex items-start justify-between gap-2">
                             <h4 className="font-extrabold text-gray-900 text-sm md:text-base tracking-tight line-clamp-1 group-hover:text-[#081e3f]">
-                              {inc.type || "Incident Report"}
+                              Incident Report
                             </h4>
                             {inc.id && !inc.id.startsWith("manual_") && (
                               <span className="text-[10px] font-mono text-gray-400 font-bold shrink-0 bg-gray-50 px-1.5 py-0.5 rounded-md border border-gray-100">

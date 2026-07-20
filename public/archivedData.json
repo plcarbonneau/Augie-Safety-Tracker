@@ -16,11 +16,12 @@
     "date": "2026-07-16",
     "rawDateStr": "Thursday, July 16",
     "time": "4:45 PM",
-    "rawLocation": "Summit Ave Disorderly conduct",
-    "locationName": "Summit Ave Disorderly conduct",
+    "type": "Disorderly conduct",
+    "rawLocation": "Summit Ave",
+    "locationName": "Summit Ave",
     "address": "",
-    "category": "Other Assistance",
-    "description": "CSO called SFPD and stepped in to deescalate situation. An incident report was completed.",
+    "category": "Disorderly & Suspicious",
+    "description": "CSO spotted subjects ready to fight on city street. CSO called SFPD and stepped in to deescalate situation. An incident report was completed.",
     "isNothingToReport": false
   },
   {

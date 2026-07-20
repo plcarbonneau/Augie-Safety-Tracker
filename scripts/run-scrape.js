@@ -113,6 +113,12 @@ function parseCampusSafetyHTML(html) {
         remainingText = remainingText.substring(parenMatch[0].length).trim();
       } else {
         const KNOWN_LOCATION_KEYWORDS = [
+          "33rd and Grange Ave", "33rd & Grange Ave", "33rd and Grange",
+          "33rd and Summit Ave", "33rd & Summit Ave", "33rd and Summit",
+          "Summit Ave", "Summit Avenue", "Grange Ave", "Grange Avenue",
+          "Prairie Ave", "Prairie Avenue", "Menlo Ave", "Menlo Avenue",
+          "Walts Ave", "Walts Avenue", "33rd St", "33rd Street",
+          "26th St", "26th Street", "28th St", "28th Street", "31st St", "31st Street",
           "Stavig/Granskou Loop", "Granskou Hall parking lot", "Bergsaker Hall parking lot",
           "Fellows’ Presidential Residence", "President's House", "Schoeneman Apartments", "Schoeneman Apartment", "Schoeneman Apt",
           "Solberg Hall lot", "Solberg Lot", "Charles Orin Solberg Hall", "Stavig Hall parking lot", "Clemens M. Stavig Hall",
@@ -194,6 +200,7 @@ function parseCampusSafetyHTML(html) {
         date: isoDate,
         rawDateStr: current.dateStr,
         time,
+        type,
         rawLocation,
         locationName,
         address,

@@ -402,7 +402,7 @@ export default function SafetyCalendar({ incidents, onSelectIncident }: SafetyCa
                     )}
                   </div>
                   <h5 className="font-semibold text-gray-900 text-sm mb-1 group-hover:text-[#081e3f] transition-colors line-clamp-1">
-                    {inc.type || "Safety Log Entry"}
+                    {inc.isNothingToReport ? "Nothing to Report" : "Incident Report"}
                   </h5>
                   <div className="flex items-center gap-1 text-[11px] text-gray-500 font-medium mb-2.5">
                     <MapPin className="w-3 h-3 text-gray-400 shrink-0" />

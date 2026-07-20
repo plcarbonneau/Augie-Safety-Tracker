@@ -63,7 +63,7 @@ export default function IncidentModal({ incident, onClose, onViewOnMap }: Incide
               </span>
             </div>
             <h3 className="text-xl font-bold text-gray-900 leading-snug">
-              {incident.type || (incident.isNothingToReport ? "Nothing to Report" : "Campus Incident")}
+              {incident.isNothingToReport ? "Nothing to Report" : "Incident Report"}
             </h3>
           </div>
 

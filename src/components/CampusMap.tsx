@@ -233,7 +233,7 @@ export default function CampusMap({ incidents, onSelectIncident, selectedInciden
             <div style="font-size: 9px; font-weight: bold; color: #4b5563; margin-bottom: 4px; font-family: monospace; display: flex; align-items: center; gap: 4px;">
               📅 ${inc.rawDateStr}
             </div>
-            <h4 style="font-size: 13px; font-weight: 700; color: #111827; margin: 0 0 4px 0; line-height: 1.25;">${inc.type || "Safety Log"}</h4>
+            <h4 style="font-size: 13px; font-weight: 700; color: #111827; margin: 0 0 4px 0; line-height: 1.25;">${inc.isNothingToReport ? "Nothing to Report" : "Incident Report"}</h4>
             <p style="font-size: 11px; color: #374151; font-weight: 600; margin: 0 0 6px 0; display: flex; align-items: center; gap: 4px;">
               📍 ${inc.locationName || inc.rawLocation}
             </p>
@@ -272,7 +272,7 @@ export default function CampusMap({ incidents, onSelectIncident, selectedInciden
                       </span>
                       <span style="font-size: 9px; color: #9ca3af; font-weight: 500;">${inc.time || "Daily Log"}</span>
                     </div>
-                    <div style="font-size: 11px; font-weight: 700; color: #111827; line-height: 1.2;">${inc.type || "Safety Log"}</div>
+                    <div style="font-size: 11px; font-weight: 700; color: #111827; line-height: 1.2;">${inc.isNothingToReport ? "Nothing to Report" : "Incident Report"}</div>
                     <div style="font-size: 9px; color: #4b5563; margin-top: 3px; display: flex; justify-content: space-between; align-items: center;">
                       <span>📅 ${inc.rawDateStr}</span>
                       <button id="map-pop-btn-${inc.id}" style="padding: 2.5px 7px; background-color: #081e3f; color: white; font-size: 8px; font-weight: bold; border-radius: 4px; cursor: pointer; border: none; transition: background-color 0.15s;">
@@ -544,7 +544,7 @@ export default function CampusMap({ incidents, onSelectIncident, selectedInciden
                     </div>
                     <div>
                       <h4 className="font-bold text-gray-900 text-xs line-clamp-1">
-                        {inc.type || "Safety Log"}
+                        {inc.isNothingToReport ? "Nothing to Report" : "Incident Report"}
                       </h4>
                       <div className="flex items-center gap-1 text-[11px] text-gray-500 font-semibold mt-1">
                         <MapPin className="w-3.5 h-3.5 text-gray-400 shrink-0" />
