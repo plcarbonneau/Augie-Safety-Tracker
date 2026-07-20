@@ -8,6 +8,8 @@ on:
 jobs:
   scrape:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -30,5 +32,10 @@ jobs:
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           git add src/data/archivedData.json public/archivedData.json
-          git commit -m "Auto-update safety logs: $(date +'%Y-%m-%d')"
-          git push
+          # Only commit and push if there are staged changes to save
+          if git diff --cached --quiet; then
+            echo "No new changes or incidents scraped today. Working tree is clean."
+          else
+            git commit -m "Auto-update safety logs: $(date +'%Y-%m-%d')"
+            git push
+          fi
