@@ -3,14 +3,14 @@
     "id": "e6ad85efd51db4f5231caf090f830ddc1",
     "date": "2026-07-28",
     "rawDateStr": "Tuesday, July 28",
-    "time": "",
-    "type": "Nothing to report",
-    "rawLocation": "Campus-wide",
-    "locationName": "Campus-wide",
-    "address": "",
-    "category": "Nothing to Report",
-    "description": "Nothing to report.",
-    "isNothingToReport": true
+    "time": "8:56 PM",
+    "type": "Medical response",
+    "rawLocation": "Wagoner Hall (2300 S Grange Ave)",
+    "locationName": "Wagoner Hall",
+    "address": "2300 S Grange Ave",
+    "category": "Medical Response",
+    "description": "CSO responded to request for medical aid. Ambulance services were on site. An incident report was completed.",
+    "isNothingToReport": false
   },
   {
     "id": "e4cc437b094ebbaeaebb4f9d15ac24cb9",
