@@ -86,7 +86,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Stavig Hall (2008 S Summit Ave)",
     "locationName": "Stavig Hall",
     "address": "2008 S Summit Ave",
-    "category": "General Incident",
+    "category": "Other Assistance",
     "description": "CSO found flooding while on patrol. Maintenance was notified. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -411,7 +411,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Bergsaker Hall (1110 W 33rd St)",
     "locationName": "Bergsaker Hall",
     "address": "1110 W 33rd St",
-    "category": "Fire Safety",
+    "category": "Fire & Safety",
     "description": "CSO and SFFR responded to fire alarm. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -424,7 +424,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Fryxell Humanities (2120 S Grange Ave)",
     "locationName": "Fryxell Humanities",
     "address": "2120 S Grange Ave",
-    "category": "Fire Safety",
+    "category": "Fire & Safety",
     "description": "CSO and SFFR responded to fire alarm. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -541,7 +541,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Fryxell Humanities (2120 S Grange Ave)",
     "locationName": "Fryxell Humanities",
     "address": "2120 S Grange Ave",
-    "category": "General Incident",
+    "category": "Other Assistance",
     "description": "CSO checked on device in student possession. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -554,7 +554,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Balcer Apt (2420 S Summit Ave)",
     "locationName": "Balcer Apt",
     "address": "2420 S Summit Ave",
-    "category": "Fire Safety",
+    "category": "Fire & Safety",
     "description": "CSO and SFFR responded to fire in dorm. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -632,7 +632,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Nelson Apartment (2320 S Summit Ave)",
     "locationName": "Nelson Apartment",
     "address": "2320 S Summit Ave",
-    "category": "Fire Safety",
+    "category": "Fire & Safety",
     "description": "CSO investigated trouble in system. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -697,7 +697,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Nelson Apartments (2320 S Summit Ave)",
     "locationName": "Nelson Apartments",
     "address": "2320 S Summit Ave",
-    "category": "General Incident",
+    "category": "Other Assistance",
     "description": "CSO investigated smell in building. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -788,7 +788,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Stavig Hall (2008 S Walts Ave)",
     "locationName": "Stavig Hall",
     "address": "2008 S Walts Ave",
-    "category": "General Incident",
+    "category": "Other Assistance",
     "description": "CSO investigated report of narcotics found in room. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -853,7 +853,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Morrison Commons (2112 S Grange Ave)",
     "locationName": "Morrison Commons",
     "address": "2112 S Grange Ave",
-    "category": "General Incident",
+    "category": "Other Assistance",
     "description": "CSO spoke to student about suspected scam. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -892,7 +892,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Mikkelsen Library (2117 S Summit Ave)",
     "locationName": "Mikkelsen Library",
     "address": "2117 S Summit Ave",
-    "category": "General Incident",
+    "category": "Other Assistance",
     "description": "CSO found alcohol outside building. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -905,7 +905,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Midco Arena",
     "locationName": "Midco Arena",
     "address": "",
-    "category": "Fire Safety",
+    "category": "Fire & Safety",
     "description": "CSO and SFFR investigated issue with building alarm. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -931,7 +931,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Midco Arena",
     "locationName": "Midco Arena",
     "address": "",
-    "category": "Fire Safety",
+    "category": "Fire & Safety",
     "description": "CSO and SFFR investigated odor in building. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -970,7 +970,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Balcer Apt (2420 S Summit Apt)",
     "locationName": "Balcer Apt",
     "address": "2420 S Summit Apt",
-    "category": "General Incident",
+    "category": "Other Assistance",
     "description": "CSO removed subject from area. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -983,7 +983,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Bergsaker Dorm",
     "locationName": "Bergsaker Dorm",
     "address": "",
-    "category": "General Incident",
+    "category": "Other Assistance",
     "description": "CSO investigated loss of item. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -996,7 +996,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Midco Arena",
     "locationName": "Midco Arena",
     "address": "",
-    "category": "Fire Safety",
+    "category": "Fire & Safety",
     "description": "CSO and SFFR investigated odor in building. Building evacuated. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -1087,7 +1087,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Solberg Hall (2312 S Grange Ave)",
     "locationName": "Solberg Hall",
     "address": "2312 S Grange Ave",
-    "category": "General Incident",
+    "category": "Other Assistance",
     "description": "CSO found alcohol on campus. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -1126,7 +1126,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Midco",
     "locationName": "Midco",
     "address": "",
-    "category": "General Incident",
+    "category": "Other Assistance",
     "description": "Damage to property. CSO took a report of damage. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -1165,7 +1165,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Valhalla House (1923 S Prairie Ave)",
     "locationName": "Valhalla House",
     "address": "1923 S Prairie Ave",
-    "category": "Fire Safety",
+    "category": "Fire & Safety",
     "description": "CSO and SFFR responded to alarm. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -1360,7 +1360,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Balcer Apt (2420 S Summit Ave)",
     "locationName": "Balcer Apt",
     "address": "2420 S Summit Ave",
-    "category": "General Incident",
+    "category": "Other Assistance",
     "description": "CSO investigated littering. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -1373,7 +1373,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Stavig Hall (2008 S Walts Ave)",
     "locationName": "Stavig Hall",
     "address": "2008 S Walts Ave",
-    "category": "General Incident",
+    "category": "Other Assistance",
     "description": "CSO and Student affairs checked on subject. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -1386,7 +1386,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Wagoner Hall (2300 S Grange Ave)",
     "locationName": "Wagoner Hall",
     "address": "2300 S Grange Ave",
-    "category": "General Incident",
+    "category": "Other Assistance",
     "description": "CSO assisted SFPD with investigation. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -1399,7 +1399,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Midco",
     "locationName": "Midco",
     "address": "",
-    "category": "General Incident",
+    "category": "Other Assistance",
     "description": "Vehicle collision. CSO took a report of an accident. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -1477,7 +1477,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Our Saviors Lutheran Church. (909 W 33rd St)",
     "locationName": "Our Saviors Lutheran Church.",
     "address": "909 W 33rd St",
-    "category": "Fire Safety",
+    "category": "Fire & Safety",
     "description": "CSO heard shots fired from off campus in the Eastern neighborhood. SFPD was contacted.",
     "isNothingToReport": false
   },
@@ -1516,7 +1516,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Solberg Hall (2312 S Grange Ave)",
     "locationName": "Solberg Hall",
     "address": "2312 S Grange Ave",
-    "category": "General Incident",
+    "category": "Other Assistance",
     "description": "CSO stopped students in dorm and removed alcohol. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -1607,7 +1607,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Elmen Center (2505 S Grange Ave)",
     "locationName": "Elmen Center",
     "address": "2505 S Grange Ave",
-    "category": "General Incident",
+    "category": "Other Assistance",
     "description": "CSO investigated a report of a hit in run in parking lot. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -1698,7 +1698,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Morrison Commons (2112 S Grange Ave)",
     "locationName": "Morrison Commons",
     "address": "2112 S Grange Ave",
-    "category": "Fire Safety",
+    "category": "Fire & Safety",
     "description": "CSO and SFFR checked on alarm. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -1724,7 +1724,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Bergsaker Hall (1110 W 33rd St)",
     "locationName": "Bergsaker Hall",
     "address": "1110 W 33rd St",
-    "category": "General Incident",
+    "category": "Other Assistance",
     "description": "CSO investigated the smell of marijuana. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -1737,7 +1737,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Grange Ave",
     "locationName": "Grange Ave",
     "address": "",
-    "category": "General Incident",
+    "category": "Other Assistance",
     "description": "CSO checked on subject near campus. Escorted subject from campus. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -1802,7 +1802,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Nelson Apt (2320 S Summit Ave)",
     "locationName": "Nelson Apt",
     "address": "2320 S Summit Ave",
-    "category": "General Incident",
+    "category": "Other Assistance",
     "description": "CSO investigated the smell of marijuana. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -1815,7 +1815,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Campus CSO and SFPD searched for subject suspected to be on campus",
     "locationName": "Campus CSO and SFPD searched for subject suspected to be on campus",
     "address": "",
-    "category": "General Incident",
+    "category": "Other Assistance",
     "description": "",
     "isNothingToReport": false
   },
@@ -1893,7 +1893,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Granskou Hall (2009 S Prairie Ave)",
     "locationName": "Granskou Hall",
     "address": "2009 S Prairie Ave",
-    "category": "Fire Safety",
+    "category": "Fire & Safety",
     "description": "CSO responded to a fire alarm in dorm. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -1919,7 +1919,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Nelson Service Center (2021 S Menlo Ave)",
     "locationName": "Nelson Service Center",
     "address": "2021 S Menlo Ave",
-    "category": "General Incident",
+    "category": "Other Assistance",
     "description": "CSO removed subject from area. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -1945,7 +1945,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Granskou Hall (2009 S Prairie Ave)",
     "locationName": "Granskou Hall",
     "address": "2009 S Prairie Ave",
-    "category": "General Incident",
+    "category": "Other Assistance",
     "description": "CSO took an assault report. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -2010,7 +2010,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Wagoner Hall (2300 S Grange Ave)",
     "locationName": "Wagoner Hall",
     "address": "2300 S Grange Ave",
-    "category": "General Incident",
+    "category": "Other Assistance",
     "description": "CSO assisted with pet trapped in area. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -2153,7 +2153,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Fryxell Humanities (2120 S Grange Ave)",
     "locationName": "Fryxell Humanities",
     "address": "2120 S Grange Ave",
-    "category": "General Incident",
+    "category": "Other Assistance",
     "description": "CSO assisted Parole Services with retrieving an item. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -2205,7 +2205,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Chapel of Reconciliation (2125 S Summit Ave)",
     "locationName": "Chapel of Reconciliation",
     "address": "2125 S Summit Ave",
-    "category": "General Incident",
+    "category": "Other Assistance",
     "description": "CSO removed bat from building. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -2218,7 +2218,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Froiland Science Center (240 Summit Ave)",
     "locationName": "Froiland Science Center",
     "address": "240 Summit Ave",
-    "category": "Fire Safety",
+    "category": "Fire & Safety",
     "description": "CSO and SFFR checked on report of gas smell. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -2270,7 +2270,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Solberg Hall (2312 S Grange Ave)",
     "locationName": "Solberg Hall",
     "address": "2312 S Grange Ave",
-    "category": "General Incident",
+    "category": "Other Assistance",
     "description": "CSO investigated gas found near vehicle. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -2322,7 +2322,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Valhalla House (1923 S Prairie Ave)",
     "locationName": "Valhalla House",
     "address": "1923 S Prairie Ave",
-    "category": "Fire Safety",
+    "category": "Fire & Safety",
     "description": "CSO and SFFR responded to alarm in building. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -2374,7 +2374,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Nelson Service Center (2021 Menlo Ave)",
     "locationName": "Nelson Service Center",
     "address": "2021 Menlo Ave",
-    "category": "General Incident",
+    "category": "Other Assistance",
     "description": "CSO recovered lost dog. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -2413,7 +2413,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Fryxell Humanities (2120 S Grange Ave)",
     "locationName": "Fryxell Humanities",
     "address": "2120 S Grange Ave",
-    "category": "General Incident",
+    "category": "Other Assistance",
     "description": "CSO checked on visiting group and lended aid. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -2439,7 +2439,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Kirkeby Over Stadium (2700S Lake Ave)",
     "locationName": "Kirkeby Over Stadium",
     "address": "2700S Lake Ave",
-    "category": "General Incident",
+    "category": "Other Assistance",
     "description": "CSO took a slip and fall report. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -2491,7 +2491,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Solberg Hall (2312 S Grange Ave)",
     "locationName": "Solberg Hall",
     "address": "2312 S Grange Ave",
-    "category": "General Incident",
+    "category": "Other Assistance",
     "description": "CSO and Student Affairs checked on a student in dorm. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -2634,7 +2634,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "33rd and Grange Ave",
     "locationName": "33rd and Grange Ave",
     "address": "",
-    "category": "General Incident",
+    "category": "Other Assistance",
     "description": "CSO assisted SF Warrant Task Force. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -2699,7 +2699,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Valhalla House (1923 S Prairie Ave)",
     "locationName": "Valhalla House",
     "address": "1923 S Prairie Ave",
-    "category": "Fire Safety",
+    "category": "Fire & Safety",
     "description": "CSO and SFFR responded to fire alarm. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -2738,7 +2738,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Valhalla House (1923 S Prairie Ave)",
     "locationName": "Valhalla House",
     "address": "1923 S Prairie Ave",
-    "category": "Fire Safety",
+    "category": "Fire & Safety",
     "description": "CSO and SFFR responded to fire alarm. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -2764,7 +2764,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Costello Hall (2413 S Grange Ave)",
     "locationName": "Costello Hall",
     "address": "2413 S Grange Ave",
-    "category": "Fire Safety",
+    "category": "Fire & Safety",
     "description": "CSO and SFFR responded to fire alarm. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -2907,7 +2907,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Solberg Hall (2312 S Grange Ave)",
     "locationName": "Solberg Hall",
     "address": "2312 S Grange Ave",
-    "category": "Fire Safety",
+    "category": "Fire & Safety",
     "description": "CSO investigated alarm. Source found and maintenance notified. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -2946,7 +2946,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Solberg Lot (2312 S Grange Ave)",
     "locationName": "Solberg Lot",
     "address": "2312 S Grange Ave",
-    "category": "General Incident",
+    "category": "Other Assistance",
     "description": "CSO found alcohol in lot. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -2959,7 +2959,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Costello (2413 S Grange Ave)",
     "locationName": "Costello",
     "address": "2413 S Grange Ave",
-    "category": "Fire Safety",
+    "category": "Fire & Safety",
     "description": "CSO investigated report of smoke. Washer was overloaded. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -2972,7 +2972,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Bergsaker (1110 W 33rd St)",
     "locationName": "Bergsaker",
     "address": "1110 W 33rd St",
-    "category": "General Incident",
+    "category": "Other Assistance",
     "description": "CSO and Student Affairs investigated report of domestic violence. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -2998,7 +2998,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Costello Hall (2413 S Grange Ave)",
     "locationName": "Costello Hall",
     "address": "2413 S Grange Ave",
-    "category": "Fire Safety",
+    "category": "Fire & Safety",
     "description": "CSO investigated report of smoke. Washer was overloaded. An incident report was completed.",
     "isNothingToReport": false
   },
