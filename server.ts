@@ -279,6 +279,11 @@ app.get("/api/incidents", (req, res) => {
   res.json({ success: true, count: incidents.length, incidents });
 });
 
+app.get("/archivedData.json", (req, res) => {
+  const incidents = loadArchivedIncidents();
+  res.json(incidents);
+});
+
 // Reset archive to static 60-day fallback data
 app.post("/api/reset", (req, res) => {
   const success = saveArchivedIncidents(PROCESSED_FALLBACK_INCIDENTS);

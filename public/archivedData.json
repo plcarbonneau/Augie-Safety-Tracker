@@ -73,7 +73,7 @@
     "rawLocation": "Stavig Hall (2008 S Summit Ave)",
     "locationName": "Stavig Hall",
     "address": "2008 S Summit Ave",
-    "category": "Other Assistance",
+    "category": "General Incident",
     "description": "CSO found flooding while on patrol. Maintenance was notified. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -398,7 +398,7 @@
     "rawLocation": "Bergsaker Hall (1110 W 33rd St)",
     "locationName": "Bergsaker Hall",
     "address": "1110 W 33rd St",
-    "category": "Fire & Safety",
+    "category": "Fire Safety",
     "description": "CSO and SFFR responded to fire alarm. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -411,7 +411,7 @@
     "rawLocation": "Fryxell Humanities (2120 S Grange Ave)",
     "locationName": "Fryxell Humanities",
     "address": "2120 S Grange Ave",
-    "category": "Fire & Safety",
+    "category": "Fire Safety",
     "description": "CSO and SFFR responded to fire alarm. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -489,7 +489,7 @@
     "rawLocation": "Solberg Hall (2312 S Grange Ave)",
     "locationName": "Solberg Hall",
     "address": "2312 S Grange Ave",
-    "category": "Welfare & Well-being",
+    "category": "Medical Response",
     "description": "CSO and Student affairs conducted a well being check. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -528,7 +528,7 @@
     "rawLocation": "Fryxell Humanities (2120 S Grange Ave)",
     "locationName": "Fryxell Humanities",
     "address": "2120 S Grange Ave",
-    "category": "Substances & Alcohol",
+    "category": "General Incident",
     "description": "CSO checked on device in student possession. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -541,7 +541,7 @@
     "rawLocation": "Balcer Apt (2420 S Summit Ave)",
     "locationName": "Balcer Apt",
     "address": "2420 S Summit Ave",
-    "category": "Fire & Safety",
+    "category": "Fire Safety",
     "description": "CSO and SFFR responded to fire in dorm. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -619,7 +619,7 @@
     "rawLocation": "Nelson Apartment (2320 S Summit Ave)",
     "locationName": "Nelson Apartment",
     "address": "2320 S Summit Ave",
-    "category": "Fire & Safety",
+    "category": "Fire Safety",
     "description": "CSO investigated trouble in system. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -684,7 +684,7 @@
     "rawLocation": "Nelson Apartments (2320 S Summit Ave)",
     "locationName": "Nelson Apartments",
     "address": "2320 S Summit Ave",
-    "category": "Substances & Alcohol",
+    "category": "General Incident",
     "description": "CSO investigated smell in building. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -775,7 +775,7 @@
     "rawLocation": "Stavig Hall (2008 S Walts Ave)",
     "locationName": "Stavig Hall",
     "address": "2008 S Walts Ave",
-    "category": "Substances & Alcohol",
+    "category": "General Incident",
     "description": "CSO investigated report of narcotics found in room. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -840,7 +840,7 @@
     "rawLocation": "Morrison Commons (2112 S Grange Ave)",
     "locationName": "Morrison Commons",
     "address": "2112 S Grange Ave",
-    "category": "Theft & Property Damage",
+    "category": "General Incident",
     "description": "CSO spoke to student about suspected scam. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -879,7 +879,7 @@
     "rawLocation": "Mikkelsen Library (2117 S Summit Ave)",
     "locationName": "Mikkelsen Library",
     "address": "2117 S Summit Ave",
-    "category": "Substances & Alcohol",
+    "category": "General Incident",
     "description": "CSO found alcohol outside building. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -892,7 +892,7 @@
     "rawLocation": "Midco Arena",
     "locationName": "Midco Arena",
     "address": "",
-    "category": "Fire & Safety",
+    "category": "Fire Safety",
     "description": "CSO and SFFR investigated issue with building alarm. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -918,7 +918,7 @@
     "rawLocation": "Midco Arena",
     "locationName": "Midco Arena",
     "address": "",
-    "category": "Fire & Safety",
+    "category": "Fire Safety",
     "description": "CSO and SFFR investigated odor in building. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -957,7 +957,7 @@
     "rawLocation": "Balcer Apt (2420 S Summit Apt)",
     "locationName": "Balcer Apt",
     "address": "2420 S Summit Apt",
-    "category": "Other Assistance",
+    "category": "General Incident",
     "description": "CSO removed subject from area. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -970,7 +970,7 @@
     "rawLocation": "Bergsaker Dorm",
     "locationName": "Bergsaker Dorm",
     "address": "",
-    "category": "Other Assistance",
+    "category": "General Incident",
     "description": "CSO investigated loss of item. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -983,7 +983,7 @@
     "rawLocation": "Midco Arena",
     "locationName": "Midco Arena",
     "address": "",
-    "category": "Fire & Safety",
+    "category": "Fire Safety",
     "description": "CSO and SFFR investigated odor in building. Building evacuated. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -1074,7 +1074,7 @@
     "rawLocation": "Solberg Hall (2312 S Grange Ave)",
     "locationName": "Solberg Hall",
     "address": "2312 S Grange Ave",
-    "category": "Substances & Alcohol",
+    "category": "General Incident",
     "description": "CSO found alcohol on campus. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -1113,7 +1113,7 @@
     "rawLocation": "Midco",
     "locationName": "Midco",
     "address": "",
-    "category": "Other Assistance",
+    "category": "General Incident",
     "description": "Damage to property. CSO took a report of damage. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -1152,7 +1152,7 @@
     "rawLocation": "Valhalla House (1923 S Prairie Ave)",
     "locationName": "Valhalla House",
     "address": "1923 S Prairie Ave",
-    "category": "Fire & Safety",
+    "category": "Fire Safety",
     "description": "CSO and SFFR responded to alarm. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -1347,7 +1347,7 @@
     "rawLocation": "Balcer Apt (2420 S Summit Ave)",
     "locationName": "Balcer Apt",
     "address": "2420 S Summit Ave",
-    "category": "Theft & Property Damage",
+    "category": "General Incident",
     "description": "CSO investigated littering. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -1360,7 +1360,7 @@
     "rawLocation": "Stavig Hall (2008 S Walts Ave)",
     "locationName": "Stavig Hall",
     "address": "2008 S Walts Ave",
-    "category": "Welfare & Well-being",
+    "category": "General Incident",
     "description": "CSO and Student affairs checked on subject. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -1373,7 +1373,7 @@
     "rawLocation": "Wagoner Hall (2300 S Grange Ave)",
     "locationName": "Wagoner Hall",
     "address": "2300 S Grange Ave",
-    "category": "Other Assistance",
+    "category": "General Incident",
     "description": "CSO assisted SFPD with investigation. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -1386,7 +1386,7 @@
     "rawLocation": "Midco",
     "locationName": "Midco",
     "address": "",
-    "category": "Other Assistance",
+    "category": "General Incident",
     "description": "Vehicle collision. CSO took a report of an accident. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -1464,7 +1464,7 @@
     "rawLocation": "Our Saviors Lutheran Church. (909 W 33rd St)",
     "locationName": "Our Saviors Lutheran Church.",
     "address": "909 W 33rd St",
-    "category": "Fire & Safety",
+    "category": "Fire Safety",
     "description": "CSO heard shots fired from off campus in the Eastern neighborhood. SFPD was contacted.",
     "isNothingToReport": false
   },
@@ -1490,7 +1490,7 @@
     "rawLocation": "Froiland Science Center (2407 S Summit Ave)",
     "locationName": "Froiland Science Center",
     "address": "2407 S Summit Ave",
-    "category": "Welfare & Well-being",
+    "category": "Medical Response",
     "description": "CSO and Student affairs did a well being check on student. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -1503,7 +1503,7 @@
     "rawLocation": "Solberg Hall (2312 S Grange Ave)",
     "locationName": "Solberg Hall",
     "address": "2312 S Grange Ave",
-    "category": "Substances & Alcohol",
+    "category": "General Incident",
     "description": "CSO stopped students in dorm and removed alcohol. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -1529,7 +1529,7 @@
     "rawLocation": "Bergsaker Hall (1110 W 33rd St)",
     "locationName": "Bergsaker Hall",
     "address": "1110 W 33rd St",
-    "category": "Welfare & Well-being",
+    "category": "Disorderly & Suspicious",
     "description": "CSO and VA investigated student activities at building. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -1555,7 +1555,7 @@
     "rawLocation": "Granskou Hall (2009 S Prairie Ave)",
     "locationName": "Granskou Hall",
     "address": "2009 S Prairie Ave",
-    "category": "Welfare & Well-being",
+    "category": "Medical Response",
     "description": "CSO and Student affairs did a well being check on student. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -1594,7 +1594,7 @@
     "rawLocation": "Elmen Center (2505 S Grange Ave)",
     "locationName": "Elmen Center",
     "address": "2505 S Grange Ave",
-    "category": "Other Assistance",
+    "category": "General Incident",
     "description": "CSO investigated a report of a hit in run in parking lot. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -1685,7 +1685,7 @@
     "rawLocation": "Morrison Commons (2112 S Grange Ave)",
     "locationName": "Morrison Commons",
     "address": "2112 S Grange Ave",
-    "category": "Fire & Safety",
+    "category": "Fire Safety",
     "description": "CSO and SFFR checked on alarm. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -1711,7 +1711,7 @@
     "rawLocation": "Bergsaker Hall (1110 W 33rd St)",
     "locationName": "Bergsaker Hall",
     "address": "1110 W 33rd St",
-    "category": "Substances & Alcohol",
+    "category": "General Incident",
     "description": "CSO investigated the smell of marijuana. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -1724,7 +1724,7 @@
     "rawLocation": "Grange Ave",
     "locationName": "Grange Ave",
     "address": "",
-    "category": "Other Assistance",
+    "category": "General Incident",
     "description": "CSO checked on subject near campus. Escorted subject from campus. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -1789,7 +1789,7 @@
     "rawLocation": "Nelson Apt (2320 S Summit Ave)",
     "locationName": "Nelson Apt",
     "address": "2320 S Summit Ave",
-    "category": "Substances & Alcohol",
+    "category": "General Incident",
     "description": "CSO investigated the smell of marijuana. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -1802,7 +1802,7 @@
     "rawLocation": "Campus CSO and SFPD searched for subject suspected to be on campus",
     "locationName": "Campus CSO and SFPD searched for subject suspected to be on campus",
     "address": "",
-    "category": "Other Assistance",
+    "category": "General Incident",
     "description": "",
     "isNothingToReport": false
   },
@@ -1854,7 +1854,7 @@
     "rawLocation": "Midco",
     "locationName": "Midco",
     "address": "",
-    "category": "Other Assistance",
+    "category": "Traffic & Parking",
     "description": "Vehicle collision. CSO investigated report of a vehicle collision. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -1867,7 +1867,7 @@
     "rawLocation": "Tuve Hall (2016 S Menlo Ave)",
     "locationName": "Tuve Hall",
     "address": "2016 S Menlo Ave",
-    "category": "Welfare & Well-being",
+    "category": "Medical Response",
     "description": "CSO and Student Affairs checked on student. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -1880,7 +1880,7 @@
     "rawLocation": "Granskou Hall (2009 S Prairie Ave)",
     "locationName": "Granskou Hall",
     "address": "2009 S Prairie Ave",
-    "category": "Fire & Safety",
+    "category": "Fire Safety",
     "description": "CSO responded to a fire alarm in dorm. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -1906,7 +1906,7 @@
     "rawLocation": "Nelson Service Center (2021 S Menlo Ave)",
     "locationName": "Nelson Service Center",
     "address": "2021 S Menlo Ave",
-    "category": "Disorderly & Suspicious",
+    "category": "General Incident",
     "description": "CSO removed subject from area. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -1932,7 +1932,7 @@
     "rawLocation": "Granskou Hall (2009 S Prairie Ave)",
     "locationName": "Granskou Hall",
     "address": "2009 S Prairie Ave",
-    "category": "Other Assistance",
+    "category": "General Incident",
     "description": "CSO took an assault report. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -1997,7 +1997,7 @@
     "rawLocation": "Wagoner Hall (2300 S Grange Ave)",
     "locationName": "Wagoner Hall",
     "address": "2300 S Grange Ave",
-    "category": "Other Assistance",
+    "category": "General Incident",
     "description": "CSO assisted with pet trapped in area. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -2010,7 +2010,7 @@
     "rawLocation": "Granskou Hall (2009 S Prairie Ave)",
     "locationName": "Granskou Hall",
     "address": "2009 S Prairie Ave",
-    "category": "Welfare & Well-being",
+    "category": "Medical Response",
     "description": "CSO and Student Affairs checked on a student in need. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -2140,7 +2140,7 @@
     "rawLocation": "Fryxell Humanities (2120 S Grange Ave)",
     "locationName": "Fryxell Humanities",
     "address": "2120 S Grange Ave",
-    "category": "Other Assistance",
+    "category": "General Incident",
     "description": "CSO assisted Parole Services with retrieving an item. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -2192,7 +2192,7 @@
     "rawLocation": "Chapel of Reconciliation (2125 S Summit Ave)",
     "locationName": "Chapel of Reconciliation",
     "address": "2125 S Summit Ave",
-    "category": "Other Assistance",
+    "category": "General Incident",
     "description": "CSO removed bat from building. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -2205,7 +2205,7 @@
     "rawLocation": "Froiland Science Center (240 Summit Ave)",
     "locationName": "Froiland Science Center",
     "address": "240 Summit Ave",
-    "category": "Fire & Safety",
+    "category": "Fire Safety",
     "description": "CSO and SFFR checked on report of gas smell. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -2244,7 +2244,7 @@
     "rawLocation": "Bergsaker Hall (1110 W 33rd St)",
     "locationName": "Bergsaker Hall",
     "address": "1110 W 33rd St",
-    "category": "Other Assistance",
+    "category": "Medical Response",
     "description": "CSO investigated report of intoxicated subject. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -2257,7 +2257,7 @@
     "rawLocation": "Solberg Hall (2312 S Grange Ave)",
     "locationName": "Solberg Hall",
     "address": "2312 S Grange Ave",
-    "category": "Fire & Safety",
+    "category": "General Incident",
     "description": "CSO investigated gas found near vehicle. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -2309,7 +2309,7 @@
     "rawLocation": "Valhalla House (1923 S Prairie Ave)",
     "locationName": "Valhalla House",
     "address": "1923 S Prairie Ave",
-    "category": "Fire & Safety",
+    "category": "Fire Safety",
     "description": "CSO and SFFR responded to alarm in building. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -2361,7 +2361,7 @@
     "rawLocation": "Nelson Service Center (2021 Menlo Ave)",
     "locationName": "Nelson Service Center",
     "address": "2021 Menlo Ave",
-    "category": "Other Assistance",
+    "category": "General Incident",
     "description": "CSO recovered lost dog. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -2400,7 +2400,7 @@
     "rawLocation": "Fryxell Humanities (2120 S Grange Ave)",
     "locationName": "Fryxell Humanities",
     "address": "2120 S Grange Ave",
-    "category": "Other Assistance",
+    "category": "General Incident",
     "description": "CSO checked on visiting group and lended aid. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -2426,7 +2426,7 @@
     "rawLocation": "Kirkeby Over Stadium (2700S Lake Ave)",
     "locationName": "Kirkeby Over Stadium",
     "address": "2700S Lake Ave",
-    "category": "Medical Response",
+    "category": "General Incident",
     "description": "CSO took a slip and fall report. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -2478,7 +2478,7 @@
     "rawLocation": "Solberg Hall (2312 S Grange Ave)",
     "locationName": "Solberg Hall",
     "address": "2312 S Grange Ave",
-    "category": "Welfare & Well-being",
+    "category": "General Incident",
     "description": "CSO and Student Affairs checked on a student in dorm. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -2621,7 +2621,7 @@
     "rawLocation": "33rd and Grange Ave",
     "locationName": "33rd and Grange Ave",
     "address": "",
-    "category": "Other Assistance",
+    "category": "General Incident",
     "description": "CSO assisted SF Warrant Task Force. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -2686,7 +2686,7 @@
     "rawLocation": "Valhalla House (1923 S Prairie Ave)",
     "locationName": "Valhalla House",
     "address": "1923 S Prairie Ave",
-    "category": "Fire & Safety",
+    "category": "Fire Safety",
     "description": "CSO and SFFR responded to fire alarm. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -2725,7 +2725,7 @@
     "rawLocation": "Valhalla House (1923 S Prairie Ave)",
     "locationName": "Valhalla House",
     "address": "1923 S Prairie Ave",
-    "category": "Fire & Safety",
+    "category": "Fire Safety",
     "description": "CSO and SFFR responded to fire alarm. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -2751,7 +2751,7 @@
     "rawLocation": "Costello Hall (2413 S Grange Ave)",
     "locationName": "Costello Hall",
     "address": "2413 S Grange Ave",
-    "category": "Fire & Safety",
+    "category": "Fire Safety",
     "description": "CSO and SFFR responded to fire alarm. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -2894,7 +2894,7 @@
     "rawLocation": "Solberg Hall (2312 S Grange Ave)",
     "locationName": "Solberg Hall",
     "address": "2312 S Grange Ave",
-    "category": "Fire & Safety",
+    "category": "Fire Safety",
     "description": "CSO investigated alarm. Source found and maintenance notified. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -2933,7 +2933,7 @@
     "rawLocation": "Solberg Lot (2312 S Grange Ave)",
     "locationName": "Solberg Lot",
     "address": "2312 S Grange Ave",
-    "category": "Substances & Alcohol",
+    "category": "General Incident",
     "description": "CSO found alcohol in lot. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -2946,7 +2946,7 @@
     "rawLocation": "Costello (2413 S Grange Ave)",
     "locationName": "Costello",
     "address": "2413 S Grange Ave",
-    "category": "Fire & Safety",
+    "category": "Fire Safety",
     "description": "CSO investigated report of smoke. Washer was overloaded. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -2959,7 +2959,7 @@
     "rawLocation": "Bergsaker (1110 W 33rd St)",
     "locationName": "Bergsaker",
     "address": "1110 W 33rd St",
-    "category": "Other Assistance",
+    "category": "General Incident",
     "description": "CSO and Student Affairs investigated report of domestic violence. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -2985,7 +2985,7 @@
     "rawLocation": "Costello Hall (2413 S Grange Ave)",
     "locationName": "Costello Hall",
     "address": "2413 S Grange Ave",
-    "category": "Fire & Safety",
+    "category": "Fire Safety",
     "description": "CSO investigated report of smoke. Washer was overloaded. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -3011,7 +3011,7 @@
     "rawLocation": "Bergsaker Hall (1110 W 33rd St)",
     "locationName": "Bergsaker Hall",
     "address": "1110 W 33rd St",
-    "category": "Welfare & Well-being",
+    "category": "Medical Response",
     "description": "CSO and Student Affairs checked on student. An incident report was completed.",
     "isNothingToReport": false
   },
