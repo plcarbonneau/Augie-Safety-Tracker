@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from "react";
 import { Incident, IncidentCategory } from "../types";
-import { Calendar as CalendarIcon, ChevronLeft, ChevronRight, ShieldAlert, ShieldCheck, Clock, MapPin, AlertCircle, Info, Filter, CheckCircle } from "lucide-react";
+import { Calendar as CalendarIcon, ChevronLeft, ChevronRight, ShieldAlert, ShieldCheck, Clock, MapPin, AlertCircle, Info, Filter, CheckCircle, GraduationCap } from "lucide-react";
+import { getAcademicPeriodForDate, getAvailableMonthsList } from "../utils/academicCalendar";
 
 interface SafetyCalendarProps {
   incidents: Incident[];
@@ -68,6 +69,17 @@ export default function SafetyCalendar({ incidents, onSelectIncident }: SafetyCa
   // Get active month metrics
   const year = currentDate.getFullYear();
   const month = currentDate.getMonth();
+
+  // Available months for jump dropdown
+  const availableMonths = useMemo(() => {
+    return getAvailableMonthsList(incidents);
+  }, [incidents]);
+
+  // Active month academic period
+  const activeMonthPeriod = useMemo(() => {
+    const padMonth = String(month + 1).padStart(2, "0");
+    return getAcademicPeriodForDate(`${year}-${padMonth}-15`);
+  }, [year, month]);
 
   const monthNames = [
     "January", "February", "March", "April", "May", "June",
@@ -208,7 +220,13 @@ export default function SafetyCalendar({ incidents, onSelectIncident }: SafetyCa
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-4 border-b border-gray-50">
             <div className="flex items-center gap-2">
               <CalendarIcon className="w-5 h-5 text-[#081e3f]" />
-              <h3 className="font-semibold text-gray-900 text-lg">Event Calendar</h3>
+              <div>
+                <h3 className="font-semibold text-gray-900 text-lg">Event Calendar</h3>
+                <span className="text-[10px] font-bold text-amber-800 bg-amber-50 px-2 py-0.5 rounded border border-amber-200/80 inline-flex items-center gap-1">
+                  <GraduationCap className="w-3 h-3 text-amber-700" />
+                  {activeMonthPeriod.label}
+                </span>
+              </div>
             </div>
             
             <div className="flex items-center gap-2 bg-gray-50 p-1.5 rounded-xl border border-gray-100 self-end sm:self-auto">
@@ -219,9 +237,22 @@ export default function SafetyCalendar({ incidents, onSelectIncident }: SafetyCa
               >
                 <ChevronLeft className="w-4 h-4" />
               </button>
-              <span className="text-sm font-semibold text-gray-800 px-3 min-w-[120px] text-center select-none">
-                {monthNames[month]} {year}
-              </span>
+              
+              <select
+                value={`${year}-${String(month + 1).padStart(2, "0")}`}
+                onChange={(e) => {
+                  const [y, m] = e.target.value.split("-");
+                  setCurrentDate(new Date(parseInt(y, 10), parseInt(m, 10) - 1, 1));
+                }}
+                className="text-sm font-semibold text-gray-800 bg-white px-2 py-1 rounded-lg border border-gray-200 cursor-pointer focus:outline-none focus:ring-1 focus:ring-[#081e3f]"
+              >
+                {availableMonths.map(m => (
+                  <option key={m.yearMonth} value={m.yearMonth}>
+                    {m.label} ({m.count})
+                  </option>
+                ))}
+              </select>
+
               <button
                 onClick={handleNextMonth}
                 disabled={year > incidentDateRange.max.getFullYear() || (year === incidentDateRange.max.getFullYear() && month >= incidentDateRange.max.getMonth())}

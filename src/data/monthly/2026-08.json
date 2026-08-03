@@ -1,0 +1,28 @@
+[
+  {
+    "id": "e7d4df5897400d38ae2794a00f0ad1437",
+    "date": "2026-08-02",
+    "rawDateStr": "Sunday, August 2",
+    "time": "",
+    "type": "Nothing to report",
+    "rawLocation": "Campus-wide",
+    "locationName": "Campus-wide",
+    "address": "",
+    "category": "Nothing to Report",
+    "description": "Nothing to report.",
+    "isNothingToReport": true
+  },
+  {
+    "id": "e5dc8715710e4c8dc34a1511d3de66dda",
+    "date": "2026-08-01",
+    "rawDateStr": "Saturday, August 1",
+    "time": "",
+    "type": "Nothing to report",
+    "rawLocation": "Campus-wide",
+    "locationName": "Campus-wide",
+    "address": "",
+    "category": "Nothing to Report",
+    "description": "Nothing to report.",
+    "isNothingToReport": true
+  }
+]

@@ -284,6 +284,29 @@ app.get("/archivedData.json", (req, res) => {
   res.json(incidents);
 });
 
+// Serve monthly index and individual monthly JSON files
+app.get("/data/monthly/index.json", (req, res) => {
+  const indexPath = path.join(process.cwd(), "src", "data", "monthly", "index.json");
+  if (fs.existsSync(indexPath)) {
+    res.sendFile(indexPath);
+  } else {
+    res.status(404).json({ error: "Monthly index not found" });
+  }
+});
+
+app.get("/data/monthly/:file", (req, res) => {
+  const fileName = req.params.file;
+  if (!/^\d{4}-\d{2}\.json$/.test(fileName)) {
+    return res.status(400).json({ error: "Invalid monthly file format" });
+  }
+  const filePath = path.join(process.cwd(), "src", "data", "monthly", fileName);
+  if (fs.existsSync(filePath)) {
+    res.sendFile(filePath);
+  } else {
+    res.status(404).json({ error: "Monthly data file not found" });
+  }
+});
+
 // Reset archive to static 60-day fallback data
 app.post("/api/reset", (req, res) => {
   const success = saveArchivedIncidents(PROCESSED_FALLBACK_INCIDENTS);

@@ -40,6 +40,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Scrape Latest Data
+        run: npx tsx scripts/updateData.ts
+
       - name: Build Application
         run: npm run build
 

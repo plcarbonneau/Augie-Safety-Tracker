@@ -175,17 +175,68 @@ async function main() {
 
   console.log(`Parsed ${scrapedIncidents.length} incidents from live site.`);
 
-  // Write to src/data/archivedData.json
+  // Write main archive
   const archivePath = path.join(process.cwd(), "src", "data", "archivedData.json");
   fs.writeFileSync(archivePath, JSON.stringify(scrapedIncidents, null, 2), "utf-8");
   console.log(`Saved ${scrapedIncidents.length} incidents to ${archivePath}`);
 
-  // Also check if public/archivedData.json exists
   const publicArchivePath = path.join(process.cwd(), "public", "archivedData.json");
   if (fs.existsSync(path.dirname(publicArchivePath))) {
     fs.writeFileSync(publicArchivePath, JSON.stringify(scrapedIncidents, null, 2), "utf-8");
-    console.log(`Saved to ${publicArchivePath}`);
   }
+
+  // --- MONTHLY BREAKDOWN & SCHOOL YEAR INDEX ---
+  const monthlyMap = new Map<string, any[]>();
+  scrapedIncidents.forEach(inc => {
+    const ym = inc.date.substring(0, 7); // e.g., "2026-07"
+    if (!monthlyMap.has(ym)) {
+      monthlyMap.set(ym, []);
+    }
+    monthlyMap.get(ym)!.push(inc);
+  });
+
+  const MONTH_NAMES = [
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+  ];
+
+  const monthSummaries: any[] = [];
+  const srcMonthlyDir = path.join(process.cwd(), "src", "data", "monthly");
+  const publicMonthlyDir = path.join(process.cwd(), "public", "data", "monthly");
+
+  if (!fs.existsSync(srcMonthlyDir)) fs.mkdirSync(srcMonthlyDir, { recursive: true });
+  if (!fs.existsSync(publicMonthlyDir)) fs.mkdirSync(publicMonthlyDir, { recursive: true });
+
+  monthlyMap.forEach((incidents, ym) => {
+    const [y, m] = ym.split("-");
+    const monthIndex = parseInt(m, 10) - 1;
+    const monthLabel = `${MONTH_NAMES[monthIndex]} ${y}`;
+
+    monthSummaries.push({
+      yearMonth: ym,
+      label: monthLabel,
+      count: incidents.length
+    });
+
+    // Write monthly JSON
+    const srcFile = path.join(srcMonthlyDir, `${ym}.json`);
+    const publicFile = path.join(publicMonthlyDir, `${ym}.json`);
+    fs.writeFileSync(srcFile, JSON.stringify(incidents, null, 2), "utf-8");
+    fs.writeFileSync(publicFile, JSON.stringify(incidents, null, 2), "utf-8");
+  });
+
+  // Sort months descending
+  monthSummaries.sort((a, b) => b.yearMonth.localeCompare(a.yearMonth));
+
+  const monthlyIndexData = {
+    months: monthSummaries,
+    totalIncidents: scrapedIncidents.length,
+    lastUpdated: new Date().toISOString()
+  };
+
+  fs.writeFileSync(path.join(srcMonthlyDir, "index.json"), JSON.stringify(monthlyIndexData, null, 2), "utf-8");
+  fs.writeFileSync(path.join(publicMonthlyDir, "index.json"), JSON.stringify(monthlyIndexData, null, 2), "utf-8");
+  console.log(`Saved ${monthSummaries.length} monthly JSON files and index to src/data/monthly/ & public/data/monthly/`);
 
   // Generate updated fallbackData.ts
   const fallbackPath = path.join(process.cwd(), "src", "data", "fallbackData.ts");

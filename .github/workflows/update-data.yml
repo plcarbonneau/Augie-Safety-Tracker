@@ -2,12 +2,25 @@ name: Daily Campus Safety Log Update
 
 on:
   schedule:
-    # Runs at 06:00 UTC (1:00 AM Central) every day
+    # Runs at 06:00 UTC (1:00 AM Central / 2:00 AM Eastern) every day
     - cron: '0 6 * * *'
   workflow_dispatch: # Allows manual trigger from GitHub UI
 
+# Permissions required to commit updated data to git and deploy to GitHub Pages
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
 jobs:
-  update-data:
+  update-and-deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
@@ -16,7 +29,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
 
       - name: Install Dependencies
         run: npm ci || npm install
@@ -24,12 +37,25 @@ jobs:
       - name: Scrape & Update Incident Logs
         run: npx tsx scripts/updateData.ts
 
-      - name: Build Application
-        run: npm run build
-
-      - name: Commit and Push Changes
+      - name: Commit and Push Updated Data
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add src/data/archivedData.json src/data/fallbackData.ts public/archivedData.json
-          git diff --quiet && git diff --staged --quiet || (git commit -m "chore: automated daily safety log update" && git push)
+          git add src/data/ public/data/ public/archivedData.json
+          git diff --quiet && git diff --staged --quiet || (git commit -m "chore: automated daily safety log update [skip ci]" && git push)
+
+      - name: Build Application
+        run: npm run build
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './dist'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+

@@ -1,0 +1,41 @@
+{
+  "months": [
+    {
+      "yearMonth": "2026-08",
+      "label": "August 2026",
+      "count": 2
+    },
+    {
+      "yearMonth": "2026-07",
+      "label": "July 2026",
+      "count": 32
+    },
+    {
+      "yearMonth": "2026-06",
+      "label": "June 2026",
+      "count": 34
+    },
+    {
+      "yearMonth": "2026-05",
+      "label": "May 2026",
+      "count": 43
+    },
+    {
+      "yearMonth": "2026-04",
+      "label": "April 2026",
+      "count": 51
+    },
+    {
+      "yearMonth": "2026-03",
+      "label": "March 2026",
+      "count": 37
+    },
+    {
+      "yearMonth": "2026-02",
+      "label": "February 2026",
+      "count": 41
+    }
+  ],
+  "totalIncidents": 240,
+  "lastUpdated": "2026-08-03T16:07:38.589Z"
+}

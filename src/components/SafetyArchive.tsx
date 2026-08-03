@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from "react";
 import { Incident, IncidentCategory } from "../types";
-import { Search, Filter, Shield, Clock, MapPin, Calendar as CalendarIcon, Info, Eye, ShieldAlert, CheckCircle, Download } from "lucide-react";
+import { Search, Filter, Shield, Clock, MapPin, Calendar as CalendarIcon, Info, Eye, ShieldAlert, CheckCircle, Download, GraduationCap } from "lucide-react";
+import { getAcademicPeriodForDate, getAcademicPeriodsList, getAvailableMonthsList } from "../utils/academicCalendar";
 
 interface SafetyArchiveProps {
   incidents: Incident[];
@@ -10,8 +11,20 @@ interface SafetyArchiveProps {
 export default function SafetyArchive({ incidents, onSelectIncident }: SafetyArchiveProps) {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
-  const [timeframe, setTimeframe] = useState<string>("60"); // Default to 60 days
+  const [selectedSchoolYear, setSelectedSchoolYear] = useState<string>("all");
+  const [selectedMonth, setSelectedMonth] = useState<string>("all");
+  const [timeframe, setTimeframe] = useState<string>("all"); // Default to All History for archive
   const [logTypeFilter, setLogTypeFilter] = useState<string>("all"); // "all", "incidents", "nothing"
+
+  // Compute available School Years / Academic Periods
+  const availableSchoolYears = useMemo(() => {
+    return getAcademicPeriodsList(incidents);
+  }, [incidents]);
+
+  // Compute available Months
+  const availableMonths = useMemo(() => {
+    return getAvailableMonthsList(incidents);
+  }, [incidents]);
 
   // Helper to calculate days ago
   const getDaysAgo = (dateStr: string) => {
@@ -24,12 +37,27 @@ export default function SafetyArchive({ incidents, onSelectIncident }: SafetyArc
   // Filtered incidents
   const filteredIncidents = useMemo(() => {
     return incidents.filter(inc => {
-      // 1. Category Filter
+      // 1. School Year / Academic Period Filter
+      if (selectedSchoolYear !== "all") {
+        const period = getAcademicPeriodForDate(inc.date);
+        if (period.id !== selectedSchoolYear) {
+          return false;
+        }
+      }
+
+      // 2. Month Filter
+      if (selectedMonth !== "all") {
+        if (!inc.date || !inc.date.startsWith(selectedMonth)) {
+          return false;
+        }
+      }
+
+      // 3. Category Filter
       if (selectedCategory !== "all" && inc.category !== selectedCategory) {
         return false;
       }
 
-      // 2. Timeframe Filter
+      // 4. Timeframe Filter
       if (timeframe !== "all") {
         const daysAgo = getDaysAgo(inc.date);
         if (timeframe === "7" && daysAgo > 7) return false;
@@ -37,7 +65,7 @@ export default function SafetyArchive({ incidents, onSelectIncident }: SafetyArc
         if (timeframe === "60" && daysAgo > 60) return false;
       }
 
-      // 3. Log Type Filter (Incidents vs. Nothing to report)
+      // 5. Log Type Filter (Incidents vs. Nothing to report)
       if (logTypeFilter === "incidents" && inc.isNothingToReport) {
         return false;
       }
@@ -45,7 +73,7 @@ export default function SafetyArchive({ incidents, onSelectIncident }: SafetyArc
         return false;
       }
 
-      // 4. Search Query Filter
+      // 6. Search Query Filter
       if (searchQuery.trim() !== "") {
         const query = searchQuery.toLowerCase();
         const matchesLoc = (inc.locationName || inc.rawLocation || "").toLowerCase().includes(query);
@@ -61,7 +89,7 @@ export default function SafetyArchive({ incidents, onSelectIncident }: SafetyArc
 
       return true;
     });
-  }, [incidents, searchQuery, selectedCategory, timeframe, logTypeFilter]);
+  }, [incidents, searchQuery, selectedCategory, selectedSchoolYear, selectedMonth, timeframe, logTypeFilter]);
 
   // Group filtered incidents by Date
   const groupedIncidents = useMemo(() => {
@@ -137,9 +165,9 @@ export default function SafetyArchive({ incidents, onSelectIncident }: SafetyArc
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-3">
           {/* Search Field */}
-          <div className="relative md:col-span-2">
+          <div className="relative md:col-span-5">
             <Search className="absolute left-3.5 top-3 w-4 h-4 text-gray-400" />
             <input
               type="text"
@@ -150,32 +178,95 @@ export default function SafetyArchive({ incidents, onSelectIncident }: SafetyArc
             />
           </div>
 
+          {/* School Year Filter */}
+          <div className="md:col-span-4">
+            <div className="relative">
+              <select
+                value={selectedSchoolYear}
+                onChange={(e) => {
+                  setSelectedSchoolYear(e.target.value);
+                  // Reset month filter if it conflicts with selected school year
+                  if (e.target.value !== "all") setSelectedMonth("all");
+                }}
+                className="w-full bg-amber-50/50 hover:bg-amber-50 border border-amber-200/80 rounded-xl pl-9 pr-8 py-2.5 text-sm text-amber-950 font-bold focus:outline-none focus:ring-1 focus:ring-[#081e3f] focus:bg-white transition-all cursor-pointer appearance-none truncate"
+              >
+                <option value="all">All Academic Periods</option>
+                {availableSchoolYears.map(period => (
+                  <option key={period.id} value={period.id}>
+                    {period.label} ({period.count})
+                  </option>
+                ))}
+              </select>
+              <GraduationCap className="w-4 h-4 text-amber-700 absolute left-3 top-3 pointer-events-none" />
+              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2.5 text-amber-800">
+                <svg className="fill-current h-4 w-4" viewBox="0 0 20 20"><path d="M9.293 12.95l0.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+              </div>
+            </div>
+          </div>
+
+          {/* Month Filter */}
+          <div className="md:col-span-3">
+            <select
+              value={selectedMonth}
+              onChange={(e) => setSelectedMonth(e.target.value)}
+              className="w-full bg-gray-50 border border-gray-200 rounded-xl px-3.5 py-2.5 text-sm text-gray-700 font-semibold focus:outline-none focus:ring-1 focus:ring-[#081e3f] focus:bg-white transition-all cursor-pointer"
+            >
+              <option value="all">All Months</option>
+              {availableMonths.map(m => (
+                <option key={m.yearMonth} value={m.yearMonth}>
+                  {m.label} ({m.count})
+                </option>
+              ))}
+            </select>
+          </div>
+
           {/* Log Type Filter */}
-          <div>
+          <div className="md:col-span-6">
             <select
               value={logTypeFilter}
               onChange={(e) => setLogTypeFilter(e.target.value)}
               className="w-full bg-gray-50 border border-gray-200 rounded-xl px-3.5 py-2.5 text-sm text-gray-700 font-semibold focus:outline-none focus:ring-1 focus:ring-[#081e3f] focus:bg-white transition-all cursor-pointer"
             >
-              <option value="all">All Log Types</option>
+              <option value="all">All Log Types (Incidents + Nothing to report)</option>
               <option value="incidents">Reported Incidents Only</option>
               <option value="nothing">Nothing to Report Only</option>
             </select>
           </div>
 
           {/* Timeframe Filter */}
-          <div>
+          <div className="md:col-span-6">
             <select
               value={timeframe}
               onChange={(e) => setTimeframe(e.target.value)}
               className="w-full bg-gray-50 border border-gray-200 rounded-xl px-3.5 py-2.5 text-sm text-gray-700 font-semibold focus:outline-none focus:ring-1 focus:ring-[#081e3f] focus:bg-white transition-all cursor-pointer"
             >
-              <option value="7">Last 7 Days</option>
-              <option value="30">Last 30 Days</option>
-              <option value="60">Last 60 Days</option>
-              <option value="all">Full History Archive</option>
+              <option value="all">Full Historical Record (Monthly Archives)</option>
+              <option value="7">Recent 7 Days</option>
+              <option value="30">Recent 30 Days</option>
+              <option value="60">Recent 60 Days</option>
             </select>
           </div>
+        </div>
+
+        {/* Academic Calendar Context Callout */}
+        <div className="bg-gradient-to-r from-amber-50 to-amber-100/40 rounded-xl p-3 border border-amber-200/60 text-xs text-amber-900 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+          <div className="flex items-center gap-2">
+            <GraduationCap className="w-4 h-4 text-amber-700 shrink-0" />
+            <span className="font-semibold">
+              <strong>Augustana Academic Calendar:</strong> School Year runs <u>August 22</u> through <u>May 23</u>. Summer session runs May 24 through August 21.
+            </span>
+          </div>
+          {(selectedSchoolYear !== "all" || selectedMonth !== "all") && (
+            <button
+              onClick={() => {
+                setSelectedSchoolYear("all");
+                setSelectedMonth("all");
+              }}
+              className="text-[11px] font-bold text-amber-800 hover:text-amber-950 underline shrink-0 cursor-pointer"
+            >
+              Clear Year/Month Filter
+            </button>
+          )}
         </div>
 
         {/* Category Filter Pills Row */}
@@ -287,8 +378,11 @@ export default function SafetyArchive({ incidents, onSelectIncident }: SafetyArc
                         {/* Card Header Masthead (similar to official log) */}
                         <div className="flex items-start justify-between gap-2 border-b border-gray-50 pb-3">
                           <div className="flex flex-col select-none">
-                            <span className="text-[9px] font-black tracking-widest text-[#081e3f] uppercase">
-                              Augustana University
+                            <span className="text-[9px] font-black tracking-widest text-[#081e3f] uppercase flex items-center gap-1.5">
+                              <span>Augustana University</span>
+                              <span className="text-[9px] font-bold text-amber-800 bg-amber-100/80 px-1.5 py-0.2 rounded border border-amber-200">
+                                {getAcademicPeriodForDate(inc.date).shortLabel}
+                              </span>
                             </span>
                             <span className="text-xs font-bold text-gray-400">
                               Security Log Report
