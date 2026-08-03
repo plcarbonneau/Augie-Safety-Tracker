@@ -13,6 +13,71 @@ export function getCategory(text: string): IncidentCategory {
 
 export const FALLBACK_INCIDENTS: any[] = [
   {
+    "id": "e7d4df5897400d38ae2794a00f0ad1437",
+    "date": "2026-08-02",
+    "rawDateStr": "Sunday, August 2",
+    "time": "",
+    "type": "Nothing to report",
+    "rawLocation": "Campus-wide",
+    "locationName": "Campus-wide",
+    "address": "",
+    "category": "Nothing to Report",
+    "description": "Nothing to report.",
+    "isNothingToReport": true
+  },
+  {
+    "id": "e5dc8715710e4c8dc34a1511d3de66dda",
+    "date": "2026-08-01",
+    "rawDateStr": "Saturday, August 1",
+    "time": "",
+    "type": "Nothing to report",
+    "rawLocation": "Campus-wide",
+    "locationName": "Campus-wide",
+    "address": "",
+    "category": "Nothing to Report",
+    "description": "Nothing to report.",
+    "isNothingToReport": true
+  },
+  {
+    "id": "eaacee7fff6488090bffd194cbb1ec21b",
+    "date": "2026-07-31",
+    "rawDateStr": "Friday, July 31",
+    "time": "",
+    "type": "Nothing to report",
+    "rawLocation": "Campus-wide",
+    "locationName": "Campus-wide",
+    "address": "",
+    "category": "Nothing to Report",
+    "description": "Nothing to report.",
+    "isNothingToReport": true
+  },
+  {
+    "id": "e7c612b75df1526fd8b157536a5b9f307",
+    "date": "2026-07-30",
+    "rawDateStr": "Thursday, July 30",
+    "time": "",
+    "type": "Nothing to report",
+    "rawLocation": "Campus-wide",
+    "locationName": "Campus-wide",
+    "address": "",
+    "category": "Nothing to Report",
+    "description": "Nothing to report.",
+    "isNothingToReport": true
+  },
+  {
+    "id": "e16ffa55d2daf1227de3484b67500a633",
+    "date": "2026-07-29",
+    "rawDateStr": "Wednesday, July 29",
+    "time": "11:03 PM",
+    "type": "Theft",
+    "rawLocation": "Solberg Hall (2312 S Grange Ave)",
+    "locationName": "Solberg Hall",
+    "address": "2312 S Grange Ave",
+    "category": "Theft & Property Damage",
+    "description": "CSO investigated theft from dorm. An incident report was completed.",
+    "isNothingToReport": false
+  },
+  {
     "id": "e6ad85efd51db4f5231caf090f830ddc1",
     "date": "2026-07-28",
     "rawDateStr": "Tuesday, July 28",
