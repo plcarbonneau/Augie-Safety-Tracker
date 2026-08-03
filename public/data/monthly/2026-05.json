@@ -60,7 +60,7 @@
     "rawLocation": "Mikkelsen Library (2117 S Summit Ave)",
     "locationName": "Mikkelsen Library",
     "address": "2117 S Summit Ave",
-    "category": "Other Assistance",
+    "category": "Substances & Alcohol",
     "description": "CSO found alcohol outside building. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -216,7 +216,7 @@
     "rawLocation": "Bergsaker Hall (1110 W. 33rd St.)",
     "locationName": "Bergsaker Hall",
     "address": "1110 W. 33rd St.",
-    "category": "Disorderly & Suspicious",
+    "category": "Theft & Property Damage",
     "description": "CSO confronted a group of juvenile throwing items and driving scoots on university property. The subjects were spoken to a told to leave the property. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -255,7 +255,7 @@
     "rawLocation": "Solberg Hall (2312 S Grange Ave)",
     "locationName": "Solberg Hall",
     "address": "2312 S Grange Ave",
-    "category": "Other Assistance",
+    "category": "Substances & Alcohol",
     "description": "CSO found alcohol on campus. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -294,7 +294,7 @@
     "rawLocation": "Midco",
     "locationName": "Midco",
     "address": "",
-    "category": "Other Assistance",
+    "category": "Theft & Property Damage",
     "description": "Damage to property. CSO took a report of damage. An incident report was completed.",
     "isNothingToReport": false
   },

@@ -112,7 +112,7 @@
     "rawLocation": "Solberg Hall (2312 S Grange Ave)",
     "locationName": "Solberg Hall",
     "address": "2312 S Grange Ave",
-    "category": "Medical Response",
+    "category": "Welfare & Well-being",
     "description": "CSO and Student affairs conducted a well being check. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -151,7 +151,7 @@
     "rawLocation": "Fryxell Humanities (2120 S Grange Ave)",
     "locationName": "Fryxell Humanities",
     "address": "2120 S Grange Ave",
-    "category": "Other Assistance",
+    "category": "Substances & Alcohol",
     "description": "CSO checked on device in student possession. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -307,7 +307,7 @@
     "rawLocation": "Nelson Apartments (2320 S Summit Ave)",
     "locationName": "Nelson Apartments",
     "address": "2320 S Summit Ave",
-    "category": "Other Assistance",
+    "category": "Substances & Alcohol",
     "description": "CSO investigated smell in building. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -398,7 +398,7 @@
     "rawLocation": "Stavig Hall (2008 S Walts Ave)",
     "locationName": "Stavig Hall",
     "address": "2008 S Walts Ave",
-    "category": "Other Assistance",
+    "category": "Substances & Alcohol",
     "description": "CSO investigated report of narcotics found in room. An incident report was completed.",
     "isNothingToReport": false
   },

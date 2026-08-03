@@ -203,7 +203,7 @@
     "rawLocation": "Bergsaker Hall (1110 W 33rd St)",
     "locationName": "Bergsaker Hall",
     "address": "1110 W 33rd St",
-    "category": "Medical Response",
+    "category": "Substances & Alcohol",
     "description": "CSO investigated report of intoxicated subject. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -216,7 +216,7 @@
     "rawLocation": "Solberg Hall (2312 S Grange Ave)",
     "locationName": "Solberg Hall",
     "address": "2312 S Grange Ave",
-    "category": "Other Assistance",
+    "category": "Fire & Safety",
     "description": "CSO investigated gas found near vehicle. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -385,7 +385,7 @@
     "rawLocation": "Kirkeby Over Stadium (2700S Lake Ave)",
     "locationName": "Kirkeby Over Stadium",
     "address": "2700S Lake Ave",
-    "category": "Other Assistance",
+    "category": "Medical Response",
     "description": "CSO took a slip and fall report. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -424,7 +424,7 @@
     "rawLocation": "Solberg Hall Parking lot (2312 S Grange Ave)",
     "locationName": "Solberg Hall Parking lot",
     "address": "2312 S Grange Ave",
-    "category": "Traffic & Parking",
+    "category": "Theft & Property Damage",
     "description": "CSO investigated damage done to vehicles. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -437,7 +437,7 @@
     "rawLocation": "Solberg Hall (2312 S Grange Ave)",
     "locationName": "Solberg Hall",
     "address": "2312 S Grange Ave",
-    "category": "Other Assistance",
+    "category": "Welfare & Well-being",
     "description": "CSO and Student Affairs checked on a student in dorm. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -476,7 +476,7 @@
     "rawLocation": "Solberg Hall (2312 S Grange Ave)",
     "locationName": "Solberg Hall",
     "address": "2312 S Grange Ave",
-    "category": "Medical Response",
+    "category": "Substances & Alcohol",
     "description": "CSO responded to request to check on student. An incident report was completed.",
     "isNothingToReport": false
   }

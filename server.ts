@@ -36,6 +36,11 @@ function loadArchivedIncidents(): Incident[] {
   PROCESSED_FALLBACK_INCIDENTS.forEach(f => fallbackMap.set(f.id, f));
 
   incidents = incidents.map(inc => {
+    const updatedCategory = getCategory((inc.type || "") + " " + (inc.description || ""));
+    if (inc.category !== updatedCategory) {
+      modified = true;
+      inc = { ...inc, category: updatedCategory };
+    }
     const fallback = fallbackMap.get(inc.id);
     if (fallback) {
       // If the archived entry is marked "Campus-wide" but the fallback has a specific location, fix it!
@@ -54,7 +59,7 @@ function loadArchivedIncidents(): Incident[] {
           rawLocation: fallback.rawLocation,
           locationName: fallback.locationName,
           address: fallback.address,
-          category: fallback.category
+          category: updatedCategory
         };
       }
     }

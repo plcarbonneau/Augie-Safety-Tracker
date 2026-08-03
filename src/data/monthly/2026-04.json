@@ -8,7 +8,7 @@
     "rawLocation": "Midco",
     "locationName": "Midco",
     "address": "",
-    "category": "Other Assistance",
+    "category": "Traffic & Parking",
     "description": "Vehicle collision. CSO took a report of an accident. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -112,7 +112,7 @@
     "rawLocation": "Froiland Science Center (2407 S Summit Ave)",
     "locationName": "Froiland Science Center",
     "address": "2407 S Summit Ave",
-    "category": "Medical Response",
+    "category": "Welfare & Well-being",
     "description": "CSO and Student affairs did a well being check on student. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -125,7 +125,7 @@
     "rawLocation": "Solberg Hall (2312 S Grange Ave)",
     "locationName": "Solberg Hall",
     "address": "2312 S Grange Ave",
-    "category": "Other Assistance",
+    "category": "Substances & Alcohol",
     "description": "CSO stopped students in dorm and removed alcohol. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -177,7 +177,7 @@
     "rawLocation": "Granskou Hall (2009 S Prairie Ave)",
     "locationName": "Granskou Hall",
     "address": "2009 S Prairie Ave",
-    "category": "Medical Response",
+    "category": "Welfare & Well-being",
     "description": "CSO and Student affairs did a well being check on student. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -216,7 +216,7 @@
     "rawLocation": "Elmen Center (2505 S Grange Ave)",
     "locationName": "Elmen Center",
     "address": "2505 S Grange Ave",
-    "category": "Other Assistance",
+    "category": "Traffic & Parking",
     "description": "CSO investigated a report of a hit in run in parking lot. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -333,7 +333,7 @@
     "rawLocation": "Bergsaker Hall (1110 W 33rd St)",
     "locationName": "Bergsaker Hall",
     "address": "1110 W 33rd St",
-    "category": "Other Assistance",
+    "category": "Substances & Alcohol",
     "description": "CSO investigated the smell of marijuana. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -359,7 +359,7 @@
     "rawLocation": "Solberg Hall parking lot (2312 S Grange Ave)",
     "locationName": "Solberg Hall parking lot",
     "address": "2312 S Grange Ave",
-    "category": "Traffic & Parking",
+    "category": "Fire & Safety",
     "description": "CSO towed car from fire lane. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -372,7 +372,7 @@
     "rawLocation": "Granskou Hall parking lot (2009 S Prairie Ave)",
     "locationName": "Granskou Hall parking lot",
     "address": "2009 S Prairie Ave",
-    "category": "Traffic & Parking",
+    "category": "Fire & Safety",
     "description": "CSO towed car from fire lane. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -411,7 +411,7 @@
     "rawLocation": "Nelson Apt (2320 S Summit Ave)",
     "locationName": "Nelson Apt",
     "address": "2320 S Summit Ave",
-    "category": "Other Assistance",
+    "category": "Substances & Alcohol",
     "description": "CSO investigated the smell of marijuana. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -489,7 +489,7 @@
     "rawLocation": "Tuve Hall (2016 S Menlo Ave)",
     "locationName": "Tuve Hall",
     "address": "2016 S Menlo Ave",
-    "category": "Medical Response",
+    "category": "Welfare & Well-being",
     "description": "CSO and Student Affairs checked on student. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -541,7 +541,7 @@
     "rawLocation": "Stavig Hall (2008 S Walt Ave)",
     "locationName": "Stavig Hall",
     "address": "2008 S Walt Ave",
-    "category": "Traffic & Parking",
+    "category": "Fire & Safety",
     "description": "CSO towed car from fire lane. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -632,7 +632,7 @@
     "rawLocation": "Granskou Hall (2009 S Prairie Ave)",
     "locationName": "Granskou Hall",
     "address": "2009 S Prairie Ave",
-    "category": "Medical Response",
+    "category": "Welfare & Well-being",
     "description": "CSO and Student Affairs checked on a student in need. An incident report was completed.",
     "isNothingToReport": false
   },

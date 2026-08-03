@@ -166,7 +166,7 @@ async function main() {
         rawLocation,
         locationName,
         address,
-        category: getCategory(type || description),
+        category: getCategory((type || "") + " " + (description || "")),
         description,
         isNothingToReport: isNothing
       });
@@ -245,18 +245,49 @@ async function main() {
 export function getCategory(text: string): IncidentCategory {
   const t = text.toLowerCase();
   if (t.includes("nothing to report")) return IncidentCategory.NOTHING;
-  if (t.includes("medical") || t.includes("injury") || t.includes("ambulance") || t.includes("well being check") || t.includes("welfare check") || t.includes("intoxicated")) return IncidentCategory.MEDICAL;
-  if (t.includes("theft") || t.includes("stolen") || t.includes("damage") || t.includes("vandalism") || t.includes("property")) return IncidentCategory.THEFT;
-  if (t.includes("disorderly") || t.includes("suspicious") || t.includes("trespass") || t.includes("noise") || t.includes("conduct")) return IncidentCategory.DISORDERLY;
-  if (t.includes("traffic") || t.includes("auto") || t.includes("vehicle") || t.includes("accident") || t.includes("collision") || t.includes("tow") || t.includes("parking")) return IncidentCategory.TRAFFIC;
-  if (t.includes("fire") || t.includes("smoke") || t.includes("alarm")) return IncidentCategory.FIRE;
+
+  // 1. Welfare & Well-being
+  if (t.includes("welfare") || t.includes("wellbeing") || t.includes("well-being") || t.includes("well being")) {
+    return IncidentCategory.WELFARE;
+  }
+
+  // 2. Substances & Alcohol
+  if (t.includes("alcohol") || t.includes("liquor") || t.includes("beer") || t.includes("substance") || t.includes("narcotics") || t.includes("drug") || t.includes("marijuana") || t.includes("cannabis") || t.includes("vape") || t.includes("intoxicated")) {
+    return IncidentCategory.SUBSTANCE;
+  }
+
+  // 3. Medical Response
+  if (t.includes("medical") || t.includes("injury") || t.includes("ambulance") || t.includes("medic") || t.includes("hospital") || t.includes("first aid") || t.includes("fall")) {
+    return IncidentCategory.MEDICAL;
+  }
+
+  // 4. Fire & Safety
+  if (t.includes("fire") || t.includes("smoke") || t.includes("alarm") || t.includes("gas spill") || t.includes("gas leak")) {
+    return IncidentCategory.FIRE;
+  }
+
+  // 5. Theft & Property Damage
+  if (t.includes("theft") || t.includes("stolen") || t.includes("damage") || t.includes("vandalism") || t.includes("property") || t.includes("burglary")) {
+    return IncidentCategory.THEFT;
+  }
+
+  // 6. Disorderly & Suspicious
+  if (t.includes("disorderly") || t.includes("suspicious") || t.includes("trespass") || t.includes("noise") || t.includes("conduct") || t.includes("absconder") || t.includes("harass")) {
+    return IncidentCategory.DISORDERLY;
+  }
+
+  // 7. Traffic & Parking
+  if (t.includes("traffic") || t.includes("auto") || t.includes("vehicle") || t.includes("accident") || t.includes("collision") || t.includes("tow") || t.includes("parking") || t.includes("hit and run")) {
+    return IncidentCategory.TRAFFIC;
+  }
+
   return IncidentCategory.OTHER;
 }
 
 export const FALLBACK_INCIDENTS: any[] = ${JSON.stringify(scrapedIncidents, null, 2)};
 
 export const PROCESSED_FALLBACK_INCIDENTS: Incident[] = (FALLBACK_INCIDENTS as any[]).map(inc => {
-  const category = getCategory(inc.type || inc.description);
+  const category = getCategory((inc.type || "") + " " + (inc.description || ""));
   return {
     id: inc.id,
     date: inc.date,

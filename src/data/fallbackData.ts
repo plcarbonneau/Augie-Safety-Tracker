@@ -3,11 +3,42 @@ import { Incident, IncidentCategory } from "../types";
 export function getCategory(text: string): IncidentCategory {
   const t = text.toLowerCase();
   if (t.includes("nothing to report")) return IncidentCategory.NOTHING;
-  if (t.includes("medical") || t.includes("injury") || t.includes("ambulance") || t.includes("well being check") || t.includes("welfare check") || t.includes("intoxicated")) return IncidentCategory.MEDICAL;
-  if (t.includes("theft") || t.includes("stolen") || t.includes("damage") || t.includes("vandalism") || t.includes("property")) return IncidentCategory.THEFT;
-  if (t.includes("disorderly") || t.includes("suspicious") || t.includes("trespass") || t.includes("noise") || t.includes("conduct")) return IncidentCategory.DISORDERLY;
-  if (t.includes("traffic") || t.includes("auto") || t.includes("vehicle") || t.includes("accident") || t.includes("collision") || t.includes("tow") || t.includes("parking")) return IncidentCategory.TRAFFIC;
-  if (t.includes("fire") || t.includes("smoke") || t.includes("alarm")) return IncidentCategory.FIRE;
+
+  // 1. Welfare & Well-being
+  if (t.includes("welfare") || t.includes("wellbeing") || t.includes("well-being") || t.includes("well being")) {
+    return IncidentCategory.WELFARE;
+  }
+
+  // 2. Substances & Alcohol
+  if (t.includes("alcohol") || t.includes("liquor") || t.includes("beer") || t.includes("substance") || t.includes("narcotics") || t.includes("drug") || t.includes("marijuana") || t.includes("cannabis") || t.includes("vape") || t.includes("intoxicated")) {
+    return IncidentCategory.SUBSTANCE;
+  }
+
+  // 3. Medical Response
+  if (t.includes("medical") || t.includes("injury") || t.includes("ambulance") || t.includes("medic") || t.includes("hospital") || t.includes("first aid") || t.includes("fall")) {
+    return IncidentCategory.MEDICAL;
+  }
+
+  // 4. Fire & Safety
+  if (t.includes("fire") || t.includes("smoke") || t.includes("alarm") || t.includes("gas spill") || t.includes("gas leak")) {
+    return IncidentCategory.FIRE;
+  }
+
+  // 5. Theft & Property Damage
+  if (t.includes("theft") || t.includes("stolen") || t.includes("damage") || t.includes("vandalism") || t.includes("property") || t.includes("burglary")) {
+    return IncidentCategory.THEFT;
+  }
+
+  // 6. Disorderly & Suspicious
+  if (t.includes("disorderly") || t.includes("suspicious") || t.includes("trespass") || t.includes("noise") || t.includes("conduct") || t.includes("absconder") || t.includes("harass")) {
+    return IncidentCategory.DISORDERLY;
+  }
+
+  // 7. Traffic & Parking
+  if (t.includes("traffic") || t.includes("auto") || t.includes("vehicle") || t.includes("accident") || t.includes("collision") || t.includes("tow") || t.includes("parking") || t.includes("hit and run")) {
+    return IncidentCategory.TRAFFIC;
+  }
+
   return IncidentCategory.OTHER;
 }
 
@@ -255,7 +286,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Solberg Hall parking lot. (2312 S Grange Ave)",
     "locationName": "Solberg Hall parking lot.",
     "address": "2312 S Grange Ave",
-    "category": "Traffic & Parking",
+    "category": "Theft & Property Damage",
     "description": "CSO investigated damage in lot, SFPD was called. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -567,7 +598,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Solberg Hall (2312 S Grange Ave)",
     "locationName": "Solberg Hall",
     "address": "2312 S Grange Ave",
-    "category": "Medical Response",
+    "category": "Welfare & Well-being",
     "description": "CSO and Student affairs conducted a well being check. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -606,7 +637,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Fryxell Humanities (2120 S Grange Ave)",
     "locationName": "Fryxell Humanities",
     "address": "2120 S Grange Ave",
-    "category": "Other Assistance",
+    "category": "Substances & Alcohol",
     "description": "CSO checked on device in student possession. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -762,7 +793,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Nelson Apartments (2320 S Summit Ave)",
     "locationName": "Nelson Apartments",
     "address": "2320 S Summit Ave",
-    "category": "Other Assistance",
+    "category": "Substances & Alcohol",
     "description": "CSO investigated smell in building. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -853,7 +884,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Stavig Hall (2008 S Walts Ave)",
     "locationName": "Stavig Hall",
     "address": "2008 S Walts Ave",
-    "category": "Other Assistance",
+    "category": "Substances & Alcohol",
     "description": "CSO investigated report of narcotics found in room. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -957,7 +988,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Mikkelsen Library (2117 S Summit Ave)",
     "locationName": "Mikkelsen Library",
     "address": "2117 S Summit Ave",
-    "category": "Other Assistance",
+    "category": "Substances & Alcohol",
     "description": "CSO found alcohol outside building. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -1113,7 +1144,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Bergsaker Hall (1110 W. 33rd St.)",
     "locationName": "Bergsaker Hall",
     "address": "1110 W. 33rd St.",
-    "category": "Disorderly & Suspicious",
+    "category": "Theft & Property Damage",
     "description": "CSO confronted a group of juvenile throwing items and driving scoots on university property. The subjects were spoken to a told to leave the property. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -1152,7 +1183,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Solberg Hall (2312 S Grange Ave)",
     "locationName": "Solberg Hall",
     "address": "2312 S Grange Ave",
-    "category": "Other Assistance",
+    "category": "Substances & Alcohol",
     "description": "CSO found alcohol on campus. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -1191,7 +1222,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Midco",
     "locationName": "Midco",
     "address": "",
-    "category": "Other Assistance",
+    "category": "Theft & Property Damage",
     "description": "Damage to property. CSO took a report of damage. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -1464,7 +1495,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Midco",
     "locationName": "Midco",
     "address": "",
-    "category": "Other Assistance",
+    "category": "Traffic & Parking",
     "description": "Vehicle collision. CSO took a report of an accident. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -1568,7 +1599,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Froiland Science Center (2407 S Summit Ave)",
     "locationName": "Froiland Science Center",
     "address": "2407 S Summit Ave",
-    "category": "Medical Response",
+    "category": "Welfare & Well-being",
     "description": "CSO and Student affairs did a well being check on student. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -1581,7 +1612,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Solberg Hall (2312 S Grange Ave)",
     "locationName": "Solberg Hall",
     "address": "2312 S Grange Ave",
-    "category": "Other Assistance",
+    "category": "Substances & Alcohol",
     "description": "CSO stopped students in dorm and removed alcohol. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -1633,7 +1664,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Granskou Hall (2009 S Prairie Ave)",
     "locationName": "Granskou Hall",
     "address": "2009 S Prairie Ave",
-    "category": "Medical Response",
+    "category": "Welfare & Well-being",
     "description": "CSO and Student affairs did a well being check on student. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -1672,7 +1703,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Elmen Center (2505 S Grange Ave)",
     "locationName": "Elmen Center",
     "address": "2505 S Grange Ave",
-    "category": "Other Assistance",
+    "category": "Traffic & Parking",
     "description": "CSO investigated a report of a hit in run in parking lot. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -1789,7 +1820,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Bergsaker Hall (1110 W 33rd St)",
     "locationName": "Bergsaker Hall",
     "address": "1110 W 33rd St",
-    "category": "Other Assistance",
+    "category": "Substances & Alcohol",
     "description": "CSO investigated the smell of marijuana. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -1815,7 +1846,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Solberg Hall parking lot (2312 S Grange Ave)",
     "locationName": "Solberg Hall parking lot",
     "address": "2312 S Grange Ave",
-    "category": "Traffic & Parking",
+    "category": "Fire & Safety",
     "description": "CSO towed car from fire lane. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -1828,7 +1859,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Granskou Hall parking lot (2009 S Prairie Ave)",
     "locationName": "Granskou Hall parking lot",
     "address": "2009 S Prairie Ave",
-    "category": "Traffic & Parking",
+    "category": "Fire & Safety",
     "description": "CSO towed car from fire lane. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -1867,7 +1898,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Nelson Apt (2320 S Summit Ave)",
     "locationName": "Nelson Apt",
     "address": "2320 S Summit Ave",
-    "category": "Other Assistance",
+    "category": "Substances & Alcohol",
     "description": "CSO investigated the smell of marijuana. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -1945,7 +1976,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Tuve Hall (2016 S Menlo Ave)",
     "locationName": "Tuve Hall",
     "address": "2016 S Menlo Ave",
-    "category": "Medical Response",
+    "category": "Welfare & Well-being",
     "description": "CSO and Student Affairs checked on student. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -1997,7 +2028,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Stavig Hall (2008 S Walt Ave)",
     "locationName": "Stavig Hall",
     "address": "2008 S Walt Ave",
-    "category": "Traffic & Parking",
+    "category": "Fire & Safety",
     "description": "CSO towed car from fire lane. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -2088,7 +2119,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Granskou Hall (2009 S Prairie Ave)",
     "locationName": "Granskou Hall",
     "address": "2009 S Prairie Ave",
-    "category": "Medical Response",
+    "category": "Welfare & Well-being",
     "description": "CSO and Student Affairs checked on a student in need. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -2322,7 +2353,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Bergsaker Hall (1110 W 33rd St)",
     "locationName": "Bergsaker Hall",
     "address": "1110 W 33rd St",
-    "category": "Medical Response",
+    "category": "Substances & Alcohol",
     "description": "CSO investigated report of intoxicated subject. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -2335,7 +2366,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Solberg Hall (2312 S Grange Ave)",
     "locationName": "Solberg Hall",
     "address": "2312 S Grange Ave",
-    "category": "Other Assistance",
+    "category": "Fire & Safety",
     "description": "CSO investigated gas found near vehicle. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -2504,7 +2535,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Kirkeby Over Stadium (2700S Lake Ave)",
     "locationName": "Kirkeby Over Stadium",
     "address": "2700S Lake Ave",
-    "category": "Other Assistance",
+    "category": "Medical Response",
     "description": "CSO took a slip and fall report. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -2543,7 +2574,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Solberg Hall Parking lot (2312 S Grange Ave)",
     "locationName": "Solberg Hall Parking lot",
     "address": "2312 S Grange Ave",
-    "category": "Traffic & Parking",
+    "category": "Theft & Property Damage",
     "description": "CSO investigated damage done to vehicles. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -2556,7 +2587,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Solberg Hall (2312 S Grange Ave)",
     "locationName": "Solberg Hall",
     "address": "2312 S Grange Ave",
-    "category": "Other Assistance",
+    "category": "Welfare & Well-being",
     "description": "CSO and Student Affairs checked on a student in dorm. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -2595,7 +2626,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Solberg Hall (2312 S Grange Ave)",
     "locationName": "Solberg Hall",
     "address": "2312 S Grange Ave",
-    "category": "Medical Response",
+    "category": "Substances & Alcohol",
     "description": "CSO responded to request to check on student. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -2933,7 +2964,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Stavig Hall (2008 S Walts Ave)",
     "locationName": "Stavig Hall",
     "address": "2008 S Walts Ave",
-    "category": "Traffic & Parking",
+    "category": "Fire & Safety",
     "description": "CSO towed car from fire lane. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -3011,7 +3042,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Solberg Lot (2312 S Grange Ave)",
     "locationName": "Solberg Lot",
     "address": "2312 S Grange Ave",
-    "category": "Other Assistance",
+    "category": "Substances & Alcohol",
     "description": "CSO found alcohol in lot. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -3089,7 +3120,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawLocation": "Bergsaker Hall (1110 W 33rd St)",
     "locationName": "Bergsaker Hall",
     "address": "1110 W 33rd St",
-    "category": "Medical Response",
+    "category": "Welfare & Well-being",
     "description": "CSO and Student Affairs checked on student. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -3135,7 +3166,7 @@ export const FALLBACK_INCIDENTS: any[] = [
 ];
 
 export const PROCESSED_FALLBACK_INCIDENTS: Incident[] = (FALLBACK_INCIDENTS as any[]).map(inc => {
-  const category = getCategory(inc.type || inc.description);
+  const category = getCategory((inc.type || "") + " " + (inc.description || ""));
   return {
     id: inc.id,
     date: inc.date,

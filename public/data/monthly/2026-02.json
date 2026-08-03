@@ -333,7 +333,7 @@
     "rawLocation": "Stavig Hall (2008 S Walts Ave)",
     "locationName": "Stavig Hall",
     "address": "2008 S Walts Ave",
-    "category": "Traffic & Parking",
+    "category": "Fire & Safety",
     "description": "CSO towed car from fire lane. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -411,7 +411,7 @@
     "rawLocation": "Solberg Lot (2312 S Grange Ave)",
     "locationName": "Solberg Lot",
     "address": "2312 S Grange Ave",
-    "category": "Other Assistance",
+    "category": "Substances & Alcohol",
     "description": "CSO found alcohol in lot. An incident report was completed.",
     "isNothingToReport": false
   },
@@ -489,7 +489,7 @@
     "rawLocation": "Bergsaker Hall (1110 W 33rd St)",
     "locationName": "Bergsaker Hall",
     "address": "1110 W 33rd St",
-    "category": "Medical Response",
+    "category": "Welfare & Well-being",
     "description": "CSO and Student Affairs checked on student. An incident report was completed.",
     "isNothingToReport": false
   },
