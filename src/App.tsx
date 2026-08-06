@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { Incident, IncidentCategory } from "./types";
 import { PROCESSED_FALLBACK_INCIDENTS } from "./data/fallbackData";
+import { loadIncidentsProgressively } from "./utils/dataLoader";
 import CampusMap from "./components/CampusMap";
 import SafetyCalendar from "./components/SafetyCalendar";
 import SafetyArchive from "./components/SafetyArchive";
@@ -45,30 +46,22 @@ export default function App() {
   const [currentMonth, setCurrentMonth] = useState<number>(5); 
   const [selectedDate, setSelectedDate] = useState<string>("2026-06-22");
 
-  // Load Initial Incidents from static JSON or API fallback
+  // Load Initial Incidents (supports both instant batch loading and progressive monthly chunk loading)
   const fetchIncidents = async () => {
     setLoading(true);
     try {
-      // Correct relative path for GitHub Pages subdirectories
-      const baseUrl = (import.meta as any).env?.BASE_URL || "/";
-      const res = await fetch(`${baseUrl}archivedData.json`);
-      const data = await res.json();
-      
-      let fetchedList: Incident[] = [];
-      if (Array.isArray(data)) {
-        fetchedList = data;
-      } else if (data && data.success && Array.isArray(data.incidents)) {
-        fetchedList = data.incidents;
-      } else {
-        console.warn("Invalid data format received, using local fallback");
-        fetchedList = PROCESSED_FALLBACK_INCIDENTS;
-      }
-
-      // Merge with custom local incidents logged locally
-      const customLocal = JSON.parse(localStorage.getItem("custom_incidents") || "[]");
-      setIncidents([...customLocal, ...fetchedList]);
+      await loadIncidentsProgressively((loadedIncidents, isPartial, loadedMonths, totalMonths) => {
+        setIncidents(loadedIncidents);
+        if (isPartial) {
+          setStatusMessage(`Loading archived log chunks (${loadedMonths}/${totalMonths} months)...`);
+        } else {
+          if (statusMessage.startsWith("Loading archived log chunks")) {
+            setStatusMessage("");
+          }
+        }
+      });
     } catch (err) {
-      console.warn("Static JSON load failed, falling back to client-side fallback data:", err);
+      console.warn("Failed loading incidents progressively, using local fallback data:", err);
       const customLocal = JSON.parse(localStorage.getItem("custom_incidents") || "[]");
       setIncidents([...customLocal, ...PROCESSED_FALLBACK_INCIDENTS]);
     } finally {

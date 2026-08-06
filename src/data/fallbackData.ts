@@ -44,45 +44,6 @@ export function getCategory(text: string): IncidentCategory {
 
 export const FALLBACK_INCIDENTS: any[] = [
   {
-    "id": "e4d5f47bf033af4c120d01f2c5624f171",
-    "date": "2026-08-05",
-    "rawDateStr": "Wednesday, August 5",
-    "time": "",
-    "type": "Theft",
-    "rawLocation": "Solberg Hall parking lot (2312 S Grange Ave)",
-    "locationName": "Solberg Hall parking lot",
-    "address": "2312 S Grange Ave",
-    "category": "Theft & Property Damage",
-    "description": "CSO investigated a theft from lot. An incident report was completed.",
-    "isNothingToReport": false
-  },
-  {
-    "id": "e3c8657e697737f7f5cc1f6a8dc9cdea5",
-    "date": "2026-08-04",
-    "rawDateStr": "Tuesday, August 4",
-    "time": "10:47 PM",
-    "type": "Welfare Check",
-    "rawLocation": "Morrison Commons (2112 S Grange Ave)",
-    "locationName": "Morrison Commons",
-    "address": "2112 S Grange Ave",
-    "category": "Welfare & Well-being",
-    "description": "CSO conducted welfare check on student. An incident report was completed.",
-    "isNothingToReport": false
-  },
-  {
-    "id": "ea20d907c87438c1f28437ee6d812d386",
-    "date": "2026-08-03",
-    "rawDateStr": "Monday, August 3",
-    "time": "",
-    "type": "Nothing to report",
-    "rawLocation": "Campus-wide",
-    "locationName": "Campus-wide",
-    "address": "",
-    "category": "Nothing to Report",
-    "description": "Nothing to report.",
-    "isNothingToReport": true
-  },
-  {
     "id": "e7d4df5897400d38ae2794a00f0ad1437",
     "date": "2026-08-02",
     "rawDateStr": "Sunday, August 2",
