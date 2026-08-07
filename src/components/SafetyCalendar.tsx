@@ -64,7 +64,6 @@ export default function SafetyCalendar({ incidents, onSelectIncident }: SafetyCa
 
   // Calendar filter state
   const [categoryFilter, setCategoryFilter] = useState<string>("all");
-  const [statusFilter, setStatusFilter] = useState<string>("all"); // "all", "incidents", "safe"
 
   // Get active month metrics
   const year = currentDate.getFullYear();
@@ -107,13 +106,6 @@ export default function SafetyCalendar({ incidents, onSelectIncident }: SafetyCa
       if (categoryFilter !== "all" && inc.category !== categoryFilter) {
         return;
       }
-      // 2. Apply status filter
-      if (statusFilter === "incidents" && inc.isNothingToReport) {
-        return;
-      }
-      if (statusFilter === "safe" && !inc.isNothingToReport) {
-        return;
-      }
 
       const list = map.get(inc.date) || [];
       list.push(inc);
@@ -121,7 +113,7 @@ export default function SafetyCalendar({ incidents, onSelectIncident }: SafetyCa
     });
     
     return map;
-  }, [incidents, categoryFilter, statusFilter]);
+  }, [incidents, categoryFilter]);
 
   // Generate calendar grid
   const daysInMonth = useMemo(() => {
@@ -214,14 +206,14 @@ export default function SafetyCalendar({ incidents, onSelectIncident }: SafetyCa
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-8" id="calendar-section">
       
       {/* Calendar Grid card */}
-      <div className="lg:col-span-7 bg-white rounded-2xl p-6 border border-gray-100 shadow-sm flex flex-col justify-between">
+      <div className="lg:col-span-7 bg-white rounded-2xl p-4 sm:p-6 border border-gray-100 shadow-sm flex flex-col justify-between">
         <div>
           {/* Header */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-4 border-b border-gray-50">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 mb-4 sm:mb-6 pb-4 border-b border-gray-50">
             <div className="flex items-center gap-2">
               <CalendarIcon className="w-5 h-5 text-[#081e3f]" />
               <div>
-                <h3 className="font-semibold text-gray-900 text-lg">Event Calendar</h3>
+                <h3 className="font-semibold text-gray-900 text-base sm:text-lg">Event Calendar</h3>
                 <span className="text-[10px] font-bold text-amber-800 bg-amber-50 px-2 py-0.5 rounded border border-amber-200/80 inline-flex items-center gap-1">
                   <GraduationCap className="w-3 h-3 text-amber-700" />
                   {activeMonthPeriod.label}
@@ -229,11 +221,11 @@ export default function SafetyCalendar({ incidents, onSelectIncident }: SafetyCa
               </div>
             </div>
             
-            <div className="flex items-center gap-2 bg-gray-50 p-1.5 rounded-xl border border-gray-100 self-end sm:self-auto">
+            <div className="flex items-center justify-between sm:justify-end gap-2 bg-gray-50 p-1.5 rounded-xl border border-gray-100 w-full sm:w-auto">
               <button
                 onClick={handlePrevMonth}
                 disabled={year < incidentDateRange.min.getFullYear() || (year === incidentDateRange.min.getFullYear() && month <= incidentDateRange.min.getMonth())}
-                className="p-1 rounded-lg text-gray-500 hover:bg-white hover:text-gray-900 disabled:opacity-30 disabled:pointer-events-none transition-all cursor-pointer"
+                className="p-1 rounded-lg text-gray-500 hover:bg-white hover:text-gray-900 disabled:opacity-30 disabled:pointer-events-none transition-all cursor-pointer min-w-[32px] min-h-[32px] flex items-center justify-center"
               >
                 <ChevronLeft className="w-4 h-4" />
               </button>
@@ -244,7 +236,7 @@ export default function SafetyCalendar({ incidents, onSelectIncident }: SafetyCa
                   const [y, m] = e.target.value.split("-");
                   setCurrentDate(new Date(parseInt(y, 10), parseInt(m, 10) - 1, 1));
                 }}
-                className="text-sm font-semibold text-gray-800 bg-white px-2 py-1 rounded-lg border border-gray-200 cursor-pointer focus:outline-none focus:ring-1 focus:ring-[#081e3f]"
+                className="text-xs sm:text-sm font-semibold text-gray-800 bg-white px-2 py-1 rounded-lg border border-gray-200 cursor-pointer focus:outline-none focus:ring-1 focus:ring-[#081e3f]"
               >
                 {availableMonths.map(m => (
                   <option key={m.yearMonth} value={m.yearMonth}>
@@ -256,7 +248,7 @@ export default function SafetyCalendar({ incidents, onSelectIncident }: SafetyCa
               <button
                 onClick={handleNextMonth}
                 disabled={year > incidentDateRange.max.getFullYear() || (year === incidentDateRange.max.getFullYear() && month >= incidentDateRange.max.getMonth())}
-                className="p-1 rounded-lg text-gray-500 hover:bg-white hover:text-gray-900 disabled:opacity-30 disabled:pointer-events-none transition-all cursor-pointer"
+                className="p-1 rounded-lg text-gray-500 hover:bg-white hover:text-gray-900 disabled:opacity-30 disabled:pointer-events-none transition-all cursor-pointer min-w-[32px] min-h-[32px] flex items-center justify-center"
               >
                 <ChevronRight className="w-4 h-4" />
               </button>
@@ -264,18 +256,18 @@ export default function SafetyCalendar({ incidents, onSelectIncident }: SafetyCa
           </div>
 
           {/* Calendar Filtering controls */}
-          <div className="bg-gray-50/50 p-4 rounded-xl border border-gray-100 mb-6 flex flex-col sm:flex-row items-center gap-3">
-            <div className="flex items-center gap-1.5 text-xs font-bold text-gray-500 uppercase tracking-wider shrink-0">
+          <div className="bg-gray-50/50 p-3 sm:p-4 rounded-xl border border-gray-100 mb-4 sm:mb-6 flex flex-col sm:flex-row items-center gap-2.5 sm:gap-3">
+            <div className="flex items-center gap-1.5 text-xs font-bold text-gray-500 uppercase tracking-wider shrink-0 self-start sm:self-center">
               <Filter className="w-3.5 h-3.5 text-gray-400" />
-              <span>Filters:</span>
+              <span>Category Filter:</span>
             </div>
             
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full">
+            <div className="w-full">
               {/* Category Filter Dropdown */}
               <select
                 value={categoryFilter}
                 onChange={(e) => setCategoryFilter(e.target.value)}
-                className="bg-white border border-gray-200 rounded-lg px-3 py-1.5 text-xs text-gray-700 font-medium focus:outline-none focus:ring-1 focus:ring-[#081e3f] focus:border-transparent"
+                className="w-full bg-white border border-gray-200 rounded-lg px-3 py-1.5 text-xs text-gray-700 font-medium focus:outline-none focus:ring-1 focus:ring-[#081e3f] focus:border-transparent cursor-pointer"
               >
                 <option value="all">All Category Types</option>
                 {Object.values(IncidentCategory)
@@ -285,22 +277,11 @@ export default function SafetyCalendar({ incidents, onSelectIncident }: SafetyCa
                   ))
                 }
               </select>
-
-              {/* Status Filter Dropdown */}
-              <select
-                value={statusFilter}
-                onChange={(e) => setStatusFilter(e.target.value)}
-                className="bg-white border border-gray-200 rounded-lg px-3 py-1.5 text-xs text-gray-700 font-medium focus:outline-none focus:ring-1 focus:ring-[#081e3f] focus:border-transparent"
-              >
-                <option value="all">All Logs (Incidents & Safe)</option>
-                <option value="incidents">Reported Incidents Only</option>
-                <option value="safe">Safe Days Only</option>
-              </select>
             </div>
           </div>
 
           {/* Weekday labels */}
-          <div className="grid grid-cols-7 gap-2 mb-2 text-center text-xs font-bold text-gray-400 uppercase tracking-wider">
+          <div className="grid grid-cols-7 gap-1 sm:gap-2 mb-2 text-center text-[10px] sm:text-xs font-bold text-gray-400 uppercase tracking-wider">
             <span>Sun</span>
             <span>Mon</span>
             <span>Tue</span>
@@ -311,10 +292,10 @@ export default function SafetyCalendar({ incidents, onSelectIncident }: SafetyCa
           </div>
 
           {/* Days Grid */}
-          <div className="grid grid-cols-7 gap-2.5">
+          <div className="grid grid-cols-7 gap-1 sm:gap-2.5">
             {daysInMonth.map((cell, idx) => {
               if (cell.dayNum === null || !cell.dateStr) {
-                return <div key={`empty-${idx}`} className="aspect-square bg-gray-50/50 rounded-xl" />;
+                return <div key={`empty-${idx}`} className="aspect-square bg-gray-50/50 rounded-lg sm:rounded-xl" />;
               }
 
               // Evaluate occurrences
@@ -332,7 +313,7 @@ export default function SafetyCalendar({ incidents, onSelectIncident }: SafetyCa
                 <button
                   key={cell.dateStr}
                   onClick={() => setSelectedDayStr(cell.dateStr!)}
-                  className={`aspect-square rounded-xl p-1.5 flex flex-col justify-between border relative transition-all duration-150 ${
+                  className={`aspect-square rounded-lg sm:rounded-xl p-1 sm:p-1.5 flex flex-col justify-between border relative transition-all duration-150 cursor-pointer ${
                     isSelected
                       ? "bg-gray-100 border-gray-400 text-gray-950 shadow-xs"
                       : "bg-white hover:bg-gray-50 border-gray-100 hover:border-gray-300 text-gray-800"
@@ -342,7 +323,7 @@ export default function SafetyCalendar({ incidents, onSelectIncident }: SafetyCa
                     {cell.dayNum}
                   </span>
 
-                  {/* Indicators - strictly as requested: do not have an icon on calendar days that have yet to occur */}
+                  {/* Indicators */}
                   <div className="w-full flex justify-center pb-1">
                     {!isFuture ? (
                       hasFilteredEvents ? (
@@ -357,8 +338,8 @@ export default function SafetyCalendar({ incidents, onSelectIncident }: SafetyCa
                         </div>
                       )
                     ) : (
-                      // Days that have yet to occur: DO NOT HAVE AN ICON
-                      <div className="h-6 w-6" /> // Empty placeholder to keep layout heights stable
+                      // Days that have yet to occur
+                      <div className="h-6 w-6" />
                     )}
                   </div>
                 </button>

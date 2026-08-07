@@ -14,7 +14,6 @@ export default function SafetyArchive({ incidents, onSelectIncident }: SafetyArc
   const [selectedSchoolYear, setSelectedSchoolYear] = useState<string>("all");
   const [selectedMonth, setSelectedMonth] = useState<string>("all");
   const [timeframe, setTimeframe] = useState<string>("all"); // Default to All History for archive
-  const [logTypeFilter, setLogTypeFilter] = useState<string>("all"); // "all", "incidents", "nothing"
 
   // Compute available School Years / Academic Periods
   const availableSchoolYears = useMemo(() => {
@@ -65,15 +64,7 @@ export default function SafetyArchive({ incidents, onSelectIncident }: SafetyArc
         if (timeframe === "60" && daysAgo > 60) return false;
       }
 
-      // 5. Log Type Filter (Incidents vs. Nothing to report)
-      if (logTypeFilter === "incidents" && inc.isNothingToReport) {
-        return false;
-      }
-      if (logTypeFilter === "nothing" && !inc.isNothingToReport) {
-        return false;
-      }
-
-      // 6. Search Query Filter
+      // 5. Search Query Filter
       if (searchQuery.trim() !== "") {
         const query = searchQuery.toLowerCase();
         const matchesLoc = (inc.locationName || inc.rawLocation || "").toLowerCase().includes(query);
@@ -89,7 +80,7 @@ export default function SafetyArchive({ incidents, onSelectIncident }: SafetyArc
 
       return true;
     });
-  }, [incidents, searchQuery, selectedCategory, selectedSchoolYear, selectedMonth, timeframe, logTypeFilter]);
+  }, [incidents, searchQuery, selectedCategory, selectedSchoolYear, selectedMonth, timeframe]);
 
   // Group filtered incidents by Date
   const groupedIncidents = useMemo(() => {
@@ -113,6 +104,19 @@ export default function SafetyArchive({ incidents, onSelectIncident }: SafetyArc
     return groups;
   }, [filteredIncidents]);
 
+  const getCategoryColorHex = (category: IncidentCategory) => {
+    switch (category) {
+      case IncidentCategory.WELFARE: return "#14b8a6";
+      case IncidentCategory.SUBSTANCE: return "#a855f7";
+      case IncidentCategory.FIRE: return "#f97316";
+      case IncidentCategory.THEFT: return "#eab308";
+      case IncidentCategory.MEDICAL: return "#f43f5e";
+      case IncidentCategory.DISORDERLY: return "#2563eb";
+      case IncidentCategory.TRAFFIC: return "#475569";
+      default: return "#6b7280";
+    }
+  };
+
   const getCategoryColor = (category: IncidentCategory) => {
     switch (category) {
       case IncidentCategory.WELFARE: return "border-[#14b8a6] text-[#14b8a6] bg-[#14b8a6]/5";
@@ -126,16 +130,30 @@ export default function SafetyArchive({ incidents, onSelectIncident }: SafetyArc
     }
   };
 
-  const handleDownloadJSON = (e: React.MouseEvent) => {
+  const handleDownloadArchive = (e: React.MouseEvent) => {
     e.stopPropagation();
     try {
-      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(incidents, null, 2));
+      const headers = ["Date", "Time", "Category", "Location", "Type", "Log Details"];
+      const rows = filteredIncidents.map(inc => {
+        const date = inc.date || "";
+        const time = inc.time || "Not Provided";
+        const category = inc.category || "";
+        const location = (inc.locationName || inc.rawLocation || "").replace(/"/g, '""');
+        const type = (inc.isNothingToReport ? "Nothing to Report" : inc.type || "Incident Report").replace(/"/g, '""');
+        const details = (inc.description || "").replace(/"/g, '""').replace(/\n/g, " ");
+        return `"${date}","${time}","${category}","${location}","${type}","${details}"`;
+      });
+
+      const csvContent = [headers.join(","), ...rows].join("\n");
+      const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+      const url = URL.createObjectURL(blob);
       const downloadAnchor = document.createElement("a");
-      downloadAnchor.setAttribute("href", dataStr);
-      downloadAnchor.setAttribute("download", "augustana_campus_safety_log_archive.json");
+      downloadAnchor.setAttribute("href", url);
+      downloadAnchor.setAttribute("download", `augustana_campus_safety_archive_${new Date().toISOString().split("T")[0]}.csv`);
       document.body.appendChild(downloadAnchor);
       downloadAnchor.click();
       downloadAnchor.remove();
+      URL.revokeObjectURL(url);
     } catch (err) {
       console.error("Export failed:", err);
     }
@@ -144,42 +162,42 @@ export default function SafetyArchive({ incidents, onSelectIncident }: SafetyArc
   return (
     <div className="space-y-6">
       {/* Search & Filters Panel */}
-      <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm space-y-4" id="archive-filter-panel">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-gray-50 pb-4">
+      <div className="bg-white rounded-2xl p-4 sm:p-6 border border-gray-100 shadow-sm space-y-3.5 sm:space-y-4" id="archive-filter-panel">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-gray-50 pb-3.5">
           <div className="flex items-center gap-2">
             <Filter className="w-5 h-5 text-[#081e3f]" />
             <h3 className="font-bold text-gray-900 text-base">Search & Filter Archive</h3>
           </div>
-          <div className="flex flex-wrap items-center gap-3">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-3">
             <button
-              onClick={handleDownloadJSON}
-              className="flex items-center gap-1.5 px-3.5 py-1.5 bg-[#081e3f] hover:bg-[#081e3f]/90 text-white text-xs font-bold rounded-lg transition-all cursor-pointer shadow-xs border border-[#081e3f]/20"
-              title="Download entire campus safety archive as JSON"
+              onClick={handleDownloadArchive}
+              className="flex items-center justify-center gap-1.5 px-3.5 py-2 sm:py-1.5 bg-[#081e3f] hover:bg-[#081e3f]/90 text-white text-xs font-bold rounded-xl sm:rounded-lg transition-all cursor-pointer shadow-xs border border-[#081e3f]/20 active:scale-[0.98]"
+              title="Download formatted campus safety archive as CSV"
             >
               <Download className="w-3.5 h-3.5" />
-              <span>Download Archive</span>
+              <span>Download Archive (CSV)</span>
             </button>
-            <span className="text-xs font-mono font-bold text-gray-400">
+            <span className="text-xs font-mono font-bold text-gray-400 text-center sm:text-right">
               Showing {filteredIncidents.length} of {incidents.length} total entries
             </span>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-12 gap-2.5 sm:gap-3">
           {/* Search Field */}
-          <div className="relative md:col-span-5">
+          <div className="relative sm:col-span-2 md:col-span-4">
             <Search className="absolute left-3.5 top-3 w-4 h-4 text-gray-400" />
             <input
               type="text"
-              placeholder="Search reports by location, type, keyword..."
+              placeholder="Search reports by location, type..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-2.5 bg-gray-50 hover:bg-gray-100/50 focus:bg-white border border-gray-200 focus:border-[#081e3f] rounded-xl text-sm focus:outline-none focus:ring-1 focus:ring-[#081e3f] text-gray-800 font-medium transition-all"
+              className="w-full pl-10 pr-4 py-2.5 bg-gray-50 hover:bg-gray-100/50 focus:bg-white border border-gray-200 focus:border-[#081e3f] rounded-xl text-sm focus:outline-none focus:ring-1 focus:ring-[#081e3f] text-gray-800 placeholder-gray-400 font-medium transition-all"
             />
           </div>
 
           {/* School Year Filter */}
-          <div className="md:col-span-4">
+          <div className="md:col-span-3">
             <select
               value={selectedSchoolYear}
               onChange={(e) => {
@@ -187,9 +205,9 @@ export default function SafetyArchive({ incidents, onSelectIncident }: SafetyArc
                 // Reset month filter if it conflicts with selected school year
                 if (e.target.value !== "all") setSelectedMonth("all");
               }}
-              className="w-full bg-gray-50 border border-gray-200 rounded-xl px-3.5 py-2.5 text-sm text-gray-700 font-semibold focus:outline-none focus:ring-1 focus:ring-[#081e3f] focus:bg-white transition-all cursor-pointer"
+              className="w-full bg-gray-50 border border-gray-200 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-gray-700 font-semibold focus:outline-none focus:ring-1 focus:ring-[#081e3f] focus:bg-white transition-all cursor-pointer"
             >
-              <option value="all">All School Years / Academic Periods</option>
+              <option value="all">All School Years</option>
               {availableSchoolYears.map(period => (
                 <option key={period.id} value={period.id}>
                   {period.label} ({period.count})
@@ -199,11 +217,11 @@ export default function SafetyArchive({ incidents, onSelectIncident }: SafetyArc
           </div>
 
           {/* Month Filter */}
-          <div className="md:col-span-3">
+          <div className="md:col-span-2">
             <select
               value={selectedMonth}
               onChange={(e) => setSelectedMonth(e.target.value)}
-              className="w-full bg-gray-50 border border-gray-200 rounded-xl px-3.5 py-2.5 text-sm text-gray-700 font-semibold focus:outline-none focus:ring-1 focus:ring-[#081e3f] focus:bg-white transition-all cursor-pointer"
+              className="w-full bg-gray-50 border border-gray-200 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-gray-700 font-semibold focus:outline-none focus:ring-1 focus:ring-[#081e3f] focus:bg-white transition-all cursor-pointer"
             >
               <option value="all">All Months</option>
               {availableMonths.map(m => (
@@ -214,27 +232,14 @@ export default function SafetyArchive({ incidents, onSelectIncident }: SafetyArc
             </select>
           </div>
 
-          {/* Log Type Filter */}
-          <div className="md:col-span-6">
-            <select
-              value={logTypeFilter}
-              onChange={(e) => setLogTypeFilter(e.target.value)}
-              className="w-full bg-gray-50 border border-gray-200 rounded-xl px-3.5 py-2.5 text-sm text-gray-700 font-semibold focus:outline-none focus:ring-1 focus:ring-[#081e3f] focus:bg-white transition-all cursor-pointer"
-            >
-              <option value="all">All Log Types (Incidents + Nothing to report)</option>
-              <option value="incidents">Reported Incidents Only</option>
-              <option value="nothing">Nothing to Report Only</option>
-            </select>
-          </div>
-
           {/* Timeframe Filter */}
-          <div className="md:col-span-6">
+          <div className="md:col-span-3">
             <select
               value={timeframe}
               onChange={(e) => setTimeframe(e.target.value)}
-              className="w-full bg-gray-50 border border-gray-200 rounded-xl px-3.5 py-2.5 text-sm text-gray-700 font-semibold focus:outline-none focus:ring-1 focus:ring-[#081e3f] focus:bg-white transition-all cursor-pointer"
+              className="w-full bg-gray-50 border border-gray-200 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-gray-700 font-semibold focus:outline-none focus:ring-1 focus:ring-[#081e3f] focus:bg-white transition-all cursor-pointer"
             >
-              <option value="all">Full Historical Record (Monthly Archives)</option>
+              <option value="all">Full Historical Record</option>
               <option value="7">Recent 7 Days</option>
               <option value="30">Recent 30 Days</option>
               <option value="60">Recent 60 Days</option>
@@ -242,33 +247,42 @@ export default function SafetyArchive({ incidents, onSelectIncident }: SafetyArc
           </div>
         </div>
 
-        {/* Category Filter Pills Row */}
+        {/* Category Filter Pills Row (Horizontal Scroll on Mobile) */}
         <div className="pt-2 border-t border-gray-50">
-          <div className="flex flex-wrap gap-1.5 items-center">
-            <span className="text-[11px] font-bold text-gray-400 uppercase tracking-wider mr-2 shrink-0">Category:</span>
+          <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-1 -mx-1 px-1 touch-pan-x">
+            <span className="text-[11px] font-bold text-gray-400 uppercase tracking-wider mr-1 shrink-0">Category:</span>
             <button
               onClick={() => setSelectedCategory("all")}
-              className={`px-3 py-1 rounded-full text-xs font-bold transition-all border cursor-pointer ${
+              className={`px-3 py-1 rounded-full text-xs font-bold transition-all border shrink-0 cursor-pointer ${
                 selectedCategory === "all"
                   ? "bg-[#081e3f] border-[#081e3f] text-white shadow-xs"
-                  : "bg-gray-50 border-gray-150 text-gray-600 hover:bg-gray-100"
+                  : "bg-gray-50 border-gray-200 text-gray-600 hover:bg-gray-100"
               }`}
             >
               All Categories
             </button>
-            {Object.values(IncidentCategory).filter(c => c !== IncidentCategory.NOTHING).map(cat => (
-              <button
-                key={cat}
-                onClick={() => setSelectedCategory(cat)}
-                className={`px-3 py-1 rounded-full text-xs font-bold transition-all border cursor-pointer ${
-                  selectedCategory === cat
-                    ? "bg-[#081e3f] border-[#081e3f] text-white shadow-xs"
-                    : "bg-white border-gray-200 text-gray-600 hover:bg-gray-50"
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
+            {Object.values(IncidentCategory).filter(c => c !== IncidentCategory.NOTHING).map(cat => {
+              const isSelected = selectedCategory === cat;
+              const hexColor = getCategoryColorHex(cat);
+              const colorClass = getCategoryColor(cat);
+              return (
+                <button
+                  key={cat}
+                  onClick={() => setSelectedCategory(cat)}
+                  className={`px-3 py-1 rounded-full text-xs font-bold transition-all border shrink-0 flex items-center gap-1.5 cursor-pointer ${
+                    isSelected
+                      ? `${colorClass} shadow-xs font-extrabold ring-1 ring-current`
+                      : "bg-white border-gray-200 text-gray-700 hover:bg-gray-50"
+                  }`}
+                >
+                  <span
+                    className="w-2 h-2 rounded-full shrink-0"
+                    style={{ backgroundColor: hexColor }}
+                  />
+                  <span>{cat}</span>
+                </button>
+              );
+            })}
           </div>
         </div>
       </div>
@@ -286,7 +300,8 @@ export default function SafetyArchive({ incidents, onSelectIncident }: SafetyArc
               onClick={() => {
                 setSearchQuery("");
                 setSelectedCategory("all");
-                setLogTypeFilter("all");
+                setSelectedSchoolYear("all");
+                setSelectedMonth("all");
                 setTimeframe("all");
               }}
               className="mt-5 px-4 py-2 bg-[#081e3f] text-white text-xs font-bold rounded-xl hover:bg-opacity-95 transition-all cursor-pointer"
@@ -348,7 +363,7 @@ export default function SafetyArchive({ incidents, onSelectIncident }: SafetyArc
                       id={`archive-card-${inc.id}`}
                     >
                       <div className="space-y-4">
-                        {/* Card Header Masthead (similar to official log) */}
+                        {/* Card Header Masthead */}
                         <div className="flex items-start justify-between gap-2 border-b border-gray-50 pb-3">
                           <div className="flex flex-col select-none">
                             <span className="text-[9px] font-black tracking-widest text-[#081e3f] uppercase flex items-center gap-1.5">
@@ -375,11 +390,6 @@ export default function SafetyArchive({ incidents, onSelectIncident }: SafetyArc
                             <h4 className="font-extrabold text-gray-900 text-sm md:text-base tracking-tight line-clamp-1 group-hover:text-[#081e3f]">
                               Incident Report
                             </h4>
-                            {inc.id && !inc.id.startsWith("manual_") && (
-                              <span className="text-[10px] font-mono text-gray-400 font-bold shrink-0 bg-gray-50 px-1.5 py-0.5 rounded-md border border-gray-100">
-                                ID: {inc.id.substring(0, 8)}
-                              </span>
-                            )}
                           </div>
 
                           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-gray-600">
@@ -387,7 +397,7 @@ export default function SafetyArchive({ incidents, onSelectIncident }: SafetyArc
                             <div className="flex items-center gap-1.5 font-semibold">
                               <Clock className="w-3.5 h-3.5 text-gray-400 shrink-0" />
                               <span className="text-gray-400 font-bold uppercase tracking-wider text-[10px]">Time:</span>
-                              <span className="text-gray-900 font-mono">{inc.time || "Daily Log"}</span>
+                              <span className="text-gray-900 font-mono">{inc.time || "Not Provided"}</span>
                             </div>
 
                             {/* Location */}

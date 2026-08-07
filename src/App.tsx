@@ -36,6 +36,11 @@ export default function App() {
   const [scraping, setScraping] = useState<boolean>(false);
   const [selectedIncident, setSelectedIncident] = useState<Incident | null>(null);
 
+  // Ensure root doesn't carry stale dark class
+  useEffect(() => {
+    document.documentElement.classList.remove("dark");
+  }, []);
+
   // Scraper status message
   const [statusMessage, setStatusMessage] = useState<string>("");
   const [scrapeTime, setScrapeTime] = useState<string>("");
@@ -189,95 +194,94 @@ export default function App() {
   }, [incidents]);
 
   return (
-    <div className="min-h-screen bg-gray-50/50 text-gray-800 font-sans antialiased pb-20">
+    <div className="min-h-screen bg-gray-50/50 text-gray-800 font-sans antialiased pb-20 transition-colors">
       
       {/* Majestic Navy Blue Header Banner */}
-      <header className="bg-[#081e3f] text-white border-b-4 border-[#fed101] shadow-lg relative overflow-hidden">
+      <header className="bg-[#081e3f] text-white border-b-4 border-[#fed101] shadow-lg relative overflow-hidden transition-colors">
         {/* Subtle background glow */}
         <div className="absolute top-0 right-0 w-96 h-96 bg-blue-900/40 rounded-full blur-3xl -mr-20 -mt-20 pointer-events-none" />
         
-        <div className="max-w-7xl mx-auto px-6 py-10 flex flex-col md:flex-row md:items-end justify-between gap-8 relative z-10">
-          <div className="space-y-4 max-w-3xl">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-10 flex flex-col md:flex-row md:items-end justify-between gap-6 relative z-10">
+          <div className="space-y-3 sm:space-y-4 max-w-2xl">
             {/* Logo Masthead */}
             <div className="flex flex-col select-none tracking-tight">
-              <span className="text-xs sm:text-sm font-semibold tracking-[0.3em] text-[#fed101] uppercase">
+              <span className="text-[11px] sm:text-sm font-semibold tracking-[0.25em] sm:tracking-[0.3em] text-[#fed101] uppercase">
                 The Augustana
               </span>
-              <span className="text-5xl sm:text-7xl font-black tracking-[-0.03em] leading-none text-white uppercase font-sans">
+              <span className="text-4xl sm:text-7xl font-black tracking-[-0.03em] leading-none text-white uppercase font-sans">
                 Mirror
               </span>
             </div>
 
-            <div className="pt-3 border-t border-blue-800/60">
-              <h1 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight leading-tight">
+            <div className="pt-2 sm:pt-3 border-t border-blue-800/60">
+              <h1 className="text-xl sm:text-4xl font-extrabold text-white tracking-tight leading-tight">
                 Campus Safety Log Scraper and Archive
               </h1>
-              <p className="text-base sm:text-lg text-blue-200 font-semibold mt-1.5">
+              <p className="text-sm sm:text-lg text-blue-200 font-semibold mt-1">
                 By: Parker Carbonneau
               </p>
             </div>
           </div>
-
         </div>
       </header>
 
       {/* Scraper Status Notification Panel */}
       {statusMessage && (
-        <div className="bg-blue-50/80 border-b border-blue-100 py-3 px-6 animate-fade-in">
-          <div className="max-w-7xl mx-auto flex items-center justify-between text-xs text-blue-800 font-medium">
+        <div className="bg-blue-50/80 border-b border-blue-100 py-2.5 px-4 sm:px-6 animate-fade-in">
+          <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-1 text-xs text-blue-800 font-medium">
             <div className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
-              <span>{statusMessage}</span>
+              <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse shrink-0" />
+              <span className="truncate">{statusMessage}</span>
             </div>
-            {scrapeTime && <span className="text-gray-400 font-mono">Last updated: {scrapeTime}</span>}
+            {scrapeTime && <span className="text-gray-400 font-mono text-[11px]">Last updated: {scrapeTime}</span>}
           </div>
         </div>
       )}
 
       {/* Segmented Control Navigation Bar */}
-      <div className="max-w-7xl mx-auto px-6 mt-6">
-        <div className="grid grid-cols-3 gap-1.5 bg-gray-100/80 p-1.5 rounded-2xl border border-gray-200 shadow-xs">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 mt-4 sm:mt-6">
+        <div className="grid grid-cols-3 gap-1 bg-gray-100/80 p-1 sm:p-1.5 rounded-2xl border border-gray-200 shadow-xs">
           <button
             onClick={() => setActiveTab("archive")}
-            className={`py-3 rounded-xl font-bold text-sm transition-all flex items-center justify-center gap-2 cursor-pointer ${
+            className={`py-2.5 sm:py-3 px-1 sm:px-3 rounded-xl font-bold text-xs sm:text-sm transition-all flex items-center justify-center gap-1.5 sm:gap-2 cursor-pointer ${
               activeTab === "archive"
                 ? "bg-[#081e3f] text-white shadow-md shadow-[#081e3f]/10"
                 : "text-gray-600 hover:bg-white/60 hover:text-gray-900"
             }`}
           >
-            <FileText className="w-4 h-4" />
-            <span>Archive Feed</span>
+            <FileText className="w-4 h-4 shrink-0" />
+            <span className="truncate">Archive Feed</span>
           </button>
           <button
             onClick={() => setActiveTab("map")}
-            className={`py-3 rounded-xl font-bold text-sm transition-all flex items-center justify-center gap-2 cursor-pointer ${
+            className={`py-2.5 sm:py-3 px-1 sm:px-3 rounded-xl font-bold text-xs sm:text-sm transition-all flex items-center justify-center gap-1.5 sm:gap-2 cursor-pointer ${
               activeTab === "map"
                 ? "bg-[#081e3f] text-white shadow-md shadow-[#081e3f]/10"
                 : "text-gray-600 hover:bg-white/60 hover:text-gray-900"
             }`}
           >
-            <MapIcon className="w-4 h-4" />
-            <span>Interactive Map</span>
+            <MapIcon className="w-4 h-4 shrink-0" />
+            <span className="truncate">Interactive Map</span>
           </button>
           <button
             onClick={() => setActiveTab("calendar")}
-            className={`py-3 rounded-xl font-bold text-sm transition-all flex items-center justify-center gap-2 cursor-pointer ${
+            className={`py-2.5 sm:py-3 px-1 sm:px-3 rounded-xl font-bold text-xs sm:text-sm transition-all flex items-center justify-center gap-1.5 sm:gap-2 cursor-pointer ${
               activeTab === "calendar"
                 ? "bg-[#081e3f] text-white shadow-md shadow-[#081e3f]/10"
                 : "text-gray-600 hover:bg-white/60 hover:text-gray-900"
             }`}
           >
-            <CalendarIcon className="w-4 h-4" />
-            <span>Safety Calendar</span>
+            <CalendarIcon className="w-4 h-4 shrink-0" />
+            <span className="truncate">Safety Calendar</span>
           </button>
         </div>
       </div>
 
       {/* Main Container */}
-      <main className="max-w-7xl mx-auto px-6 mt-6 space-y-6">
+      <main className="max-w-7xl mx-auto px-3 sm:px-6 mt-4 sm:mt-6 space-y-4 sm:space-y-6">
         
         {/* Clery Act Mandated Crime Log About Section */}
-        <section className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex flex-col md:flex-row items-start gap-4" id="about-section">
+        <section className="bg-white p-4 sm:p-6 rounded-2xl border border-gray-100 shadow-sm flex flex-col md:flex-row items-start gap-3 sm:gap-4" id="about-section">
           <div className="p-3 bg-blue-50 text-[#081e3f] rounded-xl border border-blue-100/50 flex-shrink-0">
             <Info className="w-5 h-5" />
           </div>
@@ -336,7 +340,6 @@ export default function App() {
                         <CalendarIcon className="w-5 h-5 text-[#081e3f]" />
                         Interactive Safety Calendar
                       </h2>
-                      <p className="text-xs text-gray-500">Navigate month-by-month to inspect occurrences. Safe days display a green safety shield, while days with warnings indicate incidents.</p>
                     </div>
                   </div>
                   <SafetyCalendar incidents={incidents} onSelectIncident={setSelectedIncident} />
@@ -345,8 +348,6 @@ export default function App() {
             </motion.div>
           </AnimatePresence>
         )}
-
-
 
       </main>
 
@@ -366,3 +367,4 @@ export default function App() {
     </div>
   );
 }
+

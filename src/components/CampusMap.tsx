@@ -16,6 +16,7 @@ export default function CampusMap({ incidents, onSelectIncident, selectedInciden
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [timeframe, setTimeframe] = useState<string>("60"); // Default to 60 days
   const [searchQuery, setSearchQuery] = useState<string>("");
+  const [showMobileControls, setShowMobileControls] = useState<boolean>(false);
 
   // Map Style State
   const [mapStyle, setMapStyle] = useState<"streets" | "satellite">("streets");
@@ -342,24 +343,34 @@ export default function CampusMap({ incidents, onSelectIncident, selectedInciden
       <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden flex flex-col md:flex-row h-auto md:h-[600px]" id="campus-map-section">
         
         {/* Sidebar Controls */}
-        <div className="w-full md:w-80 bg-gray-50 border-b md:border-b-0 md:border-r border-gray-100 p-6 flex flex-col justify-between overflow-y-auto shrink-0">
+        <div className="w-full md:w-80 bg-gray-50 border-b md:border-b-0 md:border-r border-gray-100 p-4 sm:p-6 flex flex-col justify-between overflow-y-auto shrink-0">
           <div>
-            <div className="flex items-center gap-2 mb-6">
-              <Shield className="w-5 h-5 text-[#081e3f]" />
-              <h3 className="font-semibold text-gray-900 text-lg">Map Controls</h3>
+            <div className="flex items-center justify-between gap-2 mb-4 md:mb-6">
+              <div className="flex items-center gap-2">
+                <Shield className="w-5 h-5 text-[#081e3f]" />
+                <h3 className="font-semibold text-gray-900 text-base sm:text-lg">Map Controls</h3>
+              </div>
+              <button
+                onClick={() => setShowMobileControls(prev => !prev)}
+                className="md:hidden px-3 py-1 bg-white border border-gray-200 rounded-lg text-xs font-bold text-gray-700 flex items-center gap-1 cursor-pointer"
+              >
+                <span>{showMobileControls ? "Hide Filters" : "Filter Controls"}</span>
+              </button>
             </div>
 
-            {/* Search Box */}
-            <div className="relative mb-6">
-              <Search className="absolute left-3 top-2.5 w-4 h-4 text-gray-400" />
-              <input
-                type="text"
-                placeholder="Search locations or details..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-9 pr-4 py-2 bg-white border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#081e3f] focus:border-transparent text-gray-900"
-              />
-            </div>
+            {/* Collapsible content wrapper for small screens */}
+            <div className={`${showMobileControls ? "block" : "hidden md:block"} space-y-4 sm:space-y-6`}>
+              {/* Search Box */}
+              <div className="relative">
+                <Search className="absolute left-3 top-2.5 w-4 h-4 text-gray-400" />
+                <input
+                  type="text"
+                  placeholder="Search locations or details..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full pl-9 pr-4 py-2 bg-white border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#081e3f] focus:border-transparent text-gray-900 placeholder-gray-400"
+                />
+              </div>
 
             {/* Map Layer Style Picker */}
             <div className="mb-6">
@@ -459,8 +470,9 @@ export default function CampusMap({ incidents, onSelectIncident, selectedInciden
               </div>
             </div>
           </div>
+        </div>
 
-          {/* Legend / Statistics */}
+        {/* Legend / Statistics */}
           <div className="pt-4 border-t border-gray-200/60 text-xs text-gray-500">
             <div className="flex items-center justify-between mb-1.5 font-semibold text-gray-700">
               <span>Plotted Locations</span>

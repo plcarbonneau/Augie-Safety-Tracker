@@ -94,7 +94,7 @@ async function main() {
           "Froiland Science", "Froiland", "Fryxell Humanities Center", "Fryxell Humanities", "Fryxell", "Granskou Hall",
           "Halverson House", "Heritage Park", "Kirkeby-Over Stadium", "Kirkeby-Over", "Kresge Recital Hall",
           "Larson Track & Field Complex", "Larson Track", "Lillehaug Hall", "Madsen Center", "McKennan House",
-          "Midco Arena", "Mikkelsen Library", "Morrison Commons", "Morrison Commons lot", "Morrison Commons Lot",
+          "Midco Arena", "Midco Lot", "Midco lot", "Midco parking lot", "Mikkelsen Library", "Morrison Commons", "Morrison Commons lot", "Morrison Commons Lot",
           "Nelson Service Center", "Nelsen Service Center", "Nelson Service", "OSL lot", "Our Savior's Lutheran",
           "Our Saviors Lutheran", "Ole Hall", "Solberg Hall", "Stavig Hall", "Terning House", "Tuve Hall lot",
           "Tuve Hall", "Track", "Valhalla House", "Ralph H. Wagoner Hall", "Wagoner Hall", "Wagoner Lot", "Younkers Hall",

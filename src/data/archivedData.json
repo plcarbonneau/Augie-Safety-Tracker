@@ -1213,12 +1213,12 @@
     "date": "2026-05-14",
     "rawDateStr": "Thursday, May 14",
     "time": "3:25 PM",
-    "type": "lot",
-    "rawLocation": "Midco",
-    "locationName": "Midco",
+    "type": "Damage to property",
+    "rawLocation": "Midco Lot",
+    "locationName": "Midco Lot",
     "address": "",
     "category": "Theft & Property Damage",
-    "description": "Damage to property. CSO took a report of damage. An incident report was completed.",
+    "description": "CSO took a report of damage. An incident report was completed.",
     "isNothingToReport": false
   },
   {
