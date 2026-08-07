@@ -313,7 +313,7 @@ export default function SafetyArchive({ incidents, onSelectIncident }: SafetyArc
           groupedIncidents.map(group => (
             <div key={group.dateStr} className="space-y-4">
               {/* Date Header Segment */}
-              <div className="sticky top-18 z-20 bg-gray-50/90 backdrop-blur-xs py-2 px-1 flex items-center gap-2 border-b border-gray-200/50">
+              <div className="py-2 px-1 flex items-center gap-2 border-b border-gray-200/50">
                 <CalendarIcon className="w-4 h-4 text-[#081e3f]" />
                 <h3 className="text-sm sm:text-base font-extrabold text-gray-900 uppercase tracking-wide">
                   {group.dateStr}
