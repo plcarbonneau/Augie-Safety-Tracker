@@ -144,7 +144,7 @@ export default function SafetyArchive({ incidents, onSelectIncident }: SafetyArc
         return `"${date}","${time}","${category}","${location}","${type}","${details}"`;
       });
 
-      const csvContent = [headers.join(","), ...rows].join("\n");
+      const csvContent = "\uFEFF" + [headers.join(","), ...rows].join("\n");
       const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
       const url = URL.createObjectURL(blob);
       const downloadAnchor = document.createElement("a");
