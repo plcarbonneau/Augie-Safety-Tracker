@@ -77,7 +77,7 @@ export default function IncidentModal({ incident, onClose, onViewOnMap }: Incide
               <Clock className="w-4 h-4 text-gray-400 shrink-0 mt-0.5" />
               <div>
                 <span className="block text-[10px] font-bold text-gray-400 uppercase tracking-wider">Occurrence Time</span>
-                <span className="text-xs font-semibold text-gray-700">{incident.time || "Not Recorded"}</span>
+                <span className="text-xs font-semibold text-gray-700">{incident.time || "Not Provided"}</span>
               </div>
             </div>
 

@@ -5,7 +5,7 @@ import { getAcademicPeriodForDate, getAcademicPeriodsList, getAvailableMonthsLis
 
 interface SafetyArchiveProps {
   incidents: Incident[];
-  onSelectIncident: (inc: Incident) => void;
+  onSelectIncident?: (inc: Incident) => void;
 }
 
 export default function SafetyArchive({ incidents, onSelectIncident }: SafetyArchiveProps) {
@@ -358,8 +358,7 @@ export default function SafetyArchive({ incidents, onSelectIncident }: SafetyArc
                   return (
                     <div
                       key={inc.id}
-                      onClick={() => onSelectIncident(inc)}
-                      className="group bg-white rounded-xl border border-gray-150 p-5 flex flex-col justify-between hover:border-[#081e3f]/30 hover:shadow-md transition-all duration-150 cursor-pointer"
+                      className="bg-white rounded-xl border border-gray-150 p-5 flex flex-col justify-between hover:border-gray-300 transition-all duration-150"
                       id={`archive-card-${inc.id}`}
                     >
                       <div className="space-y-4">
@@ -387,7 +386,7 @@ export default function SafetyArchive({ incidents, onSelectIncident }: SafetyArc
                         <div className="space-y-2.5">
                           {/* Incident Type Description */}
                           <div className="flex items-start justify-between gap-2">
-                            <h4 className="font-extrabold text-gray-900 text-sm md:text-base tracking-tight line-clamp-1 group-hover:text-[#081e3f]">
+                            <h4 className="font-extrabold text-gray-900 text-sm md:text-base tracking-tight line-clamp-1">
                               Incident Report
                             </h4>
                           </div>
@@ -411,7 +410,7 @@ export default function SafetyArchive({ incidents, onSelectIncident }: SafetyArc
                           </div>
 
                           {/* Original dispatch details box */}
-                          <div className="mt-3 bg-gray-50 group-hover:bg-gray-100/40 p-3 rounded-lg border border-gray-100 space-y-1">
+                          <div className="mt-3 bg-gray-50 p-3 rounded-lg border border-gray-100 space-y-1">
                             <span className="block text-[9px] font-bold text-gray-400 uppercase tracking-widest">
                               Dispatcher Log / Details
                             </span>
@@ -423,15 +422,9 @@ export default function SafetyArchive({ incidents, onSelectIncident }: SafetyArc
                       </div>
 
                       {/* Footer Actions */}
-                      <div className="flex items-center justify-between pt-4 mt-4 border-t border-gray-50 text-[11px] font-bold">
-                        <span className="text-gray-400">
-                          <span className="text-amber-600 flex items-center gap-1">
-                            <ShieldAlert className="w-3.5 h-3.5" /> Incident Logged
-                          </span>
-                        </span>
-                        
-                        <span className="text-[#081e3f] group-hover:underline flex items-center gap-0.5">
-                          Inspect Report &rarr;
+                      <div className="flex items-center justify-between pt-3 mt-3 border-t border-gray-100 text-xs font-bold">
+                        <span className="text-amber-700 flex items-center gap-1 text-[11px]">
+                          <ShieldAlert className="w-3.5 h-3.5" /> Incident Logged
                         </span>
                       </div>
                     </div>

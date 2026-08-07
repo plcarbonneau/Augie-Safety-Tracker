@@ -406,12 +406,10 @@ export default function SafetyCalendar({ incidents, onSelectIncident }: SafetyCa
                     <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full border ${getCategoryColor(inc.category)}`}>
                       {inc.category}
                     </span>
-                    {inc.time && (
-                      <div className="flex items-center gap-1 text-[10px] text-gray-400 font-medium font-mono">
-                        <Clock className="w-3 h-3" />
-                        <span>{inc.time}</span>
-                      </div>
-                    )}
+                    <div className="flex items-center gap-1 text-[10px] text-gray-400 font-medium font-mono">
+                      <Clock className="w-3 h-3" />
+                      <span>{inc.time || "Not Provided"}</span>
+                    </div>
                   </div>
                   <h5 className="font-semibold text-gray-900 text-sm mb-1 group-hover:text-[#081e3f] transition-colors line-clamp-1">
                     {inc.isNothingToReport ? "Nothing to Report" : "Incident Report"}

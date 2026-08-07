@@ -322,20 +322,34 @@ export default function CampusMap({ incidents, onSelectIncident, selectedInciden
 
   // 4. Center map or fly to selected incident when prop changes
   useEffect(() => {
-    if (!selectedIncident || !mapInstanceRef.current) return;
+    if (!selectedIncident) return;
     
-    const marker = markerMapRef.current.get(selectedIncident.id);
-    if (marker) {
-      mapInstanceRef.current.setView(marker.getLatLng(), 18);
-      marker.openPopup();
-    } else {
-      // If marker isn't currently plotted (e.g. because of filtering), calculate position & center anyway
-      const coords = getCoordinates(selectedIncident.rawLocation || selectedIncident.locationName);
-      if (coords.exact) {
-        mapInstanceRef.current.setView([coords.lat, coords.lng], 18);
-      }
+    // Auto-adjust filters if they would hide this incident
+    const daysAgo = getDaysAgo(selectedIncident.date);
+    if (timeframe !== "all" && daysAgo > parseInt(timeframe, 10)) {
+      setTimeframe("all");
     }
-  }, [selectedIncident]);
+    if (selectedCategory !== "all" && selectedCategory !== selectedIncident.category) {
+      setSelectedCategory("all");
+    }
+
+    const timer = setTimeout(() => {
+      if (!mapInstanceRef.current) return;
+      const marker = markerMapRef.current.get(selectedIncident.id);
+      if (marker) {
+        mapInstanceRef.current.setView(marker.getLatLng(), 18);
+        marker.openPopup();
+      } else {
+        // If marker isn't currently plotted, calculate position & center anyway
+        const coords = getCoordinates(selectedIncident.rawLocation || selectedIncident.locationName);
+        if (coords.exact) {
+          mapInstanceRef.current.setView([coords.lat, coords.lng], 18);
+        }
+      }
+    }, 150);
+
+    return () => clearTimeout(timer);
+  }, [selectedIncident, groupedMappedIncidents]);
 
   return (
     <div className="space-y-6">

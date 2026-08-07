@@ -280,29 +280,6 @@ export default function App() {
       {/* Main Container */}
       <main className="max-w-7xl mx-auto px-3 sm:px-6 mt-4 sm:mt-6 space-y-4 sm:space-y-6">
         
-        {/* Clery Act Mandated Crime Log About Section */}
-        <section className="bg-white p-4 sm:p-6 rounded-2xl border border-gray-100 shadow-sm flex flex-col md:flex-row items-start gap-3 sm:gap-4" id="about-section">
-          <div className="p-3 bg-blue-50 text-[#081e3f] rounded-xl border border-blue-100/50 flex-shrink-0">
-            <Info className="w-5 h-5" />
-          </div>
-          <div className="space-y-2">
-            <p className="text-sm text-gray-600 leading-relaxed font-medium">
-              Under the Clery Act of 1990 all colleges and universities are mandated to maintain a daily crime log. Augustana's website only reports incidents that occurred within the last 60 days. This archive scrapes campus safety data from Augustana website to preserve and integrate the log into an accessible, interactive application.
-            </p>
-            <p className="text-xs text-gray-500 font-semibold">
-              Augustana's campus safety log is located at:{" "}
-              <a
-                href="https://www.augie.edu/student-affairs/campus-safety/campus-safety-log"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[#081e3f] hover:underline font-bold inline-flex items-center gap-1"
-              >
-                https://www.augie.edu/student-affairs/campus-safety/campus-safety-log
-              </a>
-            </p>
-          </div>
-        </section>
-
         {/* Tab-driven Conditional Views */}
         {loading ? (
           <div className="bg-white rounded-2xl border border-gray-100 p-20 text-center flex flex-col items-center justify-center gap-4">
@@ -319,7 +296,10 @@ export default function App() {
               transition={{ duration: 0.15 }}
             >
               {activeTab === "archive" && (
-                <SafetyArchive incidents={incidents} onSelectIncident={setSelectedIncident} />
+                <SafetyArchive
+                  incidents={incidents}
+                  onSelectIncident={setSelectedIncident}
+                />
               )}
               {activeTab === "map" && (
                 <div className="space-y-4">
@@ -342,12 +322,38 @@ export default function App() {
                       </h2>
                     </div>
                   </div>
-                  <SafetyCalendar incidents={incidents} onSelectIncident={setSelectedIncident} />
+                  <SafetyCalendar
+                    incidents={incidents}
+                    onSelectIncident={setSelectedIncident}
+                  />
                 </div>
               )}
             </motion.div>
           </AnimatePresence>
         )}
+
+        {/* Clery Act Mandated Crime Log About Section */}
+        <section className="bg-white p-4 sm:p-6 rounded-2xl border border-gray-100 shadow-sm flex flex-col md:flex-row items-start gap-3 sm:gap-4" id="about-section">
+          <div className="p-3 bg-blue-50 text-[#081e3f] rounded-xl border border-blue-100/50 flex-shrink-0">
+            <Info className="w-5 h-5" />
+          </div>
+          <div className="space-y-2">
+            <p className="text-sm text-gray-600 leading-relaxed font-medium">
+              Under the Clery Act of 1990 all colleges and universities are mandated to maintain a daily crime log. Augustana's website only reports incidents that occurred within the last 60 days. This archive scrapes campus safety data from Augustana website to preserve and integrate the log into an accessible, interactive application.
+            </p>
+            <p className="text-xs text-gray-500 font-semibold">
+              Augustana's campus safety log is located at:{" "}
+              <a
+                href="https://www.augie.edu/student-affairs/campus-safety/campus-safety-log"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#081e3f] hover:underline font-bold inline-flex items-center gap-1"
+              >
+                https://www.augie.edu/student-affairs/campus-safety/campus-safety-log
+              </a>
+            </p>
+          </div>
+        </section>
 
       </main>
 
