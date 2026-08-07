@@ -247,13 +247,13 @@ export default function SafetyArchive({ incidents, onSelectIncident }: SafetyArc
           </div>
         </div>
 
-        {/* Category Filter Pills Row (Horizontal Scroll on Mobile) */}
+        {/* Category Filter Pills Row (Flex Wrap so all categories are visible) */}
         <div className="pt-2 border-t border-gray-50">
-          <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-1 -mx-1 px-1 touch-pan-x">
+          <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
             <span className="text-[11px] font-bold text-gray-400 uppercase tracking-wider mr-1 shrink-0">Category:</span>
             <button
               onClick={() => setSelectedCategory("all")}
-              className={`px-3 py-1 rounded-full text-xs font-bold transition-all border shrink-0 cursor-pointer ${
+              className={`px-3 py-1 rounded-full text-xs font-bold transition-all border cursor-pointer ${
                 selectedCategory === "all"
                   ? "bg-[#081e3f] border-[#081e3f] text-white shadow-xs"
                   : "bg-gray-50 border-gray-200 text-gray-600 hover:bg-gray-100"
@@ -269,7 +269,7 @@ export default function SafetyArchive({ incidents, onSelectIncident }: SafetyArc
                 <button
                   key={cat}
                   onClick={() => setSelectedCategory(cat)}
-                  className={`px-3 py-1 rounded-full text-xs font-bold transition-all border shrink-0 flex items-center gap-1.5 cursor-pointer ${
+                  className={`px-3 py-1 rounded-full text-xs font-bold transition-all border flex items-center gap-1.5 cursor-pointer ${
                     isSelected
                       ? `${colorClass} shadow-xs font-extrabold ring-1 ring-current`
                       : "bg-white border-gray-200 text-gray-700 hover:bg-gray-50"
