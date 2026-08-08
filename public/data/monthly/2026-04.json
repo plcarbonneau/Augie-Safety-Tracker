@@ -4,12 +4,12 @@
     "date": "2026-04-30",
     "rawDateStr": "Thursday, April 30",
     "time": "1:15 PM",
-    "type": "lot",
-    "rawLocation": "Midco",
-    "locationName": "Midco",
+    "type": "Vehicle collision",
+    "rawLocation": "Midco lot",
+    "locationName": "Midco lot",
     "address": "",
     "category": "Traffic & Parking",
-    "description": "Vehicle collision. CSO took a report of an accident. An incident report was completed.",
+    "description": "CSO took a report of an accident. An incident report was completed.",
     "isNothingToReport": false
   },
   {
@@ -472,12 +472,12 @@
     "date": "2026-04-12",
     "rawDateStr": "Sunday, April 12",
     "time": "3:30 PM",
-    "type": "parking lot",
-    "rawLocation": "Midco",
-    "locationName": "Midco",
+    "type": "Vehicle collision",
+    "rawLocation": "Midco parking lot",
+    "locationName": "Midco parking lot",
     "address": "",
     "category": "Traffic & Parking",
-    "description": "Vehicle collision. CSO investigated report of a vehicle collision. An incident report was completed.",
+    "description": "CSO investigated report of a vehicle collision. An incident report was completed.",
     "isNothingToReport": false
   },
   {
