@@ -44,6 +44,58 @@ export function getCategory(text: string): IncidentCategory {
 
 export const FALLBACK_INCIDENTS: any[] = [
   {
+    "id": "ebd04f6dc919d3a8c2716ff7ce91bec47",
+    "date": "2026-08-09",
+    "rawDateStr": "Sunday, August 9",
+    "time": "",
+    "type": "Nothing to report",
+    "rawLocation": "Campus-wide",
+    "locationName": "Campus-wide",
+    "address": "",
+    "category": "Nothing to Report",
+    "description": "Nothing to report.",
+    "isNothingToReport": true
+  },
+  {
+    "id": "e493d9b1e18f18bc05d76bd254672ea64",
+    "date": "2026-08-08",
+    "rawDateStr": "Saturday, August 8",
+    "time": "",
+    "type": "Medical response",
+    "rawLocation": "Solberg Hall parking lot (2312 S Grange Ave)",
+    "locationName": "Solberg Hall parking lot",
+    "address": "2312 S Grange Ave",
+    "category": "Medical Response",
+    "description": "CSO responded to request for medical aid. An incident report was completed.",
+    "isNothingToReport": false
+  },
+  {
+    "id": "e702976d083f32cc2e6e07f101c03ae35",
+    "date": "2026-08-07",
+    "rawDateStr": "Friday, August 7",
+    "time": "",
+    "type": "Fire alarm",
+    "rawLocation": "Solberg Hall (2312 S Grange Ave)",
+    "locationName": "Solberg Hall",
+    "address": "2312 S Grange Ave",
+    "category": "Fire & Safety",
+    "description": "CSO and SFFR responded to alarm in building. An incident report was completed.",
+    "isNothingToReport": false
+  },
+  {
+    "id": "e24710557ca01034ba7260f95687c2652",
+    "date": "2026-08-06",
+    "rawDateStr": "Thursday, August 6",
+    "time": "",
+    "type": "Nothing to report",
+    "rawLocation": "Campus-wide",
+    "locationName": "Campus-wide",
+    "address": "",
+    "category": "Nothing to Report",
+    "description": "Nothing to report.",
+    "isNothingToReport": true
+  },
+  {
     "id": "e4d5f47bf033af4c120d01f2c5624f171",
     "date": "2026-08-05",
     "rawDateStr": "Wednesday, August 5",
