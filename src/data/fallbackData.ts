@@ -44,6 +44,32 @@ export function getCategory(text: string): IncidentCategory {
 
 export const FALLBACK_INCIDENTS: any[] = [
   {
+    "id": "e1ff7c7c481349b47e36ffe3e9c020dfd",
+    "date": "2026-08-10",
+    "rawDateStr": "Monday, August 10",
+    "time": "8:36 AM",
+    "type": "Fire alarm",
+    "rawLocation": "Solberg Hall (2312 S Grange Ave)",
+    "locationName": "Solberg Hall",
+    "address": "2312 S Grange Ave",
+    "category": "Fire & Safety",
+    "description": "CSO and SFFR responded to fire alarm. An incident report was completed.",
+    "isNothingToReport": false
+  },
+  {
+    "id": "ebb345435f1b7f6b9dcd4ec81208fee53",
+    "date": "2026-08-10",
+    "rawDateStr": "Monday, August 10",
+    "time": "11:18 PM",
+    "type": "Fire alarm",
+    "rawLocation": "Granskou Hall (2009 S Prairie Ave)",
+    "locationName": "Granskou Hall",
+    "address": "2009 S Prairie Ave",
+    "category": "Fire & Safety",
+    "description": "CSO and SFFR responded to fire alarm. An incident report was competed.",
+    "isNothingToReport": false
+  },
+  {
     "id": "ebd04f6dc919d3a8c2716ff7ce91bec47",
     "date": "2026-08-09",
     "rawDateStr": "Sunday, August 9",
@@ -60,7 +86,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "id": "e493d9b1e18f18bc05d76bd254672ea64",
     "date": "2026-08-08",
     "rawDateStr": "Saturday, August 8",
-    "time": "",
+    "time": "9:43 PM",
     "type": "Medical response",
     "rawLocation": "Solberg Hall parking lot (2312 S Grange Ave)",
     "locationName": "Solberg Hall parking lot",
@@ -73,7 +99,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "id": "e702976d083f32cc2e6e07f101c03ae35",
     "date": "2026-08-07",
     "rawDateStr": "Friday, August 7",
-    "time": "",
+    "time": "10:30 AM",
     "type": "Fire alarm",
     "rawLocation": "Solberg Hall (2312 S Grange Ave)",
     "locationName": "Solberg Hall",
