@@ -44,6 +44,32 @@ export function getCategory(text: string): IncidentCategory {
 
 export const FALLBACK_INCIDENTS: any[] = [
   {
+    "id": "e8c13171dbf802254f88b4efe915287ce",
+    "date": "2026-08-12",
+    "rawDateStr": "Wednesday, August 12",
+    "time": "8:08 AM",
+    "type": "Welfare check",
+    "rawLocation": "Wagoner Hall (2300 S Grange Ave)",
+    "locationName": "Wagoner Hall",
+    "address": "2300 S Grange Ave",
+    "category": "Welfare & Well-being",
+    "description": "CSO and Student Affairs did a welfare check. An incident report was completed.",
+    "isNothingToReport": false
+  },
+  {
+    "id": "e3aceea94c1843439ff64495d2e49f590",
+    "date": "2026-08-11",
+    "rawDateStr": "Tuesday, August 11",
+    "time": "",
+    "type": "Nothing to report",
+    "rawLocation": "Campus-wide",
+    "locationName": "Campus-wide",
+    "address": "",
+    "category": "Nothing to Report",
+    "description": "Nothing to report.",
+    "isNothingToReport": true
+  },
+  {
     "id": "e1ff7c7c481349b47e36ffe3e9c020dfd",
     "date": "2026-08-10",
     "rawDateStr": "Monday, August 10",
