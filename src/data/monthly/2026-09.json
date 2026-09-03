@@ -1,0 +1,15 @@
+[
+  {
+    "id": "ededcdd90c7fa5c1d8e16467501abca3d",
+    "date": "2026-09-01",
+    "rawDateStr": "Tuesday, September 1",
+    "time": "6:11 PM",
+    "type": "Tennis Court",
+    "rawLocation": "Tuve Hall (2016 S Menlo Ave)",
+    "locationName": "Tuve Hall",
+    "address": "2016 S Menlo Ave",
+    "category": "Medical Response",
+    "description": "Medical response. Officers and ambulance responded to request for medical aid. An incident report was completed.",
+    "isNothingToReport": false
+  }
+]

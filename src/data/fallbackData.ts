@@ -44,6 +44,32 @@ export function getCategory(text: string): IncidentCategory {
 
 export const FALLBACK_INCIDENTS: any[] = [
   {
+    "id": "ededcdd90c7fa5c1d8e16467501abca3d",
+    "date": "2026-09-01",
+    "rawDateStr": "Tuesday, September 1",
+    "time": "6:11 PM",
+    "type": "Tennis Court",
+    "rawLocation": "Tuve Hall (2016 S Menlo Ave)",
+    "locationName": "Tuve Hall",
+    "address": "2016 S Menlo Ave",
+    "category": "Medical Response",
+    "description": "Medical response. Officers and ambulance responded to request for medical aid. An incident report was completed.",
+    "isNothingToReport": false
+  },
+  {
+    "id": "ea1f2d7684d1dede40bbdf529594f1e5a",
+    "date": "2026-08-31",
+    "rawDateStr": "Monday, August 31",
+    "time": "7:00 AM",
+    "type": "Code of conduct",
+    "rawLocation": "Fryxell Humanities Center (2120 S Grange Ave)",
+    "locationName": "Fryxell Humanities Center",
+    "address": "2120 S Grange Ave",
+    "category": "Disorderly & Suspicious",
+    "description": "Officer investigated report of conduct violation. An incident report was completed.",
+    "isNothingToReport": false
+  },
+  {
     "id": "eb5e2fb84003fdf068cf335d09188e51f",
     "date": "2026-08-30",
     "rawDateStr": "Sunday, August 30",
