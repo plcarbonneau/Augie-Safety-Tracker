@@ -176,7 +176,8 @@ export default function CampusMap({ incidents, onSelectIncident, selectedInciden
       }
     });
 
-    let tileUrl = "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png";
+    const cartoApiKey = import.meta.env.VITE_CARTO_API_KEY || "cb1_2wt6_1_30f08fe02fd204220c7c98ff";
+    let tileUrl = `https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png?api_key=${cartoApiKey}`;
     let attribution = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>';
 
     if (mapStyle === "satellite") {
