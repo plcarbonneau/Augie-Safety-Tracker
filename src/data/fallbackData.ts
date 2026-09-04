@@ -44,6 +44,45 @@ export function getCategory(text: string): IncidentCategory {
 
 export const FALLBACK_INCIDENTS: any[] = [
   {
+    "id": "eed033b051190ac284a8b7656c779b670",
+    "date": "2026-09-02",
+    "rawDateStr": "Wednesday, September 2",
+    "time": "5:29 PM",
+    "type": "Concerning behavior",
+    "rawLocation": "Fryxell Humanities Center (2120 S Grange Ave)",
+    "locationName": "Fryxell Humanities Center",
+    "address": "2120 S Grange Ave",
+    "category": "Disorderly & Suspicious",
+    "description": "Officer investigated code of conduct issue. An incident report was completed.",
+    "isNothingToReport": false
+  },
+  {
+    "id": "e3d6af7d7d1df86d018c08b04f21c6ed0",
+    "date": "2026-09-02",
+    "rawDateStr": "Wednesday, September 2",
+    "time": "6:11 PM",
+    "type": "Harassment",
+    "rawLocation": "Wagoner Hall (2300 S Grange Ave)",
+    "locationName": "Wagoner Hall",
+    "address": "2300 S Grange Ave",
+    "category": "Disorderly & Suspicious",
+    "description": "Officer removed subject from campus. An incident report was completed.",
+    "isNothingToReport": false
+  },
+  {
+    "id": "eff7c03a1c49eab6550d63c55c901f62f",
+    "date": "2026-09-02",
+    "rawDateStr": "Wednesday, September 2",
+    "time": "7:46 PM",
+    "type": "Medial assist",
+    "rawLocation": "Heuther Tennis Court (2400 S Grange Ave)",
+    "locationName": "Heuther Tennis Court",
+    "address": "2400 S Grange Ave",
+    "category": "Medical Response",
+    "description": "Officer responded to medical request. An incident report was completed.",
+    "isNothingToReport": false
+  },
+  {
     "id": "ededcdd90c7fa5c1d8e16467501abca3d",
     "date": "2026-09-01",
     "rawDateStr": "Tuesday, September 1",
