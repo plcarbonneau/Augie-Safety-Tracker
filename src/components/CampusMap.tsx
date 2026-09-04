@@ -176,9 +176,17 @@ export default function CampusMap({ incidents, onSelectIncident, selectedInciden
       }
     });
 
-    const cartoApiKey = import.meta.env.VITE_CARTO_API_KEY || "cb1_2wt6_1_30f08fe02fd204220c7c98ff";
-    let tileUrl = `https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png?api_key=${cartoApiKey}`;
-    let attribution = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>';
+    const cartoApiKey = import.meta.env.VITE_CARTO_API_KEY?.trim();
+
+    // Default to standard OpenStreetMap for 100% free, high-detail campus mapping with no watermarks.
+    // If user provides a custom CARTO API key, route to CARTO rastertiles with ?key=
+    let tileUrl = "https://tile.openstreetmap.org/{z}/{x}/{y}.png";
+    let attribution = '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">OpenStreetMap</a> contributors';
+
+    if (cartoApiKey) {
+      tileUrl = `https://{s}.basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}.png?key=${encodeURIComponent(cartoApiKey)}`;
+      attribution = '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions" target="_blank" rel="noreferrer">CARTO</a>';
+    }
 
     if (mapStyle === "satellite") {
       // Use Esri World Imagery (photographic / satellite map)
@@ -402,7 +410,7 @@ export default function CampusMap({ incidents, onSelectIncident, selectedInciden
                       : "text-gray-600 hover:bg-gray-50"
                   }`}
                 >
-                  <span>Minimalist Vector</span>
+                  <span>Campus Streets</span>
                 </button>
                 <button
                   onClick={() => setMapStyle("satellite")}
