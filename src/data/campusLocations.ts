@@ -161,11 +161,23 @@ export const CAMPUS_BUILDINGS: CampusBuilding[] = [
     aliases: ["Fryxell Humanities", "Fryxell Humanities Center", "2120 S Grange Ave"]
   },
   {
-    name: "Tennis courts",
-    lat: 43.523736,
-    lng: -96.740742,
-    description: "Tennis courts / Huether Tennis Centre.",
-    aliases: ["Tennis courts", "Huether Tennis Centre"]
+    name: "Huether Tennis Courts",
+    lat: 43.523719,
+    lng: -96.740731,
+    address: "2400 S Grange Ave",
+    description: "Huether Tennis Courts (Augustana Tennis Centre).",
+    aliases: [
+      "Huether Tennis Courts",
+      "Huether Tennis Centre",
+      "Huether Tennis Center",
+      "Huether Tennis Court",
+      "Heuther Tennis Court",
+      "Heuther Tennis Courts",
+      "Tennis courts",
+      "Tennis court",
+      "Tennis Courts",
+      "2400 S Grange Ave"
+    ]
   },
   {
     name: "Granskou Hall",
@@ -547,6 +559,10 @@ export function getCoordinates(locationStr: string): { lat: number; lng: number;
   }
   if (norm.includes("savior") || norm.includes("saviour")) {
     const b = CAMPUS_BUILDINGS.find(x => x.name.toLowerCase().includes("saviour") || x.name.toLowerCase().includes("savior"));
+    if (b) return { lat: b.lat, lng: b.lng, exact: true };
+  }
+  if (norm.includes("tennis") || norm.includes("huether") || norm.includes("heuther")) {
+    const b = CAMPUS_BUILDINGS.find(x => x.name.toLowerCase().includes("tennis"));
     if (b) return { lat: b.lat, lng: b.lng, exact: true };
   }
 
