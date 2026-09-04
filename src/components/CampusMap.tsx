@@ -3,7 +3,7 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { Incident, IncidentCategory } from "../types";
 import { CAMPUS_BUILDINGS, getCoordinates } from "../data/campusLocations";
-import { MapPin, Search, Filter, Shield, Info, Layers, Eye } from "lucide-react";
+import { MapPin, Search, Filter, Shield, Info, Eye } from "lucide-react";
 
 interface CampusMapProps {
   incidents: Incident[];
@@ -17,9 +17,6 @@ export default function CampusMap({ incidents, onSelectIncident, selectedInciden
   const [timeframe, setTimeframe] = useState<string>("60"); // Default to 60 days
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [showMobileControls, setShowMobileControls] = useState<boolean>(false);
-
-  // Map Style State
-  const [mapStyle, setMapStyle] = useState<"streets" | "satellite">("streets");
 
   const mapContainerRef = useRef<HTMLDivElement>(null);
   const mapInstanceRef = useRef<L.Map | null>(null);
@@ -128,6 +125,15 @@ export default function CampusMap({ incidents, onSelectIncident, selectedInciden
       maxZoom: 19,
     });
 
+    // Add high-resolution satellite imagery (clean, photographic, zero clutter, zero watermark)
+    L.tileLayer(
+      "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+      {
+        maxZoom: 19,
+        attribution: "Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community",
+      }
+    ).addTo(map);
+
     mapInstanceRef.current = map;
 
     const refreshSizes = () => {
@@ -164,44 +170,7 @@ export default function CampusMap({ incidents, onSelectIncident, selectedInciden
     };
   }, []);
 
-  // 2. Load Tile Layers on Style Toggle
-  useEffect(() => {
-    if (!mapInstanceRef.current) return;
-    const map = mapInstanceRef.current;
-
-    // Clear existing tile layers
-    map.eachLayer((layer) => {
-      if (layer instanceof L.TileLayer) {
-        map.removeLayer(layer);
-      }
-    });
-
-    const cartoApiKey = import.meta.env.VITE_CARTO_API_KEY?.trim();
-
-    // Default to standard OpenStreetMap for 100% free, high-detail campus mapping with no watermarks.
-    // If user provides a custom CARTO API key, route to CARTO rastertiles with ?key=
-    let tileUrl = "https://tile.openstreetmap.org/{z}/{x}/{y}.png";
-    let attribution = '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">OpenStreetMap</a> contributors';
-
-    if (cartoApiKey) {
-      tileUrl = `https://{s}.basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}.png?key=${encodeURIComponent(cartoApiKey)}`;
-      attribution = '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions" target="_blank" rel="noreferrer">CARTO</a>';
-    }
-
-    if (mapStyle === "satellite") {
-      // Use Esri World Imagery (photographic / satellite map)
-      tileUrl = "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}";
-      attribution = "Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community";
-    }
-
-    L.tileLayer(tileUrl, {
-      maxZoom: 19,
-      attribution,
-    }).addTo(map);
-
-  }, [mapStyle]);
-
-  // 3. Render Markers when Filtered Incidents update (only plot mapped ones)
+  // 2. Render Markers when Filtered Incidents update (only plot mapped ones)
   useEffect(() => {
     if (!mapInstanceRef.current) return;
     const map = mapInstanceRef.current;
@@ -394,36 +363,6 @@ export default function CampusMap({ incidents, onSelectIncident, selectedInciden
                   className="w-full pl-9 pr-4 py-2 bg-white border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#081e3f] focus:border-transparent text-gray-900 placeholder-gray-400"
                 />
               </div>
-
-            {/* Map Layer Style Picker */}
-            <div className="mb-6">
-              <label className="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2.5 flex items-center gap-1">
-                <Layers className="w-3.5 h-3.5 text-gray-400" />
-                Map Style
-              </label>
-              <div className="grid grid-cols-2 gap-2 bg-white p-1 rounded-xl border border-gray-150">
-                <button
-                  onClick={() => setMapStyle("streets")}
-                  className={`py-1.5 text-xs font-bold rounded-lg transition-all flex items-center justify-center gap-1 cursor-pointer ${
-                    mapStyle === "streets"
-                      ? "bg-[#081e3f] text-white shadow-sm"
-                      : "text-gray-600 hover:bg-gray-50"
-                  }`}
-                >
-                  <span>Campus Streets</span>
-                </button>
-                <button
-                  onClick={() => setMapStyle("satellite")}
-                  className={`py-1.5 text-xs font-bold rounded-lg transition-all flex items-center justify-center gap-1 cursor-pointer ${
-                    mapStyle === "satellite"
-                      ? "bg-[#081e3f] text-white shadow-sm"
-                      : "text-gray-600 hover:bg-gray-50"
-                  }`}
-                >
-                  <span>Satellite Image</span>
-                </button>
-              </div>
-            </div>
 
             {/* Category Filter */}
             <div className="mb-6">
