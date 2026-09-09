@@ -401,44 +401,5 @@
     "category": "Substances & Alcohol",
     "description": "CSO investigated report of narcotics found in room. An incident report was completed.",
     "isNothingToReport": false
-  },
-  {
-    "id": "ec09375ac78c5a96b6bde2c2458999686",
-    "date": "2026-06-02",
-    "rawDateStr": "Tuesday, June 2",
-    "time": "2:26 PM",
-    "type": "Damaged property",
-    "rawLocation": "Midco Arena",
-    "locationName": "Midco Arena",
-    "address": "",
-    "category": "Theft & Property Damage",
-    "description": "CSO investigated report of damage to property. An incident report was completed.",
-    "isNothingToReport": false
-  },
-  {
-    "id": "edfa6adc617597110868bcc759af7fb7f",
-    "date": "2026-06-02",
-    "rawDateStr": "Tuesday, June 2",
-    "time": "9:45 PM",
-    "type": "Medical response",
-    "rawLocation": "Solberg Hall (2312 S Grange Ave)",
-    "locationName": "Solberg Hall",
-    "address": "2312 S Grange Ave",
-    "category": "Medical Response",
-    "description": "CSO responded to request for medical aid. An incident report was completed.",
-    "isNothingToReport": false
-  },
-  {
-    "id": "ea939a7b7a55d588e8bd0088261b15f8e",
-    "date": "2026-06-01",
-    "rawDateStr": "Monday, June 1",
-    "time": "",
-    "type": "Nothing to report",
-    "rawLocation": "Campus-wide",
-    "locationName": "Campus-wide",
-    "address": "",
-    "category": "Nothing to Report",
-    "description": "Nothing to report.",
-    "isNothingToReport": true
   }
 ]
