@@ -44,6 +44,45 @@ export function getCategory(text: string): IncidentCategory {
 
 export const FALLBACK_INCIDENTS: any[] = [
   {
+    "id": "e673a70febbc5e3cd7d9bf4452230a3b9",
+    "date": "2026-09-10",
+    "rawDateStr": "Thursday, September 10",
+    "time": "12:07 AM",
+    "type": "Noise disturbance",
+    "rawLocation": "Tuve Hall (2016 Menlo Ave)",
+    "locationName": "Tuve Hall",
+    "address": "2016 Menlo Ave",
+    "category": "Disorderly & Suspicious",
+    "description": "CSO checked on noise in dorm. An incident report was completed.",
+    "isNothingToReport": false
+  },
+  {
+    "id": "e423c167eae78bf6cb3632ba36601e9b6",
+    "date": "2026-09-09",
+    "rawDateStr": "Wednesday, September 9",
+    "time": "11:28 AM",
+    "type": "Vehicle assist",
+    "rawLocation": "30th and Grange",
+    "locationName": "30th and Grange",
+    "address": "",
+    "category": "Traffic & Parking",
+    "description": "CSO assisted student with disabled vehicle. An incident report was completed.",
+    "isNothingToReport": false
+  },
+  {
+    "id": "e1c33bc226fdb57be9325e390373318de",
+    "date": "2026-09-08",
+    "rawDateStr": "Tuesday, September 8",
+    "time": "7:17 AM",
+    "type": "Theft",
+    "rawLocation": "Morrison Commons (2112 S Grange Ave)",
+    "locationName": "Morrison Commons",
+    "address": "2112 S Grange Ave",
+    "category": "Theft & Property Damage",
+    "description": "CSO investigated theft. An incident report was completed.",
+    "isNothingToReport": false
+  },
+  {
     "id": "eece94d23f03300b77571e845801ac1f5",
     "date": "2026-09-08",
     "rawDateStr": "Tuesday, September 8",
@@ -54,6 +93,19 @@ export const FALLBACK_INCIDENTS: any[] = [
     "address": "2117 S Summit Ave",
     "category": "Other Assistance",
     "description": "CSO removed bat from building. An incident report was completed.",
+    "isNothingToReport": false
+  },
+  {
+    "id": "e3f87396ed60c6181b2191626f2d13753",
+    "date": "2026-09-08",
+    "rawDateStr": "Tuesday, September 8",
+    "time": "3:22 PM",
+    "type": "Elevator rescue",
+    "rawLocation": "Stavig Hall (2008 S Walts Ave)",
+    "locationName": "Stavig Hall",
+    "address": "2008 S Walts Ave",
+    "category": "Other Assistance",
+    "description": "CSO responded to request to assist with elevator. An incident report was completed.",
     "isNothingToReport": false
   },
   {
