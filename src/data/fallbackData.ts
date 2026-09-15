@@ -44,6 +44,58 @@ export function getCategory(text: string): IncidentCategory {
 
 export const FALLBACK_INCIDENTS: any[] = [
   {
+    "id": "e4b50536cab22c486ab070bb0d90cc232",
+    "date": "2026-09-13",
+    "rawDateStr": "Sunday, September 13",
+    "time": "8:32 PM",
+    "type": "Area parking lot",
+    "rawLocation": "Midco",
+    "locationName": "Midco",
+    "address": "",
+    "category": "Traffic & Parking",
+    "description": "Auto accident. CSO investigated accident in lot. An incident report was completed.",
+    "isNothingToReport": false
+  },
+  {
+    "id": "e100e83330dce0ad35ba75dc788037647",
+    "date": "2026-09-12",
+    "rawDateStr": "Saturday, September 12",
+    "time": "1:19 AM",
+    "type": "Noise complaint",
+    "rawLocation": "Balcer Apt (2420 S Summit Ave)",
+    "locationName": "Balcer Apt",
+    "address": "2420 S Summit Ave",
+    "category": "Disorderly & Suspicious",
+    "description": "CSO checked on noise in dorm. An incident report was completed.",
+    "isNothingToReport": false
+  },
+  {
+    "id": "e1f22a6ac41f2edd76bcba46dc65a1fae",
+    "date": "2026-09-12",
+    "rawDateStr": "Saturday, September 12",
+    "time": "3:19 PM",
+    "type": "Alcohol violation CSO removed subject from area",
+    "rawLocation": "KO Stadium (2700 S Lake Ave)",
+    "locationName": "KO Stadium",
+    "address": "2700 S Lake Ave",
+    "category": "Substances & Alcohol",
+    "description": "An incident report was completed.",
+    "isNothingToReport": false
+  },
+  {
+    "id": "ed611ca7d5f53d475228de9b2924eed68",
+    "date": "2026-09-11",
+    "rawDateStr": "Friday, September 11",
+    "time": "",
+    "type": "Nothing to report",
+    "rawLocation": "Campus-wide",
+    "locationName": "Campus-wide",
+    "address": "",
+    "category": "Nothing to Report",
+    "description": "Nothing to report.",
+    "isNothingToReport": true
+  },
+  {
     "id": "e673a70febbc5e3cd7d9bf4452230a3b9",
     "date": "2026-09-10",
     "rawDateStr": "Thursday, September 10",
@@ -70,6 +122,19 @@ export const FALLBACK_INCIDENTS: any[] = [
     "isNothingToReport": false
   },
   {
+    "id": "e83d8d206ec8614448ce8f846b85b7c0b",
+    "date": "2026-09-09",
+    "rawDateStr": "Wednesday, September 9",
+    "time": "10:43 PM",
+    "type": "Smoke smell",
+    "rawLocation": "Tuve (2016 S Menlo Ave)",
+    "locationName": "Tuve",
+    "address": "2016 S Menlo Ave",
+    "category": "Fire & Safety",
+    "description": "CSO investigated smoke smell in building. An incident report was completed.",
+    "isNothingToReport": false
+  },
+  {
     "id": "e1c33bc226fdb57be9325e390373318de",
     "date": "2026-09-08",
     "rawDateStr": "Tuesday, September 8",
@@ -88,11 +153,24 @@ export const FALLBACK_INCIDENTS: any[] = [
     "rawDateStr": "Tuesday, September 8",
     "time": "8:10 AM",
     "type": "Bat removal",
-    "rawLocation": "Mikkelson Libary (2117 S Summit Ave)",
-    "locationName": "Mikkelson Libary",
+    "rawLocation": "Mikkelsen Library (2117 S Summit Ave)",
+    "locationName": "Mikkelsen Library",
     "address": "2117 S Summit Ave",
     "category": "Other Assistance",
     "description": "CSO removed bat from building. An incident report was completed.",
+    "isNothingToReport": false
+  },
+  {
+    "id": "e18885c287147238ad221ccbd28cd06dc",
+    "date": "2026-09-08",
+    "rawDateStr": "Tuesday, September 8",
+    "time": "9:50 AM",
+    "type": "Medical emergency",
+    "rawLocation": "Edith Mortenson Center (2112 S Grange Ave)",
+    "locationName": "Edith Mortenson Center",
+    "address": "2112 S Grange Ave",
+    "category": "Medical Response",
+    "description": "CSO responded to request to give medical aid. An incident report was completed.",
     "isNothingToReport": false
   },
   {
@@ -106,6 +184,19 @@ export const FALLBACK_INCIDENTS: any[] = [
     "address": "2008 S Walts Ave",
     "category": "Other Assistance",
     "description": "CSO responded to request to assist with elevator. An incident report was completed.",
+    "isNothingToReport": false
+  },
+  {
+    "id": "e5fd786c07a8209c28ea136387276d5a1",
+    "date": "2026-09-08",
+    "rawDateStr": "Tuesday, September 8",
+    "time": "11:15 PM",
+    "type": "Sexual assault report",
+    "rawLocation": "Campus (2001 S Summit Ave)",
+    "locationName": "Campus",
+    "address": "2001 S Summit Ave",
+    "category": "Other Assistance",
+    "description": "CSO took a report from Student Affairs employee. An incident report was completed.",
     "isNothingToReport": false
   },
   {
@@ -242,14 +333,14 @@ export const FALLBACK_INCIDENTS: any[] = [
     "id": "ea5508a980033545839667bd6eac20ecb",
     "date": "2026-09-03",
     "rawDateStr": "Thursday, September 3",
-    "time": "",
-    "type": "Nothing to report",
-    "rawLocation": "Campus-wide",
-    "locationName": "Campus-wide",
-    "address": "",
-    "category": "Nothing to Report",
-    "description": "Nothing to report.",
-    "isNothingToReport": true
+    "time": "10:45 PM",
+    "type": "Wellbeing check",
+    "rawLocation": "Bergsaker Hall (1110 W 33rd St)",
+    "locationName": "Bergsaker Hall",
+    "address": "1110 W 33rd St",
+    "category": "Welfare & Well-being",
+    "description": "CSO conducted a check on a student. An incident report was completed.",
+    "isNothingToReport": false
   },
   {
     "id": "eed033b051190ac284a8b7656c779b670",
