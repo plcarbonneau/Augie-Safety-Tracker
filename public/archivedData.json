@@ -1,5 +1,57 @@
 [
   {
+    "id": "ed157d0b5a2502324b060efcf3a8cd486",
+    "date": "2026-09-14",
+    "rawDateStr": "Monday, September 14",
+    "time": "9:58 AM",
+    "type": "Storm damage",
+    "rawLocation": "Elmen Center (2505 S Grange Ave)",
+    "locationName": "Elmen Center",
+    "address": "2505 S Grange Ave",
+    "category": "Theft & Property Damage",
+    "description": "CSO investigated report of damage to building. An incident report was completed.",
+    "isNothingToReport": false
+  },
+  {
+    "id": "eb88cbb6b8eca4a689984067b14a1f673",
+    "date": "2026-09-14",
+    "rawDateStr": "Monday, September 14",
+    "time": "12:00 PM",
+    "type": "Medical response",
+    "rawLocation": "Fryxell Humanities Center (2120 S Grange Ave)",
+    "locationName": "Fryxell Humanities Center",
+    "address": "2120 S Grange Ave",
+    "category": "Medical Response",
+    "description": "CSO took a report of student injury. An incident report was completed.",
+    "isNothingToReport": false
+  },
+  {
+    "id": "e4447e6fbc5fa6e247563ee9f0b44b35a",
+    "date": "2026-09-14",
+    "rawDateStr": "Monday, September 14",
+    "time": "5:30 PM",
+    "type": "Medical response",
+    "rawLocation": "Morrison Commons (2112 S Grange Ave)",
+    "locationName": "Morrison Commons",
+    "address": "2112 S Grange Ave",
+    "category": "Medical Response",
+    "description": "CSO and ambulance checked on student. An incident report was completed.",
+    "isNothingToReport": false
+  },
+  {
+    "id": "ea399ff3388a1ccca51addc1f8ca42f6c",
+    "date": "2026-09-14",
+    "rawDateStr": "Monday, September 14",
+    "time": "6:00 PM",
+    "type": "near tennis court",
+    "rawLocation": "Grange Ave",
+    "locationName": "Grange Ave",
+    "address": "",
+    "category": "Traffic & Parking",
+    "description": "Hit and run. CSO took a report of hit and run in area. An incident report was completed.",
+    "isNothingToReport": false
+  },
+  {
     "id": "e4b50536cab22c486ab070bb0d90cc232",
     "date": "2026-09-13",
     "rawDateStr": "Sunday, September 13",
