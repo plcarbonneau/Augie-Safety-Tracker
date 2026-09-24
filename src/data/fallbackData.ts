@@ -44,10 +44,62 @@ export function getCategory(text: string): IncidentCategory {
 
 export const FALLBACK_INCIDENTS: any[] = [
   {
+    "id": "ec86162ae1434fb1f4184a3f4a7a0c2d7",
+    "date": "2026-09-23",
+    "rawDateStr": "Wednesday, September 23",
+    "time": "12:30 AM",
+    "type": "Noise complaint",
+    "rawLocation": "Stavig Hall (2008 S Summit Ave)",
+    "locationName": "Stavig Hall",
+    "address": "2008 S Summit Ave",
+    "category": "Disorderly & Suspicious",
+    "description": "CSO and Student Affairs responded to report of noise in dorm. An incident report was completed.",
+    "isNothingToReport": false
+  },
+  {
+    "id": "e7b553cdd5a3edb2165427ecee9eee33c",
+    "date": "2026-09-22",
+    "rawDateStr": "Tuesday, September 22",
+    "time": "",
+    "type": "Nothing to report",
+    "rawLocation": "Campus-wide",
+    "locationName": "Campus-wide",
+    "address": "",
+    "category": "Nothing to Report",
+    "description": "Nothing to report.",
+    "isNothingToReport": true
+  },
+  {
+    "id": "ed8b6021fc4ecd6dd631b2649b575156c",
+    "date": "2026-09-21",
+    "rawDateStr": "Monday, September 21",
+    "time": "1:27 PM",
+    "type": "Disorderly conduct",
+    "rawLocation": "Froiland Center (2407 S Summit Ave)",
+    "locationName": "Froiland Center",
+    "address": "2407 S Summit Ave",
+    "category": "Disorderly & Suspicious",
+    "description": "CSO responded to report of subject in building. An incident report was completed.",
+    "isNothingToReport": false
+  },
+  {
+    "id": "eaef581dbb6fa5eea1ecb31654be18006",
+    "date": "2026-09-21",
+    "rawDateStr": "Monday, September 21",
+    "time": "11:10 PM",
+    "type": "Damaged property",
+    "rawLocation": "Mikkelsen Library (2117 S Summit Ave)",
+    "locationName": "Mikkelsen Library",
+    "address": "2117 S Summit Ave",
+    "category": "Theft & Property Damage",
+    "description": "CSO investigated report of damaged property. An incident report was completed.",
+    "isNothingToReport": false
+  },
+  {
     "id": "ed32f9a5543b47ed63fb8f74c2198c8c9",
     "date": "2026-09-20",
     "rawDateStr": "Sunday, September 20",
-    "time": "6:45",
+    "time": "6:45 Am",
     "type": "Disorderly Conduct",
     "rawLocation": "Wagoner Hall (2300 S Grange Ave)",
     "locationName": "Wagoner Hall",
@@ -678,6 +730,19 @@ export const FALLBACK_INCIDENTS: any[] = [
     "address": "2117 S Summit Ave",
     "category": "Other Assistance",
     "description": "Officers found bat in building. An incident report was completed.",
+    "isNothingToReport": false
+  },
+  {
+    "id": "ed9191d43afea9c2f157fcb369b1eb28c",
+    "date": "2026-08-27",
+    "rawDateStr": "Thursday, August 27",
+    "time": "12:15 PM",
+    "type": "Theft",
+    "rawLocation": "Fryxell Humanities Center (2120 S Grange Ave)",
+    "locationName": "Fryxell Humanities Center",
+    "address": "2120 S Grange Ave",
+    "category": "Theft & Property Damage",
+    "description": "Officer investigated theft report. An incident report was completed.",
     "isNothingToReport": false
   },
   {

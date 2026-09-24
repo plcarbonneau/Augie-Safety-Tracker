@@ -91,6 +91,19 @@
     "isNothingToReport": false
   },
   {
+    "id": "ed9191d43afea9c2f157fcb369b1eb28c",
+    "date": "2026-08-27",
+    "rawDateStr": "Thursday, August 27",
+    "time": "12:15 PM",
+    "type": "Theft",
+    "rawLocation": "Fryxell Humanities Center (2120 S Grange Ave)",
+    "locationName": "Fryxell Humanities Center",
+    "address": "2120 S Grange Ave",
+    "category": "Theft & Property Damage",
+    "description": "Officer investigated theft report. An incident report was completed.",
+    "isNothingToReport": false
+  },
+  {
     "id": "e8de1329a88b442c5f8aac0dafc016da3",
     "date": "2026-08-26",
     "rawDateStr": "Wednesday, August 26",
