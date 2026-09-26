@@ -44,6 +44,19 @@ export function getCategory(text: string): IncidentCategory {
 
 export const FALLBACK_INCIDENTS: any[] = [
   {
+    "id": "e683621f923daa76eeebd439acb756d3b",
+    "date": "2026-09-24",
+    "rawDateStr": "Thursday, September 24",
+    "time": "12:30 AM",
+    "type": "Damage to property",
+    "rawLocation": "Elmen Center (2505 S Grange Ave)",
+    "locationName": "Elmen Center",
+    "address": "2505 S Grange Ave",
+    "category": "Theft & Property Damage",
+    "description": "CSO investigate damage found on rounds. An incident report was completed.",
+    "isNothingToReport": false
+  },
+  {
     "id": "ec86162ae1434fb1f4184a3f4a7a0c2d7",
     "date": "2026-09-23",
     "rawDateStr": "Wednesday, September 23",
@@ -54,6 +67,19 @@ export const FALLBACK_INCIDENTS: any[] = [
     "address": "2008 S Summit Ave",
     "category": "Disorderly & Suspicious",
     "description": "CSO and Student Affairs responded to report of noise in dorm. An incident report was completed.",
+    "isNothingToReport": false
+  },
+  {
+    "id": "e68ebcf92f7f22f56abff672d966e5caa",
+    "date": "2026-09-23",
+    "rawDateStr": "Wednesday, September 23",
+    "time": "9:54 PM",
+    "type": "Pest issue",
+    "rawLocation": "Granskou Hall (2009 S Prairie Ave)",
+    "locationName": "Granskou Hall",
+    "address": "2009 S Prairie Ave",
+    "category": "Other Assistance",
+    "description": "CSO check on report of pest in area. An incident report was completed.",
     "isNothingToReport": false
   },
   {
