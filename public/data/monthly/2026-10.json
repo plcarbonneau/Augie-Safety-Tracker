@@ -1,0 +1,15 @@
+[
+  {
+    "id": "e71ed99c8b727749bbfeb22b463418212",
+    "date": "2026-10-01",
+    "rawDateStr": "Thursday, October 1",
+    "time": "8:15 PM",
+    "type": "Traffic accident",
+    "rawLocation": "Costello Hall (2413 S Grange Ave)",
+    "locationName": "Costello Hall",
+    "address": "2413 S Grange Ave",
+    "category": "Traffic & Parking",
+    "description": "CSO took a report of an accident. An incident report was completed.",
+    "isNothingToReport": false
+  }
+]

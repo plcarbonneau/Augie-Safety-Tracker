@@ -1,6 +1,32 @@
 [
   {
+    "id": "e1a33bfaaa29109b12faabdcd08a705f3",
+    "date": "2026-09-30",
+    "rawDateStr": "Wednesday, September 30",
+    "time": "3:19 PM",
+    "type": "Traffic accident",
+    "rawLocation": "Solberg Hall lot (2312 S Grange Ave)",
+    "locationName": "Solberg Hall lot",
+    "address": "2312 S Grange Ave",
+    "category": "Traffic & Parking",
+    "description": "CSO took a report of an accident. An incident report was completed.",
+    "isNothingToReport": false
+  },
+  {
     "id": "e05c56002aa7218f14bc1415bb12b06b8",
+    "date": "2026-09-29",
+    "rawDateStr": "Tuesday, September 29",
+    "time": "6:57 PM",
+    "type": "Sexual Harassment",
+    "rawLocation": "Bergsaker Hall (1110 W 33rd St)",
+    "locationName": "Bergsaker Hall",
+    "address": "1110 W 33rd St",
+    "category": "Disorderly & Suspicious",
+    "description": "CSO investigated harassment to student. An incident report was completed.",
+    "isNothingToReport": false
+  },
+  {
+    "id": "e9743ff803485beade387203ceaef5900",
     "date": "2026-09-29",
     "rawDateStr": "Tuesday, September 29",
     "time": "9:31 PM",
