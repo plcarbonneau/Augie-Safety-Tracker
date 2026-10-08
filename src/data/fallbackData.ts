@@ -44,6 +44,58 @@ export function getCategory(text: string): IncidentCategory {
 
 export const FALLBACK_INCIDENTS: any[] = [
   {
+    "id": "eecd923c76e8a716dfca03bc9c6ed7c78",
+    "date": "2026-10-07",
+    "rawDateStr": "Wednesday, October 7",
+    "time": "1:27 AM",
+    "type": "Welfare check",
+    "rawLocation": "Bergsaker Hall (1110 W 33rd St)",
+    "locationName": "Bergsaker Hall",
+    "address": "1110 W 33rd St",
+    "category": "Welfare & Well-being",
+    "description": "CSO checked on student's wellbeing. An incident report was completed.",
+    "isNothingToReport": false
+  },
+  {
+    "id": "e9014e1bcdcd05fe2be69e48a814ce521",
+    "date": "2026-10-06",
+    "rawDateStr": "Tuesday, October 6",
+    "time": "8:36 AM",
+    "type": "Elevator rescue",
+    "rawLocation": "Froiland Science Center (2407 S Summit Ave)",
+    "locationName": "Froiland Science Center",
+    "address": "2407 S Summit Ave",
+    "category": "Other Assistance",
+    "description": "CSO removed subjects stuck on elevator. An incident report was completed.",
+    "isNothingToReport": false
+  },
+  {
+    "id": "e3706e4f474504e40c9f2a50031be42ad",
+    "date": "2026-10-06",
+    "rawDateStr": "Tuesday, October 6",
+    "time": "12:42 PM",
+    "type": "Medical check",
+    "rawLocation": "Morrison Commons (2112 S Grange Ave)",
+    "locationName": "Morrison Commons",
+    "address": "2112 S Grange Ave",
+    "category": "Medical Response",
+    "description": "CSO provided medical aid to student. An incident report was completed.",
+    "isNothingToReport": false
+  },
+  {
+    "id": "e8e3053c8d35477ef89fa1793e9be1585",
+    "date": "2026-10-05",
+    "rawDateStr": "Monday, October 5",
+    "time": "2:10 PM",
+    "type": "Code of conduct",
+    "rawLocation": "Solberg Hall lot (2312 S Grange Ave)",
+    "locationName": "Solberg Hall lot",
+    "address": "2312 S Grange Ave",
+    "category": "Disorderly & Suspicious",
+    "description": "CSO investigated report of conduct issue. An incident report was completed.",
+    "isNothingToReport": false
+  },
+  {
     "id": "ef49d02612a6c67a83c83432b18f3f19c",
     "date": "2026-10-04",
     "rawDateStr": "Sunday, October 4",
