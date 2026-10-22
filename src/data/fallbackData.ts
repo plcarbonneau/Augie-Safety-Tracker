@@ -44,6 +44,45 @@ export function getCategory(text: string): IncidentCategory {
 
 export const FALLBACK_INCIDENTS: any[] = [
   {
+    "id": "e11191a32508a3f2f79f8155323d84215",
+    "date": "2026-10-20",
+    "rawDateStr": "Tuesday, October 20",
+    "time": "10:20 AM",
+    "type": "Fire alarm",
+    "rawLocation": "Morrison Commons (2112 S Grange Ave)",
+    "locationName": "Morrison Commons",
+    "address": "2112 S Grange Ave",
+    "category": "Fire & Safety",
+    "description": "CSO and SFFR responded to fire alarm. An incident report was completed.",
+    "isNothingToReport": false
+  },
+  {
+    "id": "eea4d52022c2541a1e5dfe776f479612a",
+    "date": "2026-10-20",
+    "rawDateStr": "Tuesday, October 20",
+    "time": "4:30 PM",
+    "type": "Disorderly conduct and trespass",
+    "rawLocation": "Grange Ave",
+    "locationName": "Grange Ave",
+    "address": "",
+    "category": "Disorderly & Suspicious",
+    "description": "CSO and SFPD removed subject from area. An incident report was completed.",
+    "isNothingToReport": false
+  },
+  {
+    "id": "e7c8201021f8d8b934fa31bf1f3060643",
+    "date": "2026-10-19",
+    "rawDateStr": "Monday, October 19",
+    "time": "",
+    "type": "Nothing to report",
+    "rawLocation": "Campus-wide",
+    "locationName": "Campus-wide",
+    "address": "",
+    "category": "Nothing to Report",
+    "description": "Nothing to report.",
+    "isNothingToReport": true
+  },
+  {
     "id": "e1f2a1bf32378b9b599c5f5f9584ee88f",
     "date": "2026-10-18",
     "rawDateStr": "Sunday, October 18",
@@ -54,6 +93,19 @@ export const FALLBACK_INCIDENTS: any[] = [
     "address": "2008 S Walts Ave",
     "category": "Disorderly & Suspicious",
     "description": "CSO investigated noise issue. An incident report was completed.",
+    "isNothingToReport": false
+  },
+  {
+    "id": "e34152e0a581639633053e5113681e9c2",
+    "date": "2026-10-18",
+    "rawDateStr": "Sunday, October 18",
+    "time": "3:05 PM",
+    "type": "Theft",
+    "rawLocation": "Midco Arena",
+    "locationName": "Midco Arena",
+    "address": "",
+    "category": "Theft & Property Damage",
+    "description": "CSO investigated theft. An incident report was completed.",
     "isNothingToReport": false
   },
   {

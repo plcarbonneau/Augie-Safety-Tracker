@@ -3,7 +3,7 @@
     {
       "yearMonth": "2026-10",
       "label": "October 2026",
-      "count": 35
+      "count": 39
     },
     {
       "yearMonth": "2026-09",
@@ -26,6 +26,6 @@
       "count": 31
     }
   ],
-  "totalIncidents": 208,
-  "lastUpdated": "2026-10-21T10:42:40.523Z"
+  "totalIncidents": 212,
+  "lastUpdated": "2026-10-22T10:44:27.450Z"
 }
