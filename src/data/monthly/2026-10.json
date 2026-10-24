@@ -1,5 +1,31 @@
 [
   {
+    "id": "eafd7da64342088160dd5444a6e173f4a",
+    "date": "2026-10-22",
+    "rawDateStr": "Thursday, October 22",
+    "time": "",
+    "type": "Nothing to report",
+    "rawLocation": "Campus-wide",
+    "locationName": "Campus-wide",
+    "address": "",
+    "category": "Nothing to Report",
+    "description": "Nothing to report.",
+    "isNothingToReport": true
+  },
+  {
+    "id": "ed2d9f6fb7b137b34b0c045843edbe10a",
+    "date": "2026-10-21",
+    "rawDateStr": "Wednesday, October 21",
+    "time": "",
+    "type": "Nothing to report",
+    "rawLocation": "Campus-wide",
+    "locationName": "Campus-wide",
+    "address": "",
+    "category": "Nothing to Report",
+    "description": "Nothing to report.",
+    "isNothingToReport": true
+  },
+  {
     "id": "e11191a32508a3f2f79f8155323d84215",
     "date": "2026-10-20",
     "rawDateStr": "Tuesday, October 20",
