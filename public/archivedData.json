@@ -1,5 +1,31 @@
 [
   {
+    "id": "e41d34623b136df39928a62e99f2f8446",
+    "date": "2026-10-27",
+    "rawDateStr": "Tuesday, October 27",
+    "time": "9:34 AM",
+    "type": "Theft",
+    "rawLocation": "Fryxell Humanities Center (2120 S Grange Ave)",
+    "locationName": "Fryxell Humanities Center",
+    "address": "2120 S Grange Ave",
+    "category": "Theft & Property Damage",
+    "description": "CSO investigated theft of item. An incident report was completed.",
+    "isNothingToReport": false
+  },
+  {
+    "id": "eec4654c66d716778261f59baee30b173",
+    "date": "2026-10-27",
+    "rawDateStr": "Tuesday, October 27",
+    "time": "5:11 PM",
+    "type": "Suspicious item",
+    "rawLocation": "Wagoner Hall (2300 S Grange Ave)",
+    "locationName": "Wagoner Hall",
+    "address": "2300 S Grange Ave",
+    "category": "Disorderly & Suspicious",
+    "description": "CSO investigated report of suspicious item. An incident report was completed.",
+    "isNothingToReport": false
+  },
+  {
     "id": "e7fbea8b900ee0fed664ecd69258fc3fd",
     "date": "2026-10-26",
     "rawDateStr": "Monday, October 26",
