@@ -1,9 +1,14 @@
 {
   "months": [
     {
+      "yearMonth": "2026-11",
+      "label": "November 2026",
+      "count": 1
+    },
+    {
       "yearMonth": "2026-10",
       "label": "October 2026",
-      "count": 50
+      "count": 56
     },
     {
       "yearMonth": "2026-09",
@@ -26,6 +31,6 @@
       "count": 31
     }
   ],
-  "totalIncidents": 223,
-  "lastUpdated": "2026-11-02T13:58:13.618Z"
+  "totalIncidents": 230,
+  "lastUpdated": "2026-11-03T13:06:24.287Z"
 }
