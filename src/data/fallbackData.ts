@@ -44,6 +44,58 @@ export function getCategory(text: string): IncidentCategory {
 
 export const FALLBACK_INCIDENTS: any[] = [
   {
+    "id": "e5a830ab0259efa27c44a2cef876b61a2",
+    "date": "2026-11-04",
+    "rawDateStr": "Wednesday, November 4",
+    "time": "4:00 AM",
+    "type": "Tow",
+    "rawLocation": "Solberg Hall lot (2312 S Grange Ave)",
+    "locationName": "Solberg Hall lot",
+    "address": "2312 S Grange Ave",
+    "category": "Traffic & Parking",
+    "description": "Towed vehicle multiple violator. An incident report was completed.",
+    "isNothingToReport": false
+  },
+  {
+    "id": "ecd31809ed3884b5ee981755d2c5313e8",
+    "date": "2026-11-03",
+    "rawDateStr": "Tuesday, November 3",
+    "time": "4:00 PM",
+    "type": "Theft",
+    "rawLocation": "Bergsaker Hall (1110 W 33rd St)",
+    "locationName": "Bergsaker Hall",
+    "address": "1110 W 33rd St",
+    "category": "Theft & Property Damage",
+    "description": "Officers investigated theft in building. An incident report was completed.",
+    "isNothingToReport": false
+  },
+  {
+    "id": "e99604356c4f97ae64b617b064e5d3e8c",
+    "date": "2026-11-03",
+    "rawDateStr": "Tuesday, November 3",
+    "time": "5:23 PM",
+    "type": "Medical",
+    "rawLocation": "Granskou (2009 S Prairie Ave)",
+    "locationName": "Granskou",
+    "address": "2009 S Prairie Ave",
+    "category": "Medical Response",
+    "description": "Officers responded to ambulance on campus. An incident report was completed.",
+    "isNothingToReport": false
+  },
+  {
+    "id": "eb1379497a835a03202c1e3c1a0b46a06",
+    "date": "2026-11-02",
+    "rawDateStr": "Monday, November 2",
+    "time": "8:23 AM",
+    "type": "Fire safety violation",
+    "rawLocation": "Madsen Social Science Center (2301 S Summit Ave)",
+    "locationName": "Madsen Social Science Center",
+    "address": "2301 S Summit Ave",
+    "category": "Fire & Safety",
+    "description": "CSO and IT investigated damage due to fire. An incident report was completed.",
+    "isNothingToReport": false
+  },
+  {
     "id": "ebec3a3e4bfa4e4cd6222458acf683544",
     "date": "2026-11-01",
     "rawDateStr": "Sunday, November 1",
