@@ -1,5 +1,31 @@
 [
   {
+    "id": "e1166e15a06c81061a3f41ec9a65ab336",
+    "date": "2026-11-05",
+    "rawDateStr": "Thursday, November 5",
+    "time": "4:42 PM",
+    "type": "Marijuana odor",
+    "rawLocation": "Schoeneman Apt (1419 W 33rd St)",
+    "locationName": "Schoeneman Apt",
+    "address": "1419 W 33rd St",
+    "category": "Substances & Alcohol",
+    "description": "Student reported smelling marijuana in area. An incident report was completed.",
+    "isNothingToReport": false
+  },
+  {
+    "id": "e93c008a0bc82e01cf4e78d91be21242d",
+    "date": "2026-11-05",
+    "rawDateStr": "Thursday, November 5",
+    "time": "7:13 PM",
+    "type": "Code of Conduct",
+    "rawLocation": "Balcer Apt (2420 S Summit Ave)",
+    "locationName": "Balcer Apt",
+    "address": "2420 S Summit Ave",
+    "category": "Disorderly & Suspicious",
+    "description": "Student miss identified himself. An incident report was completed.",
+    "isNothingToReport": false
+  },
+  {
     "id": "e5a830ab0259efa27c44a2cef876b61a2",
     "date": "2026-11-04",
     "rawDateStr": "Wednesday, November 4",
