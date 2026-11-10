@@ -44,6 +44,71 @@ export function getCategory(text: string): IncidentCategory {
 
 export const FALLBACK_INCIDENTS: any[] = [
   {
+    "id": "e649a7b9e07cef99e24f86ff6c173f7e8",
+    "date": "2026-11-08",
+    "rawDateStr": "Sunday, November 8",
+    "time": "4:07 PM",
+    "type": "Theft",
+    "rawLocation": "Morrison Commons (2112 S Grange Ave)",
+    "locationName": "Morrison Commons",
+    "address": "2112 S Grange Ave",
+    "category": "Theft & Property Damage",
+    "description": "CSO investigated a theft of item. An incident report was completed.",
+    "isNothingToReport": false
+  },
+  {
+    "id": "e3805d5b860b4dc6586fa76e1e98bc747",
+    "date": "2026-11-07",
+    "rawDateStr": "Saturday, November 7",
+    "time": "2:00 PM",
+    "type": "Property damage",
+    "rawLocation": "Schoeneman Apt (1419 W 33rd St)",
+    "locationName": "Schoeneman Apt",
+    "address": "1419 W 33rd St",
+    "category": "Theft & Property Damage",
+    "description": "CSO took a student report of damage to window. An incident report was completed.",
+    "isNothingToReport": false
+  },
+  {
+    "id": "e04b925a65e9ef9aa4e724f5b6a9186c4",
+    "date": "2026-11-07",
+    "rawDateStr": "Saturday, November 7",
+    "time": "9:33 PM",
+    "type": "Noise complaint",
+    "rawLocation": "Foundation Heights (28th and Grange)",
+    "locationName": "Foundation Heights",
+    "address": "28th and Grange",
+    "category": "Disorderly & Suspicious",
+    "description": "CSO investigated noise complaints. An incident report was completed.",
+    "isNothingToReport": false
+  },
+  {
+    "id": "eb3189260f7d53a05f23c77fa3f453ef0",
+    "date": "2026-11-06",
+    "rawDateStr": "Friday, November 6",
+    "time": "6:35 PM",
+    "type": "Marijuana odor",
+    "rawLocation": "Costello Hall (2413 S Grange Ave)",
+    "locationName": "Costello Hall",
+    "address": "2413 S Grange Ave",
+    "category": "Substances & Alcohol",
+    "description": "CSO investigated a student reported smelling marijuana in area. An incident report was completed.",
+    "isNothingToReport": false
+  },
+  {
+    "id": "eb83d704eee304182fd3b7f8203bd0b11",
+    "date": "2026-11-06",
+    "rawDateStr": "Friday, November 6",
+    "time": "11:09 PM",
+    "type": "Vandalism",
+    "rawLocation": "Stavig Hall (2008 S Walts Ave)",
+    "locationName": "Stavig Hall",
+    "address": "2008 S Walts Ave",
+    "category": "Theft & Property Damage",
+    "description": "CSO investigated a student reported mess in dorm. An incident report was completed.",
+    "isNothingToReport": false
+  },
+  {
     "id": "e1166e15a06c81061a3f41ec9a65ab336",
     "date": "2026-11-05",
     "rawDateStr": "Thursday, November 5",
@@ -53,7 +118,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "locationName": "Schoeneman Apt",
     "address": "1419 W 33rd St",
     "category": "Substances & Alcohol",
-    "description": "Student reported smelling marijuana in area. An incident report was completed.",
+    "description": "CSO investigated a student reported smelling marijuana in area. An incident report was completed.",
     "isNothingToReport": false
   },
   {
@@ -66,7 +131,20 @@ export const FALLBACK_INCIDENTS: any[] = [
     "locationName": "Balcer Apt",
     "address": "2420 S Summit Ave",
     "category": "Disorderly & Suspicious",
-    "description": "Student miss identified himself. An incident report was completed.",
+    "description": "CSO spoke to a student who miss identified himself. An incident report was completed.",
+    "isNothingToReport": false
+  },
+  {
+    "id": "e3f6669f16e328e06f6bc08f3ea0d0b1c",
+    "date": "2026-11-05",
+    "rawDateStr": "Thursday, November 5",
+    "time": "11:30 PM",
+    "type": "Auto accident",
+    "rawLocation": "Tuve Hall lot (2016 S Menlo Ave)",
+    "locationName": "Tuve Hall lot",
+    "address": "2016 S Menlo Ave",
+    "category": "Theft & Property Damage",
+    "description": "CSO took a student reported damage to vehicle. An incident report was completed.",
     "isNothingToReport": false
   },
   {
@@ -92,7 +170,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "locationName": "Bergsaker Hall",
     "address": "1110 W 33rd St",
     "category": "Theft & Property Damage",
-    "description": "Officers investigated theft in building. An incident report was completed.",
+    "description": "CSO investigated theft in building. An incident report was completed.",
     "isNothingToReport": false
   },
   {
@@ -105,7 +183,7 @@ export const FALLBACK_INCIDENTS: any[] = [
     "locationName": "Granskou",
     "address": "2009 S Prairie Ave",
     "category": "Medical Response",
-    "description": "Officers responded to ambulance on campus. An incident report was completed.",
+    "description": "CSO responded to ambulance on campus. An incident report was completed.",
     "isNothingToReport": false
   },
   {
