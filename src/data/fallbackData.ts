@@ -44,6 +44,19 @@ export function getCategory(text: string): IncidentCategory {
 
 export const FALLBACK_INCIDENTS: any[] = [
   {
+    "id": "e643aa7fc23b35c0f30ba163fc0a15716",
+    "date": "2026-11-09",
+    "rawDateStr": "Monday, November 9",
+    "time": "1:05 PM",
+    "type": "Disorderly Conduct",
+    "rawLocation": "Froiland Science Center (2407 S Summit Ave)",
+    "locationName": "Froiland Science Center",
+    "address": "2407 S Summit Ave",
+    "category": "Disorderly & Suspicious",
+    "description": "CSO investigated subjects in building. An incident report was completed.",
+    "isNothingToReport": false
+  },
+  {
     "id": "e649a7b9e07cef99e24f86ff6c173f7e8",
     "date": "2026-11-08",
     "rawDateStr": "Sunday, November 8",
