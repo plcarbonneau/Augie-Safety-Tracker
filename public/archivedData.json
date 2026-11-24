@@ -1,5 +1,57 @@
 [
   {
+    "id": "e382dcc243d69a0f46fb27e966613c1d8",
+    "date": "2026-11-22",
+    "rawDateStr": "Sunday, November 22",
+    "time": "",
+    "type": "Nothing to report",
+    "rawLocation": "Campus-wide",
+    "locationName": "Campus-wide",
+    "address": "",
+    "category": "Nothing to Report",
+    "description": "Nothing to report.",
+    "isNothingToReport": true
+  },
+  {
+    "id": "e66bf96b6af034ce72ab0f135da1f9f6f",
+    "date": "2026-11-21",
+    "rawDateStr": "Saturday, November 21",
+    "time": "12:55 PM",
+    "type": "Medical",
+    "rawLocation": "Stavig Hall (2008 S Walts Ave)",
+    "locationName": "Stavig Hall",
+    "address": "2008 S Walts Ave",
+    "category": "Medical Response",
+    "description": "CSO assisted with a student's medical need. An incident report was completed.",
+    "isNothingToReport": false
+  },
+  {
+    "id": "ec0b4ab7ecf57761d013e76bf50baf006",
+    "date": "2026-11-21",
+    "rawDateStr": "Saturday, November 21",
+    "time": "6:31 PM",
+    "type": "Tow",
+    "rawLocation": "Wagoner Hall (2300 S Grange Ave)",
+    "locationName": "Wagoner Hall",
+    "address": "2300 S Grange Ave",
+    "category": "Traffic & Parking",
+    "description": "Towed vehicle multiple violator. An incident report was completed.",
+    "isNothingToReport": false
+  },
+  {
+    "id": "ee175971ca9b9af15dc26fd6bb993b584",
+    "date": "2026-11-20",
+    "rawDateStr": "Friday, November 20",
+    "time": "5:06 PM",
+    "type": "Assist other department",
+    "rawLocation": "Solberg Hall (2312 S Grange Ave)",
+    "locationName": "Solberg Hall",
+    "address": "2312 S Grange Ave",
+    "category": "Other Assistance",
+    "description": "CSO responded to request to assist Student Affairs. An incident report was completed.",
+    "isNothingToReport": false
+  },
+  {
     "id": "e110c9f33c4eaa06a0ec52da3bbd5da98",
     "date": "2026-11-19",
     "rawDateStr": "Thursday, November 19",
